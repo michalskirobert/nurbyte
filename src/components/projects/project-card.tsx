@@ -1,3 +1,66 @@
 "use client";
-import Image from "next/image"; import {motion} from "framer-motion"; import {ArrowUpRight,Terminal,FileText} from "lucide-react"; import type {Project} from "@/data/projects";
-export function ProjectCard({project,index}:{project:Project;index:number}){return <motion.article className={`project-card project-card--${project.accent}`} initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true,amount:.2}} transition={{delay:index*.08}}><div className="project-card__visual">{project.slug==='docflow'?<Image src="/images/docflow-logo.png" alt="DocFlow" fill sizes="(max-width: 800px) 100vw, 50vw"/>:<div className="terminal-art"><Terminal/><code>127.0.0.1 local.dev<br/># 10.0.0.8 staging.dev<br/>▌</code></div>}<span>{project.status}</span></div><div className="project-card__body"><p className="eyebrow">{project.kicker}</p><h3>{project.name}</h3><p>{project.description}</p><div className="tags">{project.tags.map(x=><span key={x}>{x}</span>)}</div><a href={`/projects/${project.slug}`}>OPEN PROJECT <ArrowUpRight size={16}/></a></div></motion.article>}
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Download, Terminal } from "lucide-react";
+import type { Project } from "@/data/projects";
+
+export function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  return (
+    <motion.article
+      className={`project-card project-card--${project.accent}`}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ delay: index * 0.08 }}
+    >
+      <div className="project-card__visual">
+        {project.slug === "docflow" ? (
+          <Image
+            src="/images/docflow-logo.png"
+            alt="DocFlow"
+            fill
+            sizes="(max-width: 800px) 100vw, 50vw"
+          />
+        ) : (
+          <div className="terminal-art">
+            <Terminal />
+            <code>
+              127.0.0.1 local.dev
+              <br /># 10.0.0.8 staging.dev
+              <br />▌
+            </code>
+          </div>
+        )}
+        <span>{project.status}</span>
+      </div>
+
+      <div className="project-card__body">
+        <p className="eyebrow">{project.kicker}</p>
+        <h3>{project.name}</h3>
+        <p>{project.description}</p>
+        <div className="tags">
+          {project.tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+        <div className="project-card__actions">
+          <a href={`/projects/${project.slug}`}>
+            OPEN PROJECT <ArrowUpRight size={16} />
+          </a>
+          {project.downloadHref && (
+            <a href={project.downloadHref} target="_blank" rel="noreferrer">
+              DOWNLOAD LATEST <Download size={16} />
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.article>
+  );
+}

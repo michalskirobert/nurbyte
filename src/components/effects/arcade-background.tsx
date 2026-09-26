@@ -1,1 +1,10 @@
-export function ArcadeBackground(){return <div className="arcade-bg" aria-hidden="true"><div className="scanlines"/><div className="grain"/><div className="batik batik--left">◆ ◇ ◆ ◇ ◆ ◇ ◆</div><div className="batik batik--right">◇ ◆ ◇ ◆ ◇ ◆ ◇</div></div>}
+export function ArcadeBackground() {
+  return (
+    <div className="arcade-bg" aria-hidden="true">
+      <div className="scanlines" />
+      <div className="grain" />
+      <div className="batik batik--left">◆ ◇ ◆ ◇ ◆ ◇ ◆</div>
+      <div className="batik batik--right">◇ ◆ ◇ ◆ ◇ ◆ ◇</div>
+    </div>
+  );
+}

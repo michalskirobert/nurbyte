@@ -1,4 +1,39 @@
-import {createCipheriv,createDecipheriv,createHash,randomBytes} from "crypto";
-const key=()=>createHash("sha256").update(process.env.CAPTCHA_SECRET??"development-only-secret-change-me").digest();
-export function sealCaptcha(answer:string){const iv=randomBytes(12);const cipher=createCipheriv("aes-256-gcm",key(),iv);const payload=Buffer.from(JSON.stringify({answer:answer.toUpperCase(),exp:Date.now()+5*60_000}));const encrypted=Buffer.concat([cipher.update(payload),cipher.final()]);const tag=cipher.getAuthTag();return Buffer.concat([iv,tag,encrypted]).toString("base64url")}
-export function openCaptcha(token:string){try{const raw=Buffer.from(token,"base64url"),iv=raw.subarray(0,12),tag=raw.subarray(12,28),encrypted=raw.subarray(28);const decipher=createDecipheriv("aes-256-gcm",key(),iv);decipher.setAuthTag(tag);const data=JSON.parse(Buffer.concat([decipher.update(encrypted),decipher.final()]).toString()) as {answer:string;exp:number};return data.exp>Date.now()?data.answer:null}catch{return null}}
+import {
+  createCipheriv,
+  createDecipheriv,
+  createHash,
+  randomBytes,
+} from "crypto";
+const key = () =>
+  createHash("sha256")
+    .update(process.env.CAPTCHA_SECRET ?? "development-only-secret-change-me")
+    .digest();
+export function sealCaptcha(answer: string) {
+  const iv = randomBytes(12);
+  const cipher = createCipheriv("aes-256-gcm", key(), iv);
+  const payload = Buffer.from(
+    JSON.stringify({
+      answer: answer.toUpperCase(),
+      exp: Date.now() + 5 * 60_000,
+    }),
+  );
+  const encrypted = Buffer.concat([cipher.update(payload), cipher.final()]);
+  const tag = cipher.getAuthTag();
+  return Buffer.concat([iv, tag, encrypted]).toString("base64url");
+}
+export function openCaptcha(token: string) {
+  try {
+    const raw = Buffer.from(token, "base64url"),
+      iv = raw.subarray(0, 12),
+      tag = raw.subarray(12, 28),
+      encrypted = raw.subarray(28);
+    const decipher = createDecipheriv("aes-256-gcm", key(), iv);
+    decipher.setAuthTag(tag);
+    const data = JSON.parse(
+      Buffer.concat([decipher.update(encrypted), decipher.final()]).toString(),
+    ) as { answer: string; exp: number };
+    return data.exp > Date.now() ? data.answer : null;
+  } catch {
+    return null;
+  }
+}
