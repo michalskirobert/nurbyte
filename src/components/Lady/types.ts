@@ -1,7 +1,2 @@
 export type LadyMood =
-  | "idle"
-  | "happy"
-  | "heart"
-  | "question"
-  | "surprised"
-  | "love";
+  "idle" | "happy" | "heart" | "question" | "surprised" | "love";

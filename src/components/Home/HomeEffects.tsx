@@ -56,10 +56,7 @@ export default function HomeEffects() {
 
     const handleScroll = () => {
       const rect = home.getBoundingClientRect();
-      const scrollY = Math.max(
-        0,
-        Math.min(window.innerHeight, -rect.top),
-      );
+      const scrollY = Math.max(0, Math.min(window.innerHeight, -rect.top));
 
       home.style.setProperty("--scrollY", `${scrollY}px`);
 
@@ -67,8 +64,7 @@ export default function HomeEffects() {
         0,
         Math.min(
           1,
-          (-rect.top - window.innerHeight * 0.55) /
-            (window.innerHeight * 0.35),
+          (-rect.top - window.innerHeight * 0.55) / (window.innerHeight * 0.35),
         ),
       );
 

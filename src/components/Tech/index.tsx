@@ -1,2 +1,24 @@
-import SceneParallax from "@/components/motion/SceneParallax";import TechContent from "./TechContent";import TechHeader from "./TechHeader";
-export default function Tech(){return <section id="tech" className="scene tech-game interactive-scene" aria-labelledby="techTitle"><div className="section-parallax-bg tech-parallax-bg" aria-hidden="true"/><div className="tech-shade"/><div className="tech-scanlines"/><div className="tech-shell scene-content"><TechHeader/><TechContent/></div><SceneParallax selector="#tech"/></section>}
+import SceneParallax from "@/components/motion/SceneParallax";
+import TechContent from "./TechContent";
+import TechHeader from "./TechHeader";
+export default function Tech() {
+  return (
+    <section
+      id="tech"
+      className="scene tech-game interactive-scene"
+      aria-labelledby="techTitle"
+    >
+      <div
+        className="section-parallax-bg tech-parallax-bg"
+        aria-hidden="true"
+      />
+      <div className="tech-shade" />
+      <div className="tech-scanlines" />
+      <div className="tech-shell scene-content">
+        <TechHeader />
+        <TechContent />
+      </div>
+      <SceneParallax selector="#tech" />
+    </section>
+  );
+}

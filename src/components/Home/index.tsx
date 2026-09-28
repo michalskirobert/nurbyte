@@ -15,7 +15,9 @@ export default function Home() {
       <HeroContent />
       <HeroTerminal />
       <HeroCharacters />
-      <a className="scroll-hint" href="#projects">SCROLL TO EXPLORE <span>⌄</span></a>
+      <a className="scroll-hint" href="#projects">
+        SCROLL TO EXPLORE <span>⌄</span>
+      </a>
       <HomeEffects />
     </section>
   );

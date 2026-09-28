@@ -15,10 +15,20 @@ export default function ProjectsArchive({ open, onClose, onSelect }: Props) {
         if (event.currentTarget === event.target) onClose();
       }}
     >
-      <div className="project-grid-panel" role="dialog" aria-modal="true" aria-labelledby="allProjectsTitle">
+      <div
+        className="project-grid-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="allProjectsTitle"
+      >
         <header>
-          <div><span>PROJECT ARCHIVE</span><h3 id="allProjectsTitle">ALL PROJECTS</h3></div>
-          <button type="button" aria-label="Close" onClick={onClose}>×</button>
+          <div>
+            <span>PROJECT ARCHIVE</span>
+            <h3 id="allProjectsTitle">ALL PROJECTS</h3>
+          </div>
+          <button type="button" aria-label="Close" onClick={onClose}>
+            ×
+          </button>
         </header>
         <div className="project-grid">
           {projects.map((project, index) => (
@@ -28,7 +38,9 @@ export default function ProjectsArchive({ open, onClose, onSelect }: Props) {
               className={`grid-project${project.locked ? " locked" : ""}`}
               onClick={() => onSelect(index)}
             >
-              <b>{String(index + 1).padStart(2, "0")} // {project.name}</b>
+              <b>
+                {String(index + 1).padStart(2, "0")} // {project.name}
+              </b>
               <span>{project.type}</span>
             </button>
           ))}

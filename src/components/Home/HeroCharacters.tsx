@@ -15,6 +15,7 @@ export default function HeroCharacters() {
         width={1050}
         height={780}
         priority
+        style={{ width: "auto", height: "auto" }}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onClick={() => setShow((value) => !value)}

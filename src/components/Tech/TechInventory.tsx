@@ -21,7 +21,10 @@ export default function TechInventory({ items, selected, onSelect }: Props) {
           onFocus={() => onSelect(index)}
         >
           {/* External Simple Icons URL is intentionally kept exactly as in the HTML master. */}
-          <img src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`} alt="" />
+          <img
+            src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`}
+            alt=""
+          />
           <span>{String(index + 1).padStart(2, "0")}</span>
         </button>
       ))}

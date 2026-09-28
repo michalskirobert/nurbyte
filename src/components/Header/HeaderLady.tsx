@@ -54,7 +54,10 @@ export default function HeaderLady({ menuOpen }: { menuOpen: boolean }) {
         style={{ width: "auto", height: "auto" }}
         priority
       />
-      <span className={`lady-bubble ${bubble ? "show" : ""}`} aria-live="polite">
+      <span
+        className={`lady-bubble ${bubble ? "show" : ""}`}
+        aria-live="polite"
+      >
         {bubble}
       </span>
     </span>

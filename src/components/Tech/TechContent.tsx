@@ -10,7 +10,11 @@ export default function TechContent() {
 
   return (
     <div className="tech-layout">
-      <TechInventory items={technologies} selected={selected} onSelect={setSelected} />
+      <TechInventory
+        items={technologies}
+        selected={selected}
+        onSelect={setSelected}
+      />
       <TechInspector technology={technologies[selected]} />
     </div>
   );

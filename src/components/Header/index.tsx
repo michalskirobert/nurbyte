@@ -12,7 +12,9 @@ export default function Header() {
   const toggleTheme = () => document.body.classList.toggle("light");
 
   useEffect(() => {
-    const sections = [...document.querySelectorAll<HTMLElement>("main section[id]")];
+    const sections = [
+      ...document.querySelectorAll<HTMLElement>("main section[id]"),
+    ];
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -39,13 +41,31 @@ export default function Header() {
         <Navigation active={active} />
 
         <div className="hud-actions">
-          <span className="online"><i /> ONLINE</span>
-          <button className="icon-btn" aria-label="Toggle theme" onClick={toggleTheme}>☀ ◐</button>
-          <button className="menu-btn" aria-label="Open menu" onClick={() => setOpen(true)}>☰</button>
+          <span className="online">
+            <i /> ONLINE
+          </span>
+          <button
+            className="icon-btn"
+            aria-label="Toggle theme"
+            onClick={toggleTheme}
+          >
+            ☀ ◐
+          </button>
+          <button
+            className="menu-btn"
+            aria-label="Open menu"
+            onClick={() => setOpen(true)}
+          >
+            ☰
+          </button>
         </div>
       </header>
 
-      <MobileMenu open={open} onClose={() => setOpen(false)} onTheme={toggleTheme} />
+      <MobileMenu
+        open={open}
+        onClose={() => setOpen(false)}
+        onTheme={toggleTheme}
+      />
     </>
   );
 }
