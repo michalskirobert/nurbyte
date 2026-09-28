@@ -6080,3 +6080,146 @@ body {
     aspect-ratio: 16/8.5 !important;
   }
 }
+
+/* === v12 modal portal + terminal-native message composer === */
+.arcade-modal-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: clamp(12px, 3vh, 30px) !important;
+  background: rgba(0, 2, 7, 0.88) !important;
+  backdrop-filter: blur(10px) brightness(0.42) !important;
+  -webkit-backdrop-filter: blur(10px) brightness(0.42) !important;
+}
+.arcade-modal {
+  position: relative !important;
+  inset: auto !important;
+  margin: 0 !important;
+  width: min(940px, 94vw) !important;
+  height: auto !important;
+  max-height: min(86dvh, 850px) !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+.arcade-modal-scroll {
+  overflow: auto;
+  max-height: calc(min(86dvh, 850px) - 43px);
+  scrollbar-color: #8b7515 #03090d;
+  scrollbar-width: thin;
+}
+.arcade-modal-art {
+  position: relative !important;
+}
+.cli-message-compose {
+  margin-top: 13px;
+  border-top: 1px dashed #315142;
+  padding-top: 10px;
+  font-family: var(--terminal-font);
+}
+.cli-compose-command {
+  color: #f5c518;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.cli-message-prompt {
+  display: grid;
+  grid-template-columns: 15px 1fr;
+  gap: 7px;
+  align-items: start;
+  color: #f5c518;
+}
+.contact-cli .cli-message-prompt textarea {
+  width: 100% !important;
+  height: 116px !important;
+  min-height: 116px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  resize: none !important;
+  color: #d9eee2 !important;
+  font: 20px/1.35 var(--terminal-font) !important;
+  caret-color: #f5c518 !important;
+}
+.cli-compose-help {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid #193228;
+  color: #6f8a7d;
+  font-size: 15px;
+}
+.cli-compose-help span:nth-child(2) {
+  margin-left: auto;
+}
+.cli-compose-help button {
+  border: 1px solid #385849;
+  background: #07120e;
+  color: #f5c518;
+  padding: 4px 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.cli-compose-help button:hover {
+  background: #f5c518;
+  color: #061015;
+}
+.cli-progress {
+  margin-top: 17px;
+  font-family: var(--terminal-font);
+  font-size: 18px;
+}
+.cli-progress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  color: #9ab6a7;
+}
+.cli-progress b {
+  color: #f5c518;
+  font-weight: 400;
+}
+.cli-progress-track {
+  height: 12px;
+  margin-top: 7px;
+  border: 1px solid #315142;
+  background: #02080a;
+}
+.cli-progress-track i {
+  display: block;
+  height: 100%;
+  background: #f5c518;
+  transition: width 0.35s steps(5, end);
+}
+@media (max-width: 760px) {
+  .arcade-modal-backdrop {
+    padding: 9px !important;
+  }
+  .arcade-modal {
+    width: calc(100vw - 18px) !important;
+    max-height: 90dvh !important;
+  }
+  .arcade-modal-scroll {
+    max-height: calc(90dvh - 43px);
+  }
+  .contact-cli .cli-message-prompt textarea {
+    height: 96px !important;
+    min-height: 96px !important;
+  }
+  .cli-compose-help {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  .cli-compose-help span:nth-child(2) {
+    margin-left: 0;
+  }
+  .cli-compose-help button {
+    grid-column: 1/-1;
+    width: 100%;
+  }
+}

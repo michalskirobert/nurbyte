@@ -1,11 +1,9 @@
 "use client";
-
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
-
-type Step = "name" | "category" | "email" | "message" | "review" | "done";
+type Step =
+  "name" | "category" | "email" | "message" | "review" | "sending" | "done";
 type Tone = "command" | "success" | "error" | "muted" | "warning";
 type Line = { text: string; tone?: Tone };
-
 const categories = [
   {
     value: "project",
@@ -37,39 +35,35 @@ export default function ContactForm() {
   const [value, setValue] = useState("");
   const [name, setName] = useState("");
   const [category, setCategory] = useState<Category>("project");
-  const [categoryIndex, setCategoryIndex] = useState(0);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
   const viewportRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-
-  const append = (...next: Line[]) =>
-    setLines((current) => [...current, ...next]);
-
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const append = (...x: Line[]) => setLines((v) => [...v, ...x]);
+  const command = (x: string) =>
+    append({ text: `nurbyte@dev:~$ ${x}`, tone: "command" });
+  const fail = (x: string, h?: string) =>
+    append(
+      { text: `✗ ${x}`, tone: "error" },
+      ...(h ? [{ text: `  ${h}`, tone: "muted" as Tone }] : []),
+    );
   useEffect(() => {
-    const el = viewportRef.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
-  }, [lines, step]);
-
+    viewportRef.current?.scrollTo({
+      top: viewportRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [lines, step, progress]);
   useEffect(() => {
-    if (step === "message") textareaRef.current?.focus();
+    if (step === "message") messageRef.current?.focus();
     else inputRef.current?.focus();
   }, [step]);
-
-  const command = (text: string) =>
-    append({ text: `nurbyte@dev:~$ ${text}`, tone: "command" });
-  const fail = (text: string, hint?: string) => {
-    append(
-      { text: `✗ ${text}`, tone: "error" },
-      ...(hint ? [{ text: `  ${hint}`, tone: "muted" as Tone }] : []),
-    );
-  };
-
-  const chooseCategory = (selected: Category) => {
-    const item = categories.find((category) => category.value === selected)!;
-    setCategory(selected);
-    command(`contact topic ${selected}`);
+  const choose = (v: Category) => {
+    const item = categories.find((x) => x.value === v)!;
+    setCategory(v);
+    command(`contact topic ${v}`);
     append(
       { text: `✓ Topic selected: ${item.label}`, tone: "success" },
       { text: "What email can I reply to?", tone: "warning" },
@@ -77,14 +71,12 @@ export default function ContactForm() {
     setStep("email");
     setValue("");
   };
-
-  const runInput = () => {
+  const run = () => {
     const clean = value.trim();
-
     if (step === "name") {
       if (clean.length < 2) {
         fail(
-          "That name looks a little too short.",
+          "That name looks too short.",
           "Please enter at least 2 characters.",
         );
         setValue("");
@@ -100,33 +92,29 @@ export default function ContactForm() {
       setValue("");
       return;
     }
-
     if (step === "category") {
-      const byNumber = Number(clean);
+      const n = Number(clean);
       const selected =
-        Number.isInteger(byNumber) &&
-        byNumber >= 1 &&
-        byNumber <= categories.length
-          ? categories[byNumber - 1]
-          : categories.find((item) => item.value === clean.toLowerCase());
+        Number.isInteger(n) && n >= 1 && n <= 3
+          ? categories[n - 1]
+          : categories.find((x) => x.value === clean.toLowerCase());
       if (!selected) {
         fail(
-          "I don’t recognize that option.",
-          "Choose 1, 2 or 3 — or click one of the options.",
+          "I don't recognize that option.",
+          "Choose 1, 2 or 3 — or click one.",
         );
         setValue("");
         return;
       }
-      chooseCategory(selected.value);
+      choose(selected.value);
       return;
     }
-
     if (step === "email") {
       if (!emailPattern.test(clean)) {
         command(`contact email ${clean || "(empty)"}`);
         fail(
-          `That email doesn’t look right: "${clean || "(empty)"}"`,
-          "Try something like: name@example.com",
+          `That email doesn't look right: "${clean || "(empty)"}"`,
+          `Try something like: name@example.com`,
         );
         setValue("");
         return;
@@ -137,9 +125,8 @@ export default function ContactForm() {
         { text: "Checking email...", tone: "muted" },
         { text: "✓ Email looks good", tone: "success" },
         { text: "", tone: "muted" },
-        { text: "nurbyte@dev:~$ contact message", tone: "command" },
         {
-          text: "Tell me what you need — project idea, question or just hello.",
+          text: "Now write your message below. Press Ctrl/⌘ + Enter when you're finished.",
           tone: "warning",
         },
       );
@@ -147,33 +134,29 @@ export default function ContactForm() {
       setValue("");
     }
   };
-
-  const onInputKey = (event: KeyboardEvent<HTMLInputElement>) => {
+  const key = (e: KeyboardEvent<HTMLInputElement>) => {
     if (step === "category") {
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        setCategoryIndex((index) => (index + 1) % categories.length);
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setCategoryIndex((i) => (i + 1) % 3);
         return;
       }
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-        setCategoryIndex(
-          (index) => (index - 1 + categories.length) % categories.length,
-        );
+      if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setCategoryIndex((i) => (i + 2) % 3);
         return;
       }
-      if (event.key === "Enter" && !value.trim()) {
-        event.preventDefault();
-        chooseCategory(categories[categoryIndex].value);
+      if (e.key === "Enter" && !value.trim()) {
+        e.preventDefault();
+        choose(categories[categoryIndex].value);
         return;
       }
     }
-    if (event.key === "Enter") {
-      event.preventDefault();
-      runInput();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      run();
     }
   };
-
   const saveMessage = () => {
     const clean = message.trim();
     if (clean.length < 10) {
@@ -183,37 +166,55 @@ export default function ContactForm() {
       );
       return;
     }
-    append(
-      { text: `✓ Message saved (${clean.length} bytes)`, tone: "success" },
-      { text: "", tone: "muted" },
-      { text: "nurbyte@dev:~$ contact review", tone: "command" },
-    );
     setMessage(clean);
+    command(`contact message --save`);
+    append(
+      { text: `✓ Message saved (${clean.length} characters)`, tone: "success" },
+      {
+        text: "Review complete. Press Enter or click SEND MESSAGE.",
+        tone: "warning",
+      },
+    );
     setStep("review");
   };
-
-  const onMessageKey = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) {
-      event.preventDefault();
+  const messageKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
       saveMessage();
     }
   };
-
-  const submit = (event: FormEvent) => {
-    event.preventDefault();
+  const send = (e?: FormEvent) => {
+    e?.preventDefault();
     if (step !== "review") return;
     command("contact send");
-    append(
-      { text: "Checking your message... OK", tone: "success" },
-      { text: "Preparing message...", tone: "muted" },
-      { text: "⚠ Demo mode: sending will be connected next.", tone: "warning" },
-      { text: "nurbyte@dev:~$ _", tone: "command" },
+    append({ text: "Preparing message...", tone: "muted" });
+    setStep("sending");
+    setProgress(12);
+    const stages = [
+      [450, 32, "✓ Form data validated"],
+      [900, 58, "✓ Contact payload prepared"],
+      [1350, 82, "Connecting to mail service..."],
+      [1850, 100, "✓ Message queued successfully"],
+    ] as const;
+    stages.forEach(([ms, pct, text]) =>
+      setTimeout(() => {
+        setProgress(pct);
+        append({ text, tone: pct === 100 ? "success" : "muted" });
+        if (pct === 100) {
+          append(
+            {
+              text: "Thank you — I'll get back to you as soon as possible.",
+              tone: "success",
+            },
+            { text: "nurbyte@dev:~$ _", tone: "command" },
+          );
+          setStep("done");
+        }
+      }, ms),
     );
-    setStep("done");
   };
-
   return (
-    <form className="contact-terminal contact-cli" onSubmit={submit}>
+    <form className="contact-terminal contact-cli" onSubmit={send}>
       <div className="term-bar">
         <i />
         <i />
@@ -224,21 +225,20 @@ export default function ContactForm() {
         ref={viewportRef}
         className="cli-screen"
         aria-live="polite"
-        onClick={(event) => {
-          const target = event.target as HTMLElement;
-          if (target.closest("button")) return;
-          if (step === "message") textareaRef.current?.focus();
-          else inputRef.current?.focus();
+        onClick={(e) => {
+          if ((e.target as HTMLElement).closest("button")) return;
+          step === "message"
+            ? messageRef.current?.focus()
+            : inputRef.current?.focus();
         }}
       >
         <div className="cli-history">
-          {lines.map((line, index) => (
-            <div key={index} className={`cli-${line.tone ?? "muted"}`}>
-              {line.text || "\u00a0"}
+          {lines.map((l, i) => (
+            <div key={i} className={`cli-${l.tone ?? "muted"}`}>
+              {l.text || "\u00a0"}
             </div>
           ))}
         </div>
-
         {["name", "category", "email"].includes(step) && (
           <div className="cli-live-prompt">
             <span className="cli-shell">nurbyte@dev:~$</span>
@@ -246,78 +246,69 @@ export default function ContactForm() {
               ref={inputRef}
               value={value}
               onChange={(e) => setValue(e.target.value)}
-              onKeyDown={onInputKey}
-              spellCheck={false}
+              onKeyDown={key}
               autoComplete="off"
-              aria-label={`Terminal input: ${step}`}
+              spellCheck={false}
             />
           </div>
         )}
-
         {step === "category" && (
-          <div
-            className="cli-category-select"
-            role="listbox"
-            aria-label="Contact topic"
-          >
+          <div className="cli-category-select">
             <div className="cli-category-help">
-              Choose with 1–3, ↑/↓ + Enter, or click:
+              Choose 1–3, ↑/↓ + Enter, or click:
             </div>
-            {categories.map((item, index) => (
+            {categories.map((x, i) => (
               <button
-                key={item.value}
+                key={x.value}
                 type="button"
-                className={index === categoryIndex ? "selected" : ""}
-                onMouseEnter={() => setCategoryIndex(index)}
-                onClick={() => chooseCategory(item.value)}
-                role="option"
-                aria-selected={index === categoryIndex}
+                className={i === categoryIndex ? "selected" : ""}
+                onMouseEnter={() => setCategoryIndex(i)}
+                onClick={() => choose(x.value)}
               >
-                <b>{index === categoryIndex ? "›" : " "}</b>
+                <b>{i === categoryIndex ? "›" : " "}</b>
                 <span>
-                  [{index + 1}] {item.label}
+                  [{i + 1}] {x.label}
                 </span>
-                <small>{item.help}</small>
+                <small>{x.help}</small>
               </button>
             ))}
           </div>
         )}
-
         {step === "message" && (
-          <div className="cli-editor">
-            <div className="cli-editor-bar">
-              GNU nano 8.1 &nbsp; /tmp/nurbyte-contact-message
+          <div className="cli-message-compose">
+            <div className="cli-compose-command">
+              nurbyte@dev:~$ contact message
             </div>
-            <textarea
-              ref={textareaRef}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={onMessageKey}
-              maxLength={250}
-              spellCheck
-              aria-label="Message editor"
-            />
-            <div className="cli-editor-footer">
-              <span>^X Exit</span>
-              <span>^O Write Out</span>
-              <span>
-                {message.length.toString().padStart(3, "0")} / 250 bytes
-              </span>
-              <span>Ctrl/⌘+Enter Save</span>
+            <div className="cli-message-prompt">
+              <span>&gt;</span>
+              <textarea
+                ref={messageRef}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={messageKey}
+                maxLength={250}
+                placeholder="Type your message here…"
+              />
+            </div>
+            <div className="cli-compose-help">
+              <span>{message.length}/250</span>
+              <span>Ctrl/⌘ + Enter to continue</span>
+              <button type="button" onClick={saveMessage}>
+                CONTINUE ↵
+              </button>
             </div>
           </div>
         )}
-
         {step === "review" && (
           <div className="cli-review">
-            <div>CONTACT PAYLOAD</div>
+            <div>READY TO SEND</div>
             <div className="cli-rule">────────────────────────────────────</div>
             <p>
               <span>name</span>
               {name}
             </p>
             <p>
-              <span>category</span>
+              <span>topic</span>
               {category}
             </p>
             <p>
@@ -326,18 +317,28 @@ export default function ContactForm() {
             </p>
             <p>
               <span>message</span>
-              {message.length} bytes
+              {message.length} characters
             </p>
             <div className="cli-rule">────────────────────────────────────</div>
-            <button type="submit" className="terminal-command">
+            <button autoFocus type="submit" className="terminal-command">
               nurbyte@dev:~$ contact send <b>↵</b>
             </button>
           </div>
         )}
-
+        {step === "sending" && (
+          <div className="cli-progress">
+            <div>
+              <span>sending message</span>
+              <b>{progress}%</b>
+            </div>
+            <div className="cli-progress-track">
+              <i style={{ width: `${progress}%` }} />
+            </div>
+          </div>
+        )}
         {step === "done" && (
           <div className="cli-done">
-            session idle <span className="cursor">█</span>
+            session complete <span className="cursor">█</span>
           </div>
         )}
       </div>

@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import type { Project } from "./types";
+
 export default function ProjectDetailsModal({
   project,
   onClose,
@@ -9,18 +11,21 @@ export default function ProjectDetailsModal({
   project: Project | null;
   onClose: () => void;
 }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   useEffect(() => {
     if (!project) return;
     const key = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     addEventListener("keydown", key);
+    const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       removeEventListener("keydown", key);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previous;
     };
   }, [project, onClose]);
-  if (!project) return null;
-  return (
+  if (!mounted || !project) return null;
+  return createPortal(
     <div
       className="arcade-modal-backdrop"
       role="presentation"
@@ -45,55 +50,54 @@ export default function ProjectDetailsModal({
             ×
           </button>
         </div>
-        {project.image && (
-          <div className="arcade-modal-art">
-            <Image
-              src={project.image}
-              alt=""
-              fill
-              sizes="(max-width:760px) 92vw,760px"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
-        )}
-        <div className="arcade-modal-body">
-          <div className="modal-system-line">
-            PROJECT RECORD LOADED <span>READY</span>
-          </div>
-          <div className="project-meta">
-            <span>{project.type}</span>
-            <i>{project.status}</i>
-          </div>
-          <h3 id="projectModalTitle">{project.name}</h3>
-          <p>{project.details ?? project.description}</p>
-          <div className="project-tech">
-            {project.tech.map((x) => (
-              <span key={x}>{x}</span>
-            ))}
-          </div>
-          <div className="arcade-modal-actions">
-            {project.url ? (
-              <a
-                className="btn primary"
-                href={project.url}
-                target={project.external ? "_blank" : undefined}
-                rel={project.external ? "noreferrer" : undefined}
-              >
-                {project.actionLabel ?? "▶ OPEN PROJECT"}
-              </a>
-            ) : (
-              <span className="btn ghost disabled-action">
-                {project.id === "hosts-editor"
-                  ? "GITHUB RELEASE URL REQUIRED"
-                  : "◆ LOCKED"}
-              </span>
-            )}
-            <button className="btn ghost" onClick={onClose}>
-              ESC / CLOSE
-            </button>
+        <div className="arcade-modal-scroll">
+          {project.image && (
+            <div className="arcade-modal-art">
+              <Image
+                src={project.image}
+                alt=""
+                fill
+                sizes="(max-width:760px) 94vw,900px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          )}
+          <div className="arcade-modal-body">
+            <div className="modal-system-line">
+              PROJECT RECORD LOADED <span>READY</span>
+            </div>
+            <div className="project-meta">
+              <span>{project.type}</span>
+              <i>{project.status}</i>
+            </div>
+            <h3 id="projectModalTitle">{project.name}</h3>
+            <p>{project.details ?? project.description}</p>
+            <div className="project-tech">
+              {project.tech.map((x) => (
+                <span key={x}>{x}</span>
+              ))}
+            </div>
+            <div className="arcade-modal-actions">
+              {project.url ? (
+                <a
+                  className="btn primary"
+                  href={project.url}
+                  target={project.external ? "_blank" : undefined}
+                  rel={project.external ? "noreferrer" : undefined}
+                >
+                  {project.actionLabel ?? "▶ OPEN PROJECT"}
+                </a>
+              ) : (
+                <span className="btn ghost disabled-action">◆ LOCKED</span>
+              )}
+              <button className="btn ghost" onClick={onClose}>
+                ESC / CLOSE
+              </button>
+            </div>
           </div>
         </div>
       </section>
-    </div>
+    </div>,
+    document.body,
   );
 }
