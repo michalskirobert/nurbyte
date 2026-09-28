@@ -1,0 +1,6 @@
+"use client";
+import {useRef,useState,type WheelEvent} from "react";import ProjectCard from "./ProjectCard";import ProjectDetailsModal from "./ProjectDetailsModal";import ProjectsArchive from "./ProjectsArchive";import {projects} from "./projects.data";import type {Project} from "./types";
+export default function ProjectsTrack(){const trackRef=useRef<HTMLDivElement>(null);const[archive,setArchive]=useState(false);const[details,setDetails]=useState<Project|null>(null);
+ const onWheel=(event:WheelEvent<HTMLDivElement>)=>{if(Math.abs(event.deltaY)>Math.abs(event.deltaX)&&trackRef.current){trackRef.current.scrollLeft+=event.deltaY;event.preventDefault()}};
+ const selectProject=(index:number)=>{(trackRef.current?.children[index] as HTMLElement|undefined)?.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});setArchive(false)};
+ return <><div ref={trackRef} className="projects-track" aria-label="Projects" onWheel={onWheel}>{projects.map((project,index)=><ProjectCard key={project.id} project={project} index={index} onArchive={()=>setArchive(true)} onDetails={setDetails}/>)}</div><ProjectsArchive open={archive} onClose={()=>setArchive(false)} onSelect={selectProject}/><ProjectDetailsModal project={details} onClose={()=>setDetails(null)}/></>}

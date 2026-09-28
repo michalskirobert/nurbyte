@@ -1,0 +1,3 @@
+import SceneParallax from "@/components/motion/SceneParallax";
+import ProjectsEffects from "./ProjectsEffects";import ProjectsHeader from "./ProjectsHeader";import ProjectsLady from "./ProjectsLady";import ProjectsTrack from "./ProjectsTrack";
+export default function Projects(){return <section id="projects" className="projects-game section interactive-scene" aria-labelledby="projectsTitle"><div className="projects-world scene-world" aria-hidden="true"><div className="project-water-shimmer"/><div className="project-birds"><i/><i/><i/></div></div><ProjectsLady/><div className="projects-shell scene-content"><ProjectsHeader/><ProjectsTrack/></div><ProjectsEffects/><SceneParallax selector="#projects"/></section>}
