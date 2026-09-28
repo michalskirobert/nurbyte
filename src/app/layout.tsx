@@ -153,7 +153,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body
         suppressHydrationWarning
         className={`${pixelify.variable} ${press.variable} ${terminal.variable}`}

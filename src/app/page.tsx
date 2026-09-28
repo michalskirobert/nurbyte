@@ -1,3 +1,4 @@
+import SectionReveal from "@/components/motion/SectionReveal";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Header from "@/components/Header";
@@ -9,6 +10,7 @@ export default function Page() {
     <>
       <Header />
       <main>
+        <SectionReveal />
         <Home />
         <Projects />
         <About />

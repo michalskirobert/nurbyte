@@ -17,7 +17,7 @@ export const projects: Project[] = [
   },
   {
     id: "hosts-editor",
-    name: "HOSTS EDITOR 2.0",
+    name: "HOSTS EDITOR",
     type: "DESKTOP / DEV TOOL",
     status: "● ACTIVE",
     description:

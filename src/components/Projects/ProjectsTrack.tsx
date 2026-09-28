@@ -1,54 +1,31 @@
 "use client";
-import { useRef, useState, type WheelEvent } from "react";
+import { useEffect, useRef } from "react";
 import ProjectCard from "./ProjectCard";
-import ProjectDetailsModal from "./ProjectDetailsModal";
-import ProjectsArchive from "./ProjectsArchive";
 import { projects } from "./projects.data";
-import type { Project } from "./types";
 export default function ProjectsTrack() {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [archive, setArchive] = useState(false);
-  const [details, setDetails] = useState<Project | null>(null);
-  const onWheel = (event: WheelEvent<HTMLDivElement>) => {
-    if (Math.abs(event.deltaY) > Math.abs(event.deltaX) && trackRef.current) {
-      trackRef.current.scrollLeft += event.deltaY;
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const wheel = (event: WheelEvent) => {
+      if (track.scrollWidth <= track.clientWidth + 2) return;
+      const delta =
+        Math.abs(event.deltaY) >= Math.abs(event.deltaX)
+          ? event.deltaY
+          : event.deltaX;
+      if (!delta) return;
       event.preventDefault();
-    }
-  };
-  const selectProject = (index: number) => {
-    (
-      trackRef.current?.children[index] as HTMLElement | undefined
-    )?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
-    });
-    setArchive(false);
-  };
+      event.stopPropagation();
+      track.scrollLeft += delta;
+    };
+    track.addEventListener("wheel", wheel, { passive: false });
+    return () => track.removeEventListener("wheel", wheel);
+  }, []);
   return (
-    <>
-      <div
-        ref={trackRef}
-        className="projects-track"
-        aria-label="Projects"
-        onWheel={onWheel}
-      >
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project.id}
-            project={project}
-            index={index}
-            onArchive={() => setArchive(true)}
-            onDetails={setDetails}
-          />
-        ))}
-      </div>
-      <ProjectsArchive
-        open={archive}
-        onClose={() => setArchive(false)}
-        onSelect={selectProject}
-      />
-      <ProjectDetailsModal project={details} onClose={() => setDetails(null)} />
-    </>
+    <div ref={trackRef} className="projects-track" aria-label="Projects">
+      {projects.map((project, index) => (
+        <ProjectCard key={project.id} project={project} index={index} />
+      ))}
+    </div>
   );
 }

@@ -57,8 +57,8 @@ export default function ContactForm() {
     });
   }, [lines, step, progress]);
   useEffect(() => {
-    if (step === "message") messageRef.current?.focus();
-    else inputRef.current?.focus();
+    const target = step === "message" ? messageRef.current : inputRef.current;
+    target?.focus({ preventScroll: true });
   }, [step]);
   const choose = (v: Category) => {
     const item = categories.find((x) => x.value === v)!;
@@ -183,35 +183,56 @@ export default function ContactForm() {
       saveMessage();
     }
   };
-  const send = (e?: FormEvent) => {
+  const send = async (e?: FormEvent) => {
     e?.preventDefault();
     if (step !== "review") return;
     command("contact send");
-    append({ text: "Preparing message...", tone: "muted" });
+    append({ text: "Validating form data...", tone: "muted" });
     setStep("sending");
-    setProgress(12);
-    const stages = [
-      [450, 32, "✓ Form data validated"],
-      [900, 58, "✓ Contact payload prepared"],
-      [1350, 82, "Connecting to mail service..."],
-      [1850, 100, "✓ Message queued successfully"],
-    ] as const;
-    stages.forEach(([ms, pct, text]) =>
-      setTimeout(() => {
-        setProgress(pct);
-        append({ text, tone: pct === 100 ? "success" : "muted" });
-        if (pct === 100) {
-          append(
-            {
-              text: "Thank you — I'll get back to you as soon as possible.",
-              tone: "success",
-            },
-            { text: "nurbyte@dev:~$ _", tone: "command" },
-          );
-          setStep("done");
-        }
-      }, ms),
+    setProgress(18);
+    await new Promise((resolve) => setTimeout(resolve, 220));
+    append(
+      { text: "✓ Form data validated", tone: "success" },
+      { text: "Connecting to NurByte mail service...", tone: "muted" },
     );
+    setProgress(48);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, category, message }),
+      });
+      const result = (await response.json()) as {
+        ok?: boolean;
+        error?: string;
+      };
+      if (!response.ok || !result.ok)
+        throw new Error(result.error || "Mail service rejected the message.");
+      setProgress(100);
+      append(
+        { text: "✓ Message delivered", tone: "success" },
+        { text: `✓ Confirmation sent to ${email}`, tone: "success" },
+        {
+          text: "Thank you — I'll get back to you as soon as possible.",
+          tone: "success",
+        },
+        { text: "nurbyte@dev:~$ _", tone: "command" },
+      );
+      setStep("done");
+    } catch (error) {
+      setProgress(0);
+      append(
+        {
+          text: `✗ SEND_FAILED: ${error instanceof Error ? error.message : "Unknown mail error"}`,
+          tone: "error",
+        },
+        {
+          text: "Your message was not marked as sent. You can try again.",
+          tone: "warning",
+        },
+      );
+      setStep("review");
+    }
   };
   return (
     <form className="contact-terminal contact-cli" onSubmit={send}>
@@ -320,7 +341,7 @@ export default function ContactForm() {
               {message.length} characters
             </p>
             <div className="cli-rule">────────────────────────────────────</div>
-            <button autoFocus type="submit" className="terminal-command">
+            <button type="submit" className="terminal-command">
               nurbyte@dev:~$ contact send <b>↵</b>
             </button>
           </div>

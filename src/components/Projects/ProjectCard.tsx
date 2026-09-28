@@ -3,13 +3,9 @@ import type { Project } from "./types";
 export default function ProjectCard({
   project,
   index,
-  onArchive,
-  onDetails,
 }: {
   project: Project;
   index: number;
-  onArchive: () => void;
-  onDetails: (p: Project) => void;
 }) {
   return (
     <article
@@ -50,22 +46,16 @@ export default function ProjectCard({
         <div className="project-actions">
           {project.locked ? (
             <span className="project-open disabled">◆ LOCKED</span>
-          ) : (
-            <button
-              type="button"
+          ) : project.url ? (
+            <a
               className="project-open"
-              onClick={() => onDetails(project)}
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
             >
-              ▶ PROJECT DETAILS
-            </button>
-          )}
-          <button
-            type="button"
-            className="all-projects-trigger"
-            onClick={onArchive}
-          >
-            ▦ ALL PROJECTS
-          </button>
+              {project.actionLabel ?? "▶ OPEN PROJECT"}
+            </a>
+          ) : null}
         </div>
       </div>
     </article>
