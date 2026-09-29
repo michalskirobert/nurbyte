@@ -36,3 +36,9 @@ nodeLinker: node-modules
 ## v2
 
 Restores the accepted HTML master's HOME pointer/scroll parallax, HOME leaving transition, fireflies, and PROJECTS scroll parallax using React lifecycle-safe effects. Mobile HOME remains protected by the master's <=760px overrides.
+
+## v37
+
+- 404 sniffing Lady is mirrored so her nose points toward the 404 number.
+- Added an application preload gate for the large scene backgrounds, key project screenshots, NurByte mark, 404 Lady states and web fonts.
+- The loader stays above the UI until those assets are available, then fades out to avoid Vercel showing an incomplete scene that fills in afterward.

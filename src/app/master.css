@@ -11876,3 +11876,97 @@ html[data-display-mode="contrast"] button:focus-visible {
     font-size: 9px !important;
   }
 }
+
+/* === v37 preload gate + 404 Lady facing the route number ================= */
+.app-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: grid;
+  place-items: center;
+  background: #06131d;
+  opacity: 1;
+  transition:
+    opacity 300ms ease,
+    visibility 300ms ease;
+}
+.app-preloader.is-leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.app-preloader-content {
+  width: min(360px, calc(100vw - 48px));
+  text-align: center;
+}
+.app-preloader-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: left;
+}
+.app-preloader-brand img {
+  display: block;
+  width: 54px;
+  height: 54px;
+}
+.app-preloader-brand strong {
+  display: block;
+  font: 22px/1 var(--hud);
+  color: #fff;
+}
+.app-preloader-brand strong b {
+  color: var(--yellow);
+}
+.app-preloader-brand small {
+  display: block;
+  margin-top: 7px;
+  font: 11px/1 var(--display);
+  letter-spacing: 1px;
+  color: #fff;
+}
+.app-preloader-line {
+  position: relative;
+  height: 5px;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid #ffc91c;
+  background: #071018;
+}
+.app-preloader-line span {
+  position: absolute;
+  inset: 0;
+  width: 38%;
+  background: #ffc91c;
+  animation: appPreloaderMove 850ms steps(5, end) infinite;
+}
+.app-preloader p {
+  margin-top: 12px;
+  font: 8px/1.4 var(--font-press);
+  color: #ffc91c;
+  letter-spacing: 0.5px;
+}
+@keyframes appPreloaderMove {
+  from {
+    transform: translateX(-105%);
+  }
+  to {
+    transform: translateX(265%);
+  }
+}
+
+/* Sniffing Lady looks back toward 404. Only the artwork is mirrored. */
+.not-found-lady-v36.is-search .not-found-lady-v36-stage img {
+  transform: scaleX(-1) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-preloader-line span {
+    animation: none;
+    width: 100%;
+  }
+  .app-preloader {
+    transition: none;
+  }
+}
