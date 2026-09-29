@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import NotFoundLady from "./NotFoundLady";
 
 export default function NotFound() {
   return (
@@ -15,7 +16,7 @@ export default function NotFound() {
           height={38}
           priority
         />
-        <span>
+        <span className="not-found-brand-copy">
           <strong>
             <b>Nur</b>Byte
           </strong>
@@ -25,9 +26,12 @@ export default function NotFound() {
 
       <section className="not-found-panel" aria-labelledby="not-found-title">
         <p className="not-found-kicker">ERROR // ROUTE NOT FOUND</p>
-        <h1 id="not-found-title">
-          <span>4</span>0<span>4</span>
-        </h1>
+        <div className="not-found-hero-row">
+          <h1 id="not-found-title">
+            <span>4</span>0<span>4</span>
+          </h1>
+          <NotFoundLady />
+        </div>
         <h2>
           LOST IN THE <em>ARCHIPELAGO.</em>
         </h2>
@@ -51,15 +55,6 @@ export default function NotFound() {
           ▶ RETURN HOME
         </Link>
       </section>
-
-      <Image
-        className="not-found-lady"
-        src="/assets/characters/lady/contact-question-full.png"
-        alt="Lady waiting by the lost route"
-        width={320}
-        height={360}
-        priority
-      />
     </main>
   );
 }

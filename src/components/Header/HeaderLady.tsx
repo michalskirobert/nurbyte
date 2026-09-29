@@ -3,63 +3,92 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-const frames = {
-  idle: "/assets/characters/lady/nav-idle.png",
-  happy: "/assets/characters/lady/nav-happy.png",
-  heart: "/assets/characters/lady/nav-heart.png",
-  question: "/assets/characters/lady/nav-question.png",
-  surprised: "/assets/characters/lady/nav-surprised.png",
-  love: "/assets/characters/lady/nav-love.png",
-} as const;
+type Mood = "idle" | "question" | "love" | "woof";
 
-type Mood = keyof typeof frames;
+const frames: Record<Mood, string> = {
+  idle: "/assets/characters/lady/accepted/header.png",
+  question: "/assets/characters/lady/accepted/header.png",
+  love: "/assets/characters/lady/accepted/wave.png",
+  woof: "/assets/characters/lady/accepted/howl.png",
+};
 
 export default function HeaderLady({ menuOpen }: { menuOpen: boolean }) {
   const [mood, setMood] = useState<Mood>("idle");
-  const [bubble, setBubble] = useState("");
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [heartBurst, setHeartBurst] = useState(0);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
-  const show = (next: Mood, text = "", ms = 1400) => {
-    if (timer.current) clearTimeout(timer.current);
-    setMood(next);
-    setBubble(text);
-    timer.current = setTimeout(() => {
-      setMood("idle");
-      setBubble("");
-    }, ms);
+  const clearTimers = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+  };
+
+  const runClickSequence = () => {
+    clearTimers();
+    setMood("love");
+    setHeartBurst((value) => value + 1);
+
+    timers.current.push(
+      setTimeout(() => setMood("woof"), 850),
+      setTimeout(() => setMood("idle"), 1850),
+    );
   };
 
   useEffect(() => {
-    if (menuOpen) show("question", "Menu opened!", 1400);
-    return () => {
-      if (timer.current) clearTimeout(timer.current);
-    };
+    if (!menuOpen) return;
+    clearTimers();
+    setMood("question");
+    timers.current.push(setTimeout(() => setMood("idle"), 1200));
   }, [menuOpen]);
 
+  useEffect(() => clearTimers, []);
+
   return (
-    <span
-      className="brand-lady"
-      onMouseEnter={() => show("happy", "", 1000)}
+    <button
+      type="button"
+      className={`brand-lady brand-lady-${mood}`}
+      aria-label="Say hello to Lady"
+      onMouseEnter={() => {
+        if (mood !== "idle") return;
+        clearTimers();
+        setMood("question");
+      }}
+      onMouseLeave={() => {
+        if (mood === "question") setMood("idle");
+      }}
+      onFocus={() => {
+        if (mood !== "idle") return;
+        clearTimers();
+        setMood("question");
+      }}
+      onBlur={() => {
+        if (mood === "question") setMood("idle");
+      }}
       onClick={(event) => {
         event.preventDefault();
         event.stopPropagation();
-        show("heart", "Woof! 👋", 1500);
+        runClickSequence();
       }}
     >
-      <Image
-        src={frames[mood]}
-        alt="Lady"
-        width={84}
-        height={84}
-        style={{ width: "auto", height: "auto" }}
-        priority
-      />
+      <Image src={frames[mood]} alt="Lady" width={160} height={160} priority />
+
       <span
-        className={`lady-bubble ${bubble ? "show" : ""}`}
+        className={`lady-bubble ${mood === "question" || mood === "woof" ? "show" : ""}`}
         aria-live="polite"
       >
-        {bubble}
+        {mood === "question" ? "?" : mood === "woof" ? "WOOF!" : ""}
       </span>
-    </span>
+
+      {mood === "love" && (
+        <span
+          key={heartBurst}
+          className="brand-lady-hearts is-active"
+          aria-hidden="true"
+        >
+          <span>♥</span>
+          <span>♥</span>
+          <span>♥</span>
+        </span>
+      )}
+    </button>
   );
 }

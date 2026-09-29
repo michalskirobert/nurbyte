@@ -36,11 +36,11 @@ const layout = (
   lead: string,
   content: string,
 ) => `<!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${title}</title></head>
-<body style="margin:0;padding:0;background:#ffffff;color:#edf5f1;font-family:'Courier New',monospace">
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta name="color-scheme" content="light"><meta name="supported-color-schemes" content="light"><title>${title}</title></head>
+<body bgcolor="#ffffff" style="margin:0;padding:0;background-color:#ffffff!important;color:#edf5f1;font-family:'Courier New',monospace">
 <div style="display:none;max-height:0;overflow:hidden">${lead}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff">
-<tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="width:100%;background-color:#ffffff!important">
+<tr><td align="center" bgcolor="#ffffff" style="padding:24px 12px;background-color:#ffffff!important">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:700px;background:#06131d;border:1px solid #17445e;box-shadow:0 0 0 4px #020b12">
 <tr><td style="padding:0">
  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#071824;border-bottom:1px solid #17445e">
