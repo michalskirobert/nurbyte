@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 
 const assets = [
-  "/assets/backgrounds/home.png",
-  "/assets/backgrounds/about.png",
-  "/assets/backgrounds/projects.png",
-  "/assets/backgrounds/tech.png",
-  "/assets/backgrounds/contact.png",
+  "/assets/backgrounds/home.webp",
+  "/assets/backgrounds/about.webp",
+  "/assets/backgrounds/projects.webp",
+  "/assets/backgrounds/tech.webp",
+  "/assets/backgrounds/contact.webp",
   "/assets/brand/nurbyte-mark.png",
-  "/assets/projects/docflow-dashboard.png",
-  "/assets/projects/hosts-editor-settings.png",
+  "/assets/projects/docflow-dashboard.webp",
+  "/assets/projects/hosts-editor-settings.webp",
   "/assets/characters/lady/accepted/sniff.png",
   "/assets/characters/lady/accepted/question.png",
   "/assets/characters/lady/accepted/idle.png",

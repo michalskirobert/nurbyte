@@ -9,7 +9,7 @@ export const projects: Project[] = [
       "Document workflows, reusable templates, email preparation and billing in one focused workspace.",
     details:
       "DocFlow is a document productivity workspace for building reusable templates, generating documents, preparing email content and managing invoicing workflows from one application.",
-    image: "/assets/projects/docflow-dashboard.png",
+    image: "/assets/projects/docflow-dashboard.webp",
     tech: ["NEXT.JS", "TYPESCRIPT", "PRISMA", "POSTGRESQL"],
     url: "https://docflow.nurbyte.dev",
     actionLabel: "▶ OPEN DOCFLOW",
@@ -24,7 +24,7 @@ export const projects: Project[] = [
       "A cross-platform hosts editor with profiles, backups, safe apply flows and a focused developer experience.",
     details:
       "A free cross-platform developer utility for managing hosts entries in isolated tabs, keeping manual backups and safely applying profiles to the system hosts file on macOS, Windows and Linux.",
-    image: "/assets/projects/hosts-editor-settings.png",
+    image: "/assets/projects/hosts-editor-settings.webp",
     tech: ["ELECTRON", "REACT", "TYPESCRIPT", "VITE"],
     url: "https://github.com/michalskirobert/hosts-editor/releases/latest",
     actionLabel: "↓ DOWNLOAD LATEST",

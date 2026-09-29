@@ -179,19 +179,19 @@ button {
     linear-gradient(0deg, rgba(0, 7, 12, 0.58), transparent 40%);
 }
 .hero {
-  background-image: url("/assets/backgrounds/home.png");
+  background-image: url("/assets/backgrounds/home.webp");
 }
 .projects {
-  background-image: url("/assets/backgrounds/projects.png");
+  background-image: url("/assets/backgrounds/projects.webp");
 }
 .about {
-  background-image: url("/assets/backgrounds/about.png");
+  background-image: url("/assets/backgrounds/about.webp");
 }
 .tech {
-  background-image: url("/assets/backgrounds/tech.png");
+  background-image: url("/assets/backgrounds/tech.webp");
 }
 .contact {
-  background-image: url("/assets/backgrounds/contact.png");
+  background-image: url("/assets/backgrounds/contact.webp");
 }
 .ambient {
   position: absolute;
@@ -1968,7 +1968,7 @@ body.light form {
 
 /* === PROJECTS v2 — restore the actual arcade world ======================== */
 .projects-game {
-  background: #06121b url("/assets/backgrounds/projects.png") center/cover
+  background: #06121b url("/assets/backgrounds/projects.webp") center/cover
     no-repeat fixed !important;
   isolation: isolate;
 }
@@ -2383,7 +2383,7 @@ body.light form {
   background: none !important;
 }
 .projects-game {
-  background-image: url("/assets/backgrounds/projects.png") !important;
+  background-image: url("/assets/backgrounds/projects.webp") !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
 }
@@ -3749,7 +3749,7 @@ body.light form {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #07151d url("/assets/backgrounds/about.png") center center/cover
+  background: #07151d url("/assets/backgrounds/about.webp") center center/cover
     no-repeat;
   padding: 104px 0 42px;
 }
@@ -4104,7 +4104,8 @@ body.light form {
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #07151d url("/assets/backgrounds/tech.png") center/cover no-repeat;
+  background: #07151d url("/assets/backgrounds/tech.webp") center/cover
+    no-repeat;
   padding: 104px 0 42px;
 }
 #tech .tech-shade {
@@ -4550,7 +4551,7 @@ body {
 .contact-game {
   position: relative;
   min-height: 100dvh;
-  background: url("/assets/backgrounds/contact.png") center/cover no-repeat;
+  background: url("/assets/backgrounds/contact.webp") center/cover no-repeat;
   overflow: hidden;
   padding: 96px 5vw 48px;
 }
@@ -4971,13 +4972,13 @@ body {
   will-change: transform;
 }
 .about-parallax-bg {
-  background-image: url("/assets/backgrounds/about.png");
+  background-image: url("/assets/backgrounds/about.webp");
 }
 .tech-parallax-bg {
-  background-image: url("/assets/backgrounds/tech.png");
+  background-image: url("/assets/backgrounds/tech.webp");
 }
 .contact-parallax-bg {
-  background-image: url("/assets/backgrounds/contact.png");
+  background-image: url("/assets/backgrounds/contact.webp");
 }
 #about .about-shade,
 #about .about-scanlines,
@@ -8026,7 +8027,7 @@ html[data-display-mode="contrast"] button:focus-visible {
   align-items: center;
   padding: clamp(90px, 10vh, 130px) max(6vw, 28px) 60px;
   color: #eef5f6;
-  background: #020b12 url("/assets/backgrounds/contact.png") center/cover
+  background: #020b12 url("/assets/backgrounds/contact.webp") center/cover
     no-repeat;
 }
 .not-found-shade {
