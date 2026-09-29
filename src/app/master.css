@@ -657,9 +657,10 @@ body.light form {
     display: none;
   }
   .hero-characters {
-    right: -24vw;
+    right: -2vw;
     bottom: 40%;
-    width: 130vw;
+    width: 112vw;
+    max-width: none;
     opacity: 0.98;
   }
   .scroll-hint {
@@ -3166,9 +3167,10 @@ body.light form {
   }
   #home .characters,
   #home .hero-characters {
-    right: -24vw !important;
+    right: -2vw !important;
     bottom: 40% !important;
-    width: 130vw !important;
+    width: 112vw !important;
+    max-width: none !important;
     transform: none !important;
   }
   #home .terminal {
