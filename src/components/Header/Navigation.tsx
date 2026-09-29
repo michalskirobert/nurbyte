@@ -6,7 +6,7 @@ import {
   UserRound,
   type LucideIcon,
 } from "lucide-react";
-import { navigation, type NavigationId } from "./navigation";
+import { navigation, type NavigationId } from "./navigationItems";
 
 const icons: Record<NavigationId, LucideIcon> = {
   home: Home,

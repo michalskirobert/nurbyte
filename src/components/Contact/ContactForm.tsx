@@ -249,8 +249,8 @@ export default function ContactForm() {
         onClick={(e) => {
           if ((e.target as HTMLElement).closest("button")) return;
           step === "message"
-            ? messageRef.current?.focus()
-            : inputRef.current?.focus();
+            ? messageRef.current?.focus({ preventScroll: true })
+            : inputRef.current?.focus({ preventScroll: true });
         }}
       >
         <div className="cli-history">

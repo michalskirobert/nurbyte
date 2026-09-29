@@ -12,9 +12,16 @@ const frames: Record<Mood, string> = {
   woof: "/assets/characters/lady/accepted/howl.png",
 };
 
-export default function HeaderLady({ menuOpen }: { menuOpen: boolean }) {
+export default function HeaderLady({
+  menuOpen,
+  brandHovered,
+}: {
+  menuOpen: boolean;
+  brandHovered: boolean;
+}) {
   const [mood, setMood] = useState<Mood>("idle");
   const [heartBurst, setHeartBurst] = useState(0);
+  const [ladyHovered, setLadyHovered] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const clearTimers = () => {
@@ -33,26 +40,24 @@ export default function HeaderLady({ menuOpen }: { menuOpen: boolean }) {
     );
   };
 
-  useEffect(() => {
-    if (!menuOpen) return;
-    clearTimers();
-    setMood("question");
-    timers.current.push(setTimeout(() => setMood("idle"), 1200));
-  }, [menuOpen]);
-
   useEffect(() => clearTimers, []);
+
+  const displayedMood: Mood =
+    mood === "idle" && (menuOpen || brandHovered) ? "question" : mood;
 
   return (
     <button
       type="button"
-      className={`brand-lady brand-lady-${mood}`}
+      className={`brand-lady brand-lady-${displayedMood}`}
       aria-label="Say hello to Lady"
       onMouseEnter={() => {
+        setLadyHovered(true);
         if (mood !== "idle") return;
         clearTimers();
         setMood("question");
       }}
       onMouseLeave={() => {
+        setLadyHovered(false);
         if (mood === "question") setMood("idle");
       }}
       onFocus={() => {
@@ -69,13 +74,40 @@ export default function HeaderLady({ menuOpen }: { menuOpen: boolean }) {
         runClickSequence();
       }}
     >
-      <Image src={frames[mood]} alt="Lady" width={160} height={160} priority />
+      <span className="brand-lady-stage" aria-hidden="true">
+        {[...new Set(Object.values(frames))].map((src) => (
+          <Image
+            key={src}
+            src={src}
+            alt=""
+            width={160}
+            height={160}
+            priority
+            className={`brand-lady-frame ${frames[displayedMood] === src ? "is-active" : ""}`}
+          />
+        ))}
+        <span
+          key={`${displayedMood}-${heartBurst}`}
+          className="brand-lady-pixels"
+        >
+          <i />
+          <i />
+          <i />
+          <i />
+        </span>
+      </span>
 
       <span
-        className={`lady-bubble ${mood === "question" || mood === "woof" ? "show" : ""}`}
+        className={`lady-bubble ${displayedMood === "question" || displayedMood === "woof" ? "show" : ""}`}
         aria-live="polite"
       >
-        {mood === "question" ? "?" : mood === "woof" ? "WOOF!" : ""}
+        {mood === "woof"
+          ? "WOOF!"
+          : brandHovered && !ladyHovered
+            ? "HOME"
+            : mood === "question"
+              ? "?"
+              : ""}
       </span>
 
       {mood === "love" && (

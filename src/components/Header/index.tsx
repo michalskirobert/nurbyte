@@ -10,14 +10,14 @@ type DisplayMode = "light" | "contrast";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
-  const [displayMode, setDisplayMode] = useState<DisplayMode>("light");
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(() => {
+    if (typeof window === "undefined") return "light";
+    return localStorage.getItem("nurbyte-display-mode") === "contrast"
+      ? "contrast"
+      : "light";
+  });
+  const [brandHovered, setBrandHovered] = useState(false);
 
-  useEffect(() => {
-    const saved = localStorage.getItem(
-      "nurbyte-display-mode",
-    ) as DisplayMode | null;
-    if (saved === "contrast") setDisplayMode("contrast");
-  }, []);
   useEffect(() => {
     document.documentElement.dataset.displayMode = displayMode;
     localStorage.setItem("nurbyte-display-mode", displayMode);
@@ -41,7 +41,15 @@ export default function Header() {
   return (
     <>
       <header className="hud">
-        <a className="brand" href="#home" aria-label="NurByte home">
+        <a
+          className="brand"
+          href="#home"
+          aria-label="NurByte home"
+          onMouseEnter={() => setBrandHovered(true)}
+          onMouseLeave={() => setBrandHovered(false)}
+          onFocus={() => setBrandHovered(true)}
+          onBlur={() => setBrandHovered(false)}
+        >
           <Image
             className="brand-mark"
             src="/assets/brand/nurbyte-mark.png"
@@ -53,7 +61,7 @@ export default function Header() {
           <span>
             <b>Nur</b>Byte<small>Software Lab &lt;/&gt;</small>
           </span>
-          <HeaderLady menuOpen={open} />
+          <HeaderLady menuOpen={open} brandHovered={brandHovered} />
         </a>
         <Navigation active={active} />
         <div className="hud-actions">

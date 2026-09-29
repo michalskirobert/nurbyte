@@ -68,14 +68,17 @@ export default function NotFoundLady() {
         {current.bubble}
       </span>
       <span className="not-found-lady-v36-stage" aria-hidden="true">
-        <Image
-          key={state}
-          src={current.src}
-          alt=""
-          width={current.width}
-          height={current.height}
-          priority={state === "search"}
-        />
+        {Object.entries(ladyState).map(([key, item]) => (
+          <Image
+            key={key}
+            src={item.src}
+            alt=""
+            width={item.width}
+            height={item.height}
+            priority
+            className={`not-found-lady-frame is-${key} ${state === key ? "is-active" : ""}`}
+          />
+        ))}
       </span>
       {state === "love" && (
         <span className="not-found-lady-v36-hearts" aria-hidden="true">

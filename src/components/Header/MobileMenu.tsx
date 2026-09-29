@@ -1,5 +1,5 @@
 import { Sun } from "lucide-react";
-import { navigation } from "./navigation";
+import { navigation } from "./navigationItems";
 
 type DisplayMode = "light" | "contrast";
 

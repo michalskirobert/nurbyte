@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import type { Project } from "./types";
 
@@ -11,8 +11,6 @@ export default function ProjectDetailsModal({
   project: Project | null;
   onClose: () => void;
 }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   useEffect(() => {
     if (!project) return;
     const key = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -24,7 +22,7 @@ export default function ProjectDetailsModal({
       document.body.style.overflow = previous;
     };
   }, [project, onClose]);
-  if (!mounted || !project) return null;
+  if (!project || typeof document === "undefined") return null;
   return createPortal(
     <div
       className="arcade-modal-backdrop"
