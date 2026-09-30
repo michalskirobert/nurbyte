@@ -482,3 +482,26 @@ body {
   transform: none !important;
   flex: 0 0 auto !important;
 }
+
+/* Contact terminal actions: keep Lucide Enter icon on the same line as its label. */
+.cli-compose-help > button,
+.cli-review > .terminal-command {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 0.55rem !important;
+  white-space: nowrap !important;
+}
+
+.cli-compose-help > button > svg,
+.cli-review > .terminal-command > svg {
+  display: block !important;
+  position: static !important;
+  width: 1em !important;
+  height: 1em !important;
+  margin: 0 !important;
+  transform: none !important;
+  flex: 0 0 auto !important;
+}

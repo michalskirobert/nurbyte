@@ -320,8 +320,16 @@ export default function ContactForm() {
             <div className="cli-compose-help">
               <span>{message.length}/250</span>
               <span>Ctrl/⌘ + Enter to continue</span>
-              <button type="button" onClick={saveMessage}>
-                CONTINUE <CornerDownLeft aria-hidden="true" />
+              <button
+                type="button"
+                onClick={saveMessage}
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap"
+              >
+                <span>CONTINUE</span>
+                <CornerDownLeft
+                  aria-hidden="true"
+                  className="h-[1em] w-[1em] shrink-0 stroke-[2.25]"
+                />
               </button>
             </div>
           </div>
@@ -347,11 +355,15 @@ export default function ContactForm() {
               {message.length} characters
             </p>
             <div className="cli-rule">────────────────────────────────────</div>
-            <button type="submit" className="terminal-command">
-              nurbyte@dev:~$ contact send{" "}
-              <b>
-                <CornerDownLeft aria-hidden="true" />
-              </b>
+            <button
+              type="submit"
+              className="terminal-command inline-flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              <span>nurbyte@dev:~$ contact send</span>
+              <CornerDownLeft
+                aria-hidden="true"
+                className="h-[1em] w-[1em] shrink-0 stroke-[2.25]"
+              />
             </button>
           </div>
         )}
