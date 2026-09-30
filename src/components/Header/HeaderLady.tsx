@@ -1,5 +1,7 @@
 "use client";
 
+import { Heart } from "lucide-react";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -116,9 +118,15 @@ export default function HeaderLady({
           className="brand-lady-hearts is-active"
           aria-hidden="true"
         >
-          <span>♥</span>
-          <span>♥</span>
-          <span>♥</span>
+          <span>
+            <Heart aria-hidden="true" />
+          </span>
+          <span>
+            <Heart aria-hidden="true" />
+          </span>
+          <span>
+            <Heart aria-hidden="true" />
+          </span>
         </span>
       )}
     </button>

@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import AmbientWorld from "./AmbientWorld";
 import HeroCharacters from "./HeroCharacters";
 import HeroContent from "./HeroContent";
@@ -16,7 +17,10 @@ export default function Home() {
       <HeroTerminal />
       <HeroCharacters />
       <a className="scroll-hint" href="#projects">
-        SCROLL TO EXPLORE <span>⌄</span>
+        SCROLL TO EXPLORE{" "}
+        <span>
+          <ChevronDown aria-hidden="true" />
+        </span>
       </a>
       <HomeEffects />
     </section>

@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import NotFoundLady from "./NotFoundLady";
@@ -51,8 +52,11 @@ export default function NotFound() {
             available
           </code>
         </div>
-        <Link href="/" className="not-found-home">
-          ▶ RETURN HOME
+        <Link
+          href="/"
+          className="not-found-home btn primary inline-flex items-center justify-center gap-2 whitespace-nowrap"
+        >
+          <ArrowLeft aria-hidden="true" /> RETURN HOME
         </Link>
       </section>
     </main>

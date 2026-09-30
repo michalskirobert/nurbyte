@@ -1,4 +1,4 @@
-import { Sun } from "lucide-react";
+import { Sun, X } from "lucide-react";
 import { navigation } from "./navigationItems";
 
 type DisplayMode = "light" | "contrast";
@@ -23,7 +23,7 @@ export default function MobileMenu({
         onClick={onClose}
         aria-label="Close menu"
       >
-        ×
+        <X aria-hidden="true" />
       </button>
 
       <div className="drawer-heading">MENU // NAVIGATION</div>

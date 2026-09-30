@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 export default function AboutProfile() {
   return (
     <article className="about-profile">
@@ -23,8 +24,11 @@ export default function AboutProfile() {
         <b>PRODUCT ENGINEERING</b>
       </div>
       <div className="about-actions">
-        <a href="#projects" className="btn primary">
-          ▶ VIEW PROJECTS
+        <a
+          href="#projects"
+          className="btn primary inline-flex items-center justify-center gap-2 whitespace-nowrap"
+        >
+          <ArrowRight aria-hidden="true" /> VIEW PROJECTS
         </a>
       </div>
     </article>

@@ -1,0 +1,1854 @@
+/* === v16.8 section arcade typography ===
+   Bind directly to next/font variable so this cannot be defeated by stale aliases.
+   Only section display/UI text — never body copy or HOME hero. */
+#projects .projects-head h2,
+#projects .projects-head .eyebrow,
+#projects .projects-head .section-kicker,
+#about .about-head h2,
+#about .about-head .eyebrow,
+#about .about-head .section-kicker,
+#tech .tech-head h2,
+#tech .tech-head .eyebrow,
+#tech .tech-head .section-kicker,
+#contact .contact-head h2,
+#contact .contact-head .eyebrow,
+#contact .contact-head .section-kicker {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+}
+
+/* === v16.9 arcade typography + motion language ===
+   Large headings stay readable Pixelify; arcade is a deliberate accent. */
+#projects .section-kicker,
+#about .section-kicker,
+#tech .section-kicker,
+#contact .section-kicker,
+#about .about-area,
+#tech .tech-area,
+#contact .contact-area,
+#projects .project-open,
+#projects .project-meta,
+#about .about-profile-kicker,
+#about .about-log-kicker,
+#tech .tech-inspector-kicker,
+#tech .tech-slot span,
+#contact .cli-live-prompt,
+#contact .cli-hint {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+}
+#projects .projects-head h2,
+#about .about-head h2,
+#tech .tech-head h2 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+}
+/* Yellow keyword is the arcade punch; this avoids wrecking headline geometry. */
+#projects .projects-head h2 em,
+#about .about-head h2 em,
+#tech .tech-head h2 em,
+#contact .contact-head h2 em {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.62em;
+  letter-spacing: -0.04em;
+  vertical-align: 0.08em;
+}
+
+/* SCROLL TO EXPLORE becomes an affordance, not another heavy HUD label. */
+#home .scroll-hint {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 9px;
+  left: 58px !important;
+  bottom: 18px !important;
+  padding: 7px 10px 7px 12px;
+  border: 1px solid rgba(255, 210, 26, 0.28);
+  border-radius: 999px;
+  background: rgba(2, 13, 21, 0.48);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0.82 !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 6px !important;
+  letter-spacing: 0.03em;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+#home .scroll-hint span {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin: 0 !important;
+  color: #ffd21a;
+  font-size: 15px !important;
+  line-height: 1;
+  animation: scrollHintDrop 1.35s steps(4, end) infinite;
+}
+#home .scroll-hint:hover,
+#home .scroll-hint:focus-visible {
+  opacity: 1 !important;
+  border-color: rgba(255, 210, 26, 0.75);
+  background: rgba(5, 22, 31, 0.78);
+  transform: translateY(-2px);
+}
+@keyframes scrollHintDrop {
+  0%,
+  100% {
+    transform: translateY(-2px);
+    opacity: 0.45;
+  }
+  55% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+
+/* Section entrance: short arcade-like stepped reveal, one observer for all sections. */
+#projects .projects-head,
+#projects .projects-track,
+#about .about-head,
+#about .about-profile,
+#about .about-log,
+#tech .tech-head,
+#tech .tech-inventory,
+#tech .tech-inspector,
+#contact .contact-head,
+#contact .contact-terminal,
+#contact .contact-lady {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+.section-entered .projects-head,
+.section-entered .about-head,
+.section-entered .tech-head,
+.section-entered .contact-head {
+  animation: arcadeEnter 0.48s steps(7, end) both;
+}
+.section-entered .projects-track,
+.section-entered .about-profile,
+.section-entered .tech-inventory,
+.section-entered .contact-terminal {
+  animation: arcadeEnter 0.56s 0.09s steps(8, end) both;
+}
+.section-entered .about-log,
+.section-entered .tech-inspector,
+.section-entered .contact-lady {
+  animation: arcadeEnter 0.56s 0.17s steps(8, end) both;
+}
+@keyframes arcadeEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    filter: brightness(0.7);
+  }
+  38% {
+    opacity: 0.55;
+    transform: translate3d(0, 8px, 0);
+    filter: brightness(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #home .scroll-hint span {
+    animation: none;
+  }
+  #projects .projects-head,
+  #projects .projects-track,
+  #about .about-head,
+  #about .about-profile,
+  #about .about-log,
+  #tech .tech-head,
+  #tech .tech-inventory,
+  #tech .tech-inspector,
+  #contact .contact-head,
+  #contact .contact-terminal,
+  #contact .contact-lady {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
+  }
+}
+
+/* === v17 typography hierarchy ===
+   Use BOTH faces inside the same compositions instead of assigning one face
+   to an entire section. Press Start 2P is the accent; Pixelify is the large
+   readable display face. */
+
+/* HERO: arcade eyebrow + yellow half of the statement, readable display for the rest. */
+#home .hero-copy .eyebrow,
+#home .hero-copy .kicker {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+#home .hero-copy h1 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+}
+#home .hero-copy h1 em,
+#home .hero-copy h1 strong,
+#home .hero-copy h1 .accent {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.68em !important;
+  line-height: 1.32 !important;
+  letter-spacing: -0.045em !important;
+}
+
+/* Section headings: display base + arcade accent if markup contains em/strong/accent. */
+#projects .projects-head h2,
+#about .about-head h2,
+#tech .tech-head h2 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+}
+#projects .projects-head h2 em,
+#projects .projects-head h2 strong,
+#projects .projects-head h2 .accent,
+#about .about-head h2 em,
+#about .about-head h2 strong,
+#about .about-head h2 .accent,
+#tech .tech-head h2 em,
+#tech .tech-head h2 strong,
+#tech .tech-head h2 .accent {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.66em !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.04em !important;
+}
+
+/* Small UI is where the arcade face works best. */
+#projects .section-kicker,
+#about .section-kicker,
+#tech .section-kicker,
+#contact .section-kicker,
+#projects .project-meta,
+#projects .project-open,
+#about .about-profile-kicker,
+#about .about-log-kicker,
+#about .about-meta,
+#tech .tech-inspector-kicker,
+#tech .tech-slot span,
+#tech .tech-area,
+#contact .contact-head h2,
+#contact .contact-area,
+.nav a,
+.online,
+.btn {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+}
+
+/* SCROLL TO EXPLORE: centered, isolated from hero copy/CTA. */
+#home .scroll-hint {
+  left: 50% !important;
+  right: auto !important;
+  bottom: 17px !important;
+  transform: translateX(-50%) !important;
+  z-index: 8 !important;
+  opacity: 0.9 !important;
+}
+#home .scroll-hint:hover,
+#home .scroll-hint:focus-visible {
+  transform: translateX(-50%) translateY(-2px) !important;
+}
+@media (max-width: 760px) {
+  #home .scroll-hint {
+    left: 50% !important;
+    bottom: 10px !important;
+  }
+}
+
+/* === v17.1 ABOUT visual polish ===
+   Reduce the "two giant boxes" feeling and create a clearer editorial hierarchy. */
+#about .about-head {
+  margin-bottom: 20px !important;
+}
+#about .about-head h2 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-size: clamp(38px, 4vw, 66px) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.035em !important;
+}
+#about .about-head h2 em,
+#about .about-head h2 strong,
+#about .about-head h2 .accent {
+  font-family: var(--font-press), monospace !important;
+  font-size: 0.58em !important;
+  line-height: 1 !important;
+  letter-spacing: -0.045em !important;
+  vertical-align: 0.08em;
+}
+
+/* Asymmetric grid: profile is the hero card, log is supporting information. */
+#about .about-layout {
+  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr) !important;
+  gap: 18px !important;
+  align-items: stretch !important;
+}
+#about .about-profile {
+  background: linear-gradient(
+    135deg,
+    rgba(3, 17, 25, 0.94),
+    rgba(3, 17, 25, 0.78)
+  ) !important;
+  border-color: rgba(255, 210, 26, 0.72) !important;
+  padding: 34px 38px 30px !important;
+}
+#about .about-profile h3 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-size: clamp(38px, 3.65vw, 58px) !important;
+  line-height: 0.88 !important;
+  letter-spacing: -0.035em !important;
+  max-width: 660px;
+}
+#about .about-profile h3 em,
+#about .about-profile h3 strong,
+#about .about-profile h3 .accent {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-size: 0.53em !important;
+  line-height: 1.45 !important;
+  letter-spacing: -0.045em !important;
+}
+#about .about-profile > p {
+  max-width: 690px !important;
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: rgba(239, 247, 249, 0.82) !important;
+}
+#about .about-meta {
+  margin-top: 20px !important;
+  opacity: 0.86;
+}
+
+/* Log becomes lighter and denser instead of competing with the profile card. */
+#about .about-log {
+  background: rgba(3, 17, 25, 0.78) !important;
+  border-color: rgba(255, 210, 26, 0.42) !important;
+}
+#about .about-log header {
+  min-height: 48px !important;
+  padding: 0 18px !important;
+  background: rgba(2, 13, 20, 0.72) !important;
+}
+#about .about-log-item {
+  padding: 18px !important;
+}
+#about .about-log-item p {
+  font-size: 14px !important;
+  line-height: 1.42 !important;
+  color: rgba(239, 247, 249, 0.76) !important;
+}
+#about .about-log-item h4 {
+  font-family: var(--font-press), monospace !important;
+  font-size: 7px !important;
+  line-height: 1.5 !important;
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+#about .about-log-index {
+  font-family: var(--font-press), monospace !important;
+  font-size: 8px !important;
+}
+#about .about-tags {
+  padding: 14px 18px 16px !important;
+  gap: 7px !important;
+}
+#about .about-tags span {
+  font-family: var(--font-press), monospace !important;
+  font-size: 6px !important;
+  letter-spacing: 0 !important;
+  padding: 6px 8px !important;
+}
+
+/* CTA should not visually outweigh the profile itself. */
+#about .about-profile .btn {
+  margin-top: 20px !important;
+  min-height: 46px !important;
+  padding: 0 22px !important;
+  font-size: 10px !important;
+}
+
+@media (max-width: 900px) {
+  #about .about-layout {
+    grid-template-columns: 1fr !important;
+  }
+  #about .about-profile {
+    padding: 26px 24px !important;
+  }
+}
+
+/* === v17.2 visual balance === */
+
+/* PROJECT cards: descriptions are content, not HUD labels.
+   Keep arcade for metadata/CTA/tags only. */
+#projects .project-card p,
+#projects .project-copy p,
+#projects .project-description,
+#projects .project-rail-card p {
+  font-family: var(--font-pixelify), system-ui, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.42 !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+  color: rgba(245, 249, 250, 0.88) !important;
+}
+#projects .project-meta,
+#projects .project-tech span,
+#projects .project-open {
+  font-family: var(--font-press), monospace !important;
+}
+
+/* Header ONLINE should be a status chip, not a second CTA. */
+.hud .online {
+  min-height: 34px !important;
+  padding: 0 13px !important;
+  gap: 8px !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 8px !important;
+  letter-spacing: 0 !important;
+  border-radius: 999px !important;
+}
+.hud .online i {
+  width: 7px !important;
+  height: 7px !important;
+  box-shadow: 0 0 9px rgba(32, 255, 169, 0.75) !important;
+}
+
+/* Scroll affordance: high contrast, independent from the artwork behind it. */
+#home .scroll-hint {
+  left: 50% !important;
+  right: auto !important;
+  bottom: 20px !important;
+  min-height: 38px !important;
+  padding: 0 12px 0 15px !important;
+  gap: 10px !important;
+  transform: translateX(-50%) !important;
+  color: #fff !important;
+  background: rgba(0, 10, 16, 0.88) !important;
+  border: 1px solid rgba(255, 210, 26, 0.8) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(255, 210, 26, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  opacity: 1 !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 7px !important;
+  line-height: 1 !important;
+  text-shadow: 0 1px 2px #000 !important;
+  isolation: isolate;
+  animation: scrollPillFloat 2.4s ease-in-out infinite;
+}
+#home .scroll-hint::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 210, 26, 0.32);
+  animation: scrollPillPulse 2.4s ease-out infinite;
+}
+#home .scroll-hint span {
+  width: 20px !important;
+  height: 20px !important;
+  color: #ffd21a !important;
+  font-size: 17px !important;
+  filter: drop-shadow(0 0 5px rgba(255, 210, 26, 0.55));
+  animation: scrollArrow 1.15s steps(5, end) infinite !important;
+}
+#home .scroll-hint:hover,
+#home .scroll-hint:focus-visible {
+  background: rgba(0, 14, 22, 0.97) !important;
+  border-color: #ffd21a !important;
+  transform: translateX(-50%) translateY(-2px) !important;
+}
+@keyframes scrollPillFloat {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+@keyframes scrollPillPulse {
+  0% {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.08, 1.35);
+  }
+}
+@keyframes scrollArrow {
+  0%,
+  100% {
+    transform: translateY(-3px);
+    opacity: 0.45;
+  }
+  60% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  #home .scroll-hint {
+    bottom: 12px !important;
+    font-size: 6px !important;
+    min-height: 34px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #home .scroll-hint,
+  #home .scroll-hint::before,
+  #home .scroll-hint span {
+    animation: none !important;
+  }
+}
+
+/* === v17.3 responsive/UI polish === */
+
+/* ONLINE: true vertical centering and calmer proportions. */
+.hud .online {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  padding: 0 14px !important;
+  line-height: 1 !important;
+}
+.hud .online i {
+  display: block !important;
+  flex: 0 0 auto;
+  margin: 0 8px 0 0 !important;
+}
+
+/* Project detail panel: arcade HUD around readable product content. */
+#projects .project-rail-card .project-copy,
+#projects .project-rail-card .project-info {
+  position: relative;
+}
+#projects .project-rail-card h3,
+#projects .project-rail-card .project-name {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+#projects .project-rail-card .project-type,
+#projects .project-rail-card .project-status,
+#projects .project-rail-card .project-tech span,
+#projects .project-rail-card .project-open {
+  font-family: var(--font-press), monospace !important;
+  letter-spacing: 0 !important;
+}
+#projects .project-rail-card .project-type {
+  color: #9bb5c0 !important;
+  font-size: 7px !important;
+}
+#projects .project-rail-card .project-status {
+  font-size: 7px !important;
+}
+#projects .project-rail-card p {
+  font-family: var(--font-pixelify), system-ui, sans-serif !important;
+  font-size: 17px !important;
+  line-height: 1.38 !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+  max-width: 480px;
+}
+
+/* Scroll control: no jumping. Hover is visual only; arrow sits centered. */
+#home .scroll-hint {
+  animation: none !important;
+  transform: translateX(-50%) !important;
+  transition:
+    background 0.24s ease,
+    border-color 0.24s ease,
+    box-shadow 0.24s ease,
+    color 0.24s ease !important;
+}
+#home .scroll-hint:hover,
+#home .scroll-hint:focus-visible {
+  transform: translateX(-50%) !important;
+  background: rgba(255, 210, 26, 0.96) !important;
+  color: #071018 !important;
+  border-color: #fff0a0 !important;
+  box-shadow:
+    0 8px 26px rgba(0, 0, 0, 0.42),
+    0 0 22px rgba(255, 210, 26, 0.26) !important;
+}
+#home .scroll-hint span {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 0 1px 0 !important;
+  line-height: 1 !important;
+  transform: none;
+  animation: scrollArrowSoft 1.2s steps(4, end) infinite !important;
+}
+#home .scroll-hint:hover span,
+#home .scroll-hint:focus-visible span {
+  color: #071018 !important;
+  filter: none !important;
+}
+@keyframes scrollArrowSoft {
+  0%,
+  100% {
+    transform: translateY(-1px);
+    opacity: 0.55;
+  }
+  60% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+}
+
+/* Mobile HOME: reduce typographic pressure and reserve a clean bottom utility row. */
+@media (max-width: 760px) {
+  #home .hero-copy {
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 92px !important;
+  }
+  #home .hero-copy h1 {
+    font-size: clamp(42px, 12.8vw, 58px) !important;
+    line-height: 0.84 !important;
+    letter-spacing: -1.5px !important;
+    margin: 12px 0 16px !important;
+  }
+  #home .hero-copy h1 em,
+  #home .hero-copy h1 strong,
+  #home .hero-copy h1 .accent {
+    font-size: 0.62em !important;
+    line-height: 1.38 !important;
+  }
+  #home .hero-copy .eyebrow {
+    max-width: 310px;
+    font-size: 7px !important;
+    line-height: 1.6 !important;
+  }
+  #home .lede {
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    max-width: 390px !important;
+  }
+  #home .actions {
+    margin-top: 20px !important;
+  }
+  #home .scroll-hint {
+    display: inline-flex !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: 13px !important;
+    min-height: 34px !important;
+    padding: 0 11px 0 13px !important;
+    font-size: 6px !important;
+    z-index: 12 !important;
+  }
+}
+
+/* Projects on phones: one coherent card, screenshot first, content second.
+   Horizontal rail remains native swipe/scroll. */
+@media (max-width: 760px) {
+  #projects .projects-shell {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+  #projects .projects-head h2 {
+    font-size: clamp(38px, 11vw, 54px) !important;
+    line-height: 0.88 !important;
+  }
+  #projects .projects-track {
+    gap: 14px !important;
+    scroll-padding-left: 0 !important;
+  }
+  #projects .project-rail-card {
+    width: min(84vw, 430px) !important;
+    min-width: min(84vw, 430px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  #projects .project-rail-card .project-shot,
+  #projects .project-rail-card .project-media {
+    width: 100% !important;
+    min-height: 220px !important;
+    aspect-ratio: 16/10;
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255, 210, 26, 0.48) !important;
+  }
+  #projects .project-rail-card .project-copy,
+  #projects .project-rail-card .project-info {
+    width: 100% !important;
+    padding: 22px 20px 24px !important;
+  }
+  #projects .project-rail-card h3,
+  #projects .project-rail-card .project-name {
+    font-size: clamp(32px, 9vw, 44px) !important;
+    line-height: 0.92 !important;
+    margin: 12px 0 !important;
+  }
+  #projects .project-rail-card p {
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+    max-width: none !important;
+  }
+  #projects .project-tech {
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+  }
+  #projects .project-tech span {
+    font-size: 6px !important;
+    padding: 7px 8px !important;
+  }
+  #projects .project-open {
+    font-size: 7px !important;
+    min-height: 42px !important;
+  }
+}
+
+/* === v17.4 Lady full-pose interactions === */
+#contact .contact-lady {
+  width: min(250px, 100%) !important;
+  min-height: 260px !important;
+  display: grid !important;
+  place-items: end center !important;
+}
+#contact .contact-lady-stage {
+  width: 220px;
+  height: 245px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+#contact .contact-lady-image {
+  width: auto !important;
+  height: auto !important;
+  max-width: 220px !important;
+  max-height: 245px !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.35));
+  animation: ladyPoseIn 0.18s steps(3, end);
+}
+#contact .contact-lady:hover .contact-lady-image {
+  transform: none !important;
+}
+#contact .contact-lady-bubble {
+  right: 68% !important;
+  top: 7% !important;
+}
+@keyframes ladyPoseIn {
+  from {
+    opacity: 0.72;
+    transform: translateY(3px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 170px !important;
+    min-height: 190px !important;
+  }
+  #contact .contact-lady-stage {
+    width: 150px !important;
+    height: 170px !important;
+  }
+  #contact .contact-lady-image {
+    max-width: 150px !important;
+    max-height: 170px !important;
+  }
+  #contact .contact-lady-bubble {
+    right: 58% !important;
+    top: 3% !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #contact .contact-lady-image {
+    animation: none !important;
+  }
+}
+
+/* === v17.4.1 Lady transparency hotfix ===
+   Legacy `.contact-lady span` styles were accidentally styling the new image stage
+   as if it were the speech bubble. */
+#contact .contact-lady > .contact-lady-stage {
+  position: static !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  width: 220px !important;
+  height: 245px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  overflow: visible !important;
+}
+#contact .contact-lady:hover > .contact-lady-stage {
+  background: transparent !important;
+  color: inherit !important;
+  transform: none !important;
+}
+#contact .contact-lady > .contact-lady-bubble {
+  position: absolute !important;
+  right: 68% !important;
+  top: 7% !important;
+  width: max-content !important;
+  border: 3px solid #101820 !important;
+  background: #fff !important;
+  color: #101820 !important;
+  padding: 12px 15px !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 8px !important;
+  box-shadow: 5px 5px 0 #02070c !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble {
+  background: #050b10 !important;
+  color: #f5c518 !important;
+  transform: translate(-3px, -2px) !important;
+}
+@media (max-width: 760px) {
+  #contact .contact-lady > .contact-lady-stage {
+    width: 150px !important;
+    height: 170px !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble {
+    right: 58% !important;
+    top: 3% !important;
+    font-size: 6px !important;
+  }
+}
+
+/* === v17.4.2 Lady speech bubble ===
+   Bubble is real HTML, independently styled and anchored to the character. */
+#contact .contact-lady {
+  position: relative !important;
+}
+#contact .contact-lady > .contact-lady-bubble {
+  position: absolute !important;
+  top: 8px !important;
+  right: auto !important;
+  left: 50% !important;
+  width: max-content !important;
+  max-width: 220px !important;
+  transform: translate(-78%, -100%) !important;
+  padding: 10px 13px !important;
+  border: 2px solid #111a22 !important;
+  border-radius: 2px !important;
+  background: rgba(248, 248, 244, 0.98) !important;
+  color: #101820 !important;
+  box-shadow: 4px 4px 0 rgba(2, 7, 12, 0.92) !important;
+  z-index: 4 !important;
+  pointer-events: none !important;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+  position: static !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 7px !important;
+  line-height: 1.45 !important;
+  white-space: nowrap !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-tail {
+  position: absolute !important;
+  display: block !important;
+  left: 72% !important;
+  bottom: -9px !important;
+  width: 14px !important;
+  height: 14px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-right: 2px solid #111a22 !important;
+  border-bottom: 2px solid #111a22 !important;
+  background: rgba(248, 248, 244, 0.98) !important;
+  box-shadow: none !important;
+  transform: rotate(45deg) !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble,
+#contact .contact-lady:focus-visible > .contact-lady-bubble {
+  transform: translate(-78%, -100%) !important;
+  background: #ffd21a !important;
+  color: #071018 !important;
+  border-color: #071018 !important;
+  box-shadow:
+    4px 4px 0 rgba(2, 7, 12, 0.92),
+    0 0 16px rgba(255, 210, 26, 0.16) !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble .contact-lady-bubble-tail,
+#contact
+  .contact-lady:focus-visible
+  > .contact-lady-bubble
+  .contact-lady-bubble-tail {
+  background: #ffd21a !important;
+}
+@media (max-width: 760px) {
+  #contact .contact-lady > .contact-lady-bubble {
+    top: 5px !important;
+    max-width: 170px !important;
+    transform: translate(-72%, -100%) !important;
+    padding: 8px 10px !important;
+  }
+  #contact .contact-lady:hover > .contact-lady-bubble,
+  #contact .contact-lady:focus-visible > .contact-lady-bubble {
+    transform: translate(-72%, -100%) !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+    font-size: 6px !important;
+  }
+}
+
+/* === v17.4.3 Lady dialog placement + complete pose ===
+   Keep the dialog attached to Lady's head, never floating over the terminal. */
+#contact .contact-lady {
+  overflow: visible !important;
+}
+#contact .contact-lady > .contact-lady-bubble {
+  top: auto !important;
+  bottom: 82% !important;
+  left: 50% !important;
+  right: auto !important;
+  max-width: 190px !important;
+  transform: translateX(-50%) !important;
+  padding: 9px 12px !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+  font-size: 6px !important;
+  line-height: 1.35 !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-tail {
+  left: 50% !important;
+  bottom: -7px !important;
+  width: 12px !important;
+  height: 12px !important;
+  transform: translateX(-50%) rotate(45deg) !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble,
+#contact .contact-lady:focus-visible > .contact-lady-bubble {
+  transform: translateX(-50%) !important;
+}
+
+/* Every pose gets enough room; contain prevents toy/paws/tail clipping. */
+#contact .contact-lady-stage {
+  width: 245px !important;
+  height: 255px !important;
+  overflow: visible !important;
+}
+#contact .contact-lady-image {
+  max-width: 245px !important;
+  max-height: 255px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 155px !important;
+    min-height: 180px !important;
+  }
+  #contact .contact-lady-stage {
+    width: 145px !important;
+    height: 165px !important;
+  }
+  #contact .contact-lady-image {
+    max-width: 145px !important;
+    max-height: 165px !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble {
+    bottom: 80% !important;
+    left: 50% !important;
+    max-width: 138px !important;
+    padding: 7px 8px !important;
+    transform: translateX(-50%) !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+    font-size: 5px !important;
+    white-space: nowrap !important;
+  }
+  #contact .contact-lady:hover > .contact-lady-bubble,
+  #contact .contact-lady:focus-visible > .contact-lady-bubble {
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* === v17.4.4 Lady clean interaction ===
+   Remove the focus-card look. Lady is an invisible interactive hit area only. */
+#contact .contact-lady,
+#contact .contact-lady:hover,
+#contact .contact-lady:focus,
+#contact .contact-lady:focus-visible,
+#contact .contact-lady:active {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* Compact game-dialog directly above Lady's head. */
+#contact .contact-lady > .contact-lady-bubble {
+  top: 6px !important;
+  bottom: auto !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translate(-50%, -100%) !important;
+  width: max-content !important;
+  max-width: 185px !important;
+  padding: 8px 11px !important;
+  border: 2px solid #101820 !important;
+  border-radius: 3px !important;
+  background: rgba(248, 248, 244, 0.96) !important;
+  color: #101820 !important;
+  box-shadow: 3px 3px 0 rgba(2, 7, 12, 0.88) !important;
+  pointer-events: none !important;
+}
+#contact .contact-lady > .contact-lady-bubble::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: -6px !important;
+  width: 9px !important;
+  height: 9px !important;
+  background: inherit !important;
+  border-right: 2px solid #101820 !important;
+  border-bottom: 2px solid #101820 !important;
+  transform: translateX(-50%) rotate(45deg) !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+  position: static !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 6px !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble,
+#contact .contact-lady:focus-visible > .contact-lady-bubble {
+  transform: translate(-50%, -100%) !important;
+  background: #ffd21a !important;
+  color: #071018 !important;
+  box-shadow:
+    3px 3px 0 rgba(2, 7, 12, 0.88),
+    0 0 12px rgba(255, 210, 26, 0.16) !important;
+}
+
+/* One stable footprint for every COMPLETE full-body pose. */
+#contact .contact-lady {
+  width: 240px !important;
+  min-height: 270px !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+#contact .contact-lady > .contact-lady-stage {
+  width: 240px !important;
+  height: 250px !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
+#contact .contact-lady-image {
+  width: auto !important;
+  height: auto !important;
+  max-width: 230px !important;
+  max-height: 240px !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+/* Old real element no longer exists; neutralize stale rules if cached CSS is concatenated. */
+#contact .contact-lady-bubble-tail {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 150px !important;
+    min-height: 180px !important;
+  }
+  #contact .contact-lady > .contact-lady-stage {
+    width: 150px !important;
+    height: 165px !important;
+  }
+  #contact .contact-lady-image {
+    max-width: 145px !important;
+    max-height: 160px !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble {
+    top: 3px !important;
+    max-width: 140px !important;
+    padding: 7px 8px !important;
+    transform: translate(-50%, -100%) !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+    font-size: 5px !important;
+  }
+  #contact .contact-lady:hover > .contact-lady-bubble,
+  #contact .contact-lady:focus-visible > .contact-lady-bubble {
+    transform: translate(-50%, -100%) !important;
+  }
+}
+
+/* === v17.4.5 Lady bubble anchored to the character ===
+   The bubble and sprite now share a tight character wrapper. */
+#contact .contact-lady {
+  width: 240px !important;
+  min-height: 0 !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#contact .contact-lady > .contact-lady-character {
+  position: relative !important;
+  display: block !important;
+  width: 240px !important;
+  height: 250px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#contact .contact-lady-character > .contact-lady-stage {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#contact .contact-lady-image {
+  width: auto !important;
+  height: auto !important;
+  max-width: 230px !important;
+  max-height: 240px !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+/* ~10px above the actual character stage instead of the outer Contact layout. */
+#contact .contact-lady-character > .contact-lady-bubble {
+  position: absolute !important;
+  z-index: 5 !important;
+  left: 50% !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: max-content !important;
+  max-width: 190px !important;
+  transform: translate(-50%, calc(-100% - 10px)) !important;
+  padding: 8px 11px !important;
+  margin: 0 !important;
+  border: 2px solid #101820 !important;
+  border-radius: 3px !important;
+  background: rgba(248, 248, 244, 0.97) !important;
+  color: #101820 !important;
+  box-shadow: 3px 3px 0 rgba(2, 7, 12, 0.88) !important;
+  pointer-events: none !important;
+}
+
+#contact .contact-lady-character > .contact-lady-bubble::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  bottom: -6px !important;
+  width: 9px !important;
+  height: 9px !important;
+  background: inherit !important;
+  border-right: 2px solid #101820 !important;
+  border-bottom: 2px solid #101820 !important;
+  transform: translateX(-50%) rotate(45deg) !important;
+}
+
+#contact
+  .contact-lady-character
+  > .contact-lady-bubble
+  .contact-lady-bubble-text {
+  position: static !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 6px !important;
+  line-height: 1.4 !important;
+  white-space: nowrap !important;
+}
+
+#contact .contact-lady:hover .contact-lady-bubble,
+#contact .contact-lady:focus-visible .contact-lady-bubble {
+  transform: translate(-50%, calc(-100% - 10px)) !important;
+  background: #ffd21a !important;
+  color: #071018 !important;
+  box-shadow:
+    3px 3px 0 rgba(2, 7, 12, 0.88),
+    0 0 12px rgba(255, 210, 26, 0.16) !important;
+}
+
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 150px !important;
+  }
+  #contact .contact-lady > .contact-lady-character {
+    width: 150px !important;
+    height: 165px !important;
+  }
+  #contact .contact-lady-image {
+    max-width: 145px !important;
+    max-height: 160px !important;
+  }
+  #contact .contact-lady-character > .contact-lady-bubble {
+    max-width: 140px !important;
+    padding: 7px 8px !important;
+    transform: translate(-50%, calc(-100% - 7px)) !important;
+  }
+  #contact
+    .contact-lady-character
+    > .contact-lady-bubble
+    .contact-lady-bubble-text {
+    font-size: 5px !important;
+  }
+  #contact .contact-lady:hover .contact-lady-bubble,
+  #contact .contact-lady:focus-visible .contact-lady-bubble {
+    transform: translate(-50%, calc(-100% - 7px)) !important;
+  }
+}
+
+/* === v17.4.6 Lady: bubble follows the actual sprite ===
+   Outer Contact placement stays unchanged. Only the internal character geometry changes. */
+#contact .contact-lady {
+  width: 240px !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  overflow: visible !important;
+}
+
+#contact .contact-lady > .contact-lady-character {
+  position: relative !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#contact .contact-lady-character > .contact-lady-stage {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  line-height: 0 !important;
+}
+
+#contact .contact-lady-image {
+  position: relative !important;
+  display: block !important;
+  width: auto !important;
+  height: 240px !important;
+  max-width: 230px !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+/* 12px above the REAL top edge of the rendered Lady image. */
+#contact .contact-lady-character > .contact-lady-bubble {
+  position: absolute !important;
+  z-index: 5 !important;
+  left: 50% !important;
+  top: 0 !important;
+  right: auto !important;
+  bottom: auto !important;
+  transform: translate(-50%, calc(-100% - 12px)) !important;
+  width: max-content !important;
+  max-width: 190px !important;
+  margin: 0 !important;
+  padding: 8px 11px !important;
+}
+
+#contact .contact-lady:hover .contact-lady-bubble,
+#contact .contact-lady:focus-visible .contact-lady-bubble {
+  transform: translate(-50%, calc(-100% - 12px)) !important;
+}
+
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 150px !important;
+  }
+  #contact .contact-lady > .contact-lady-character,
+  #contact .contact-lady-character > .contact-lady-stage {
+    width: auto !important;
+    height: auto !important;
+  }
+  #contact .contact-lady-image {
+    width: auto !important;
+    height: 160px !important;
+    max-width: 145px !important;
+    max-height: none !important;
+  }
+  #contact .contact-lady-character > .contact-lady-bubble {
+    transform: translate(-50%, calc(-100% - 10px)) !important;
+  }
+  #contact .contact-lady:hover .contact-lady-bubble,
+  #contact .contact-lady:focus-visible .contact-lady-bubble {
+    transform: translate(-50%, calc(-100% - 10px)) !important;
+  }
+}
+
+/* === v17.5 header branding + Contact spacing === */
+.hud .brand-mark {
+  width: 34px !important;
+  height: 34px !important;
+  flex: 0 0 34px;
+  object-fit: contain !important;
+  filter: drop-shadow(0 0 8px rgba(255, 210, 26, 0.14));
+}
+@media (max-width: 760px) {
+  .hud .brand-mark {
+    width: 28px !important;
+    height: 28px !important;
+    flex-basis: 28px;
+  }
+}
+
+/* Restore breathing room between terminal and Lady without changing the dialog-to-Lady anchor. */
+#contact .contact-layout {
+  column-gap: clamp(135px, 10vw, 195px) !important;
+}
+@media (max-width: 1100px) {
+  #contact .contact-layout {
+    column-gap: 82px !important;
+  }
+}
+@media (max-width: 760px) {
+  #contact .contact-layout {
+    column-gap: 0 !important;
+    row-gap: 30px !important;
+  }
+  #contact .contact-lady {
+    margin-right: 20px !important;
+  }
+}
+
+/* === v17.5 404 — unused night/contact world === */
+.not-found-scene {
+  --nf-yellow: #ffd21a;
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  padding: clamp(90px, 10vh, 130px) max(6vw, 28px) 60px;
+  color: #eef5f6;
+  background: #020b12 url("/assets/backgrounds/contact.webp") center/cover
+    no-repeat;
+}
+.not-found-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(1, 9, 15, 0.94) 0%,
+      rgba(1, 9, 15, 0.82) 38%,
+      rgba(1, 9, 15, 0.3) 72%,
+      rgba(1, 9, 15, 0.58) 100%
+    ),
+    linear-gradient(0deg, rgba(1, 8, 14, 0.72), transparent 58%);
+}
+.not-found-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.16;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(0, 0, 0, 0.35) 4px
+  );
+}
+.not-found-brand {
+  position: absolute;
+  top: 28px;
+  left: max(6vw, 28px);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 13px;
+  border: 1px solid #1a536d;
+  border-radius: 8px;
+  background: rgba(2, 14, 24, 0.86);
+  box-shadow: 0 10px 30px #0008;
+  backdrop-filter: blur(10px);
+}
+.not-found-brand img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+.not-found-brand strong {
+  display: block;
+  font: 16px/1 var(--font-press);
+  color: #fff;
+}
+.not-found-brand strong b {
+  color: var(--nf-yellow);
+}
+.not-found-brand small {
+  display: block;
+  margin-top: 6px;
+  font: 12px/1 var(--font-terminal);
+  letter-spacing: 1px;
+  color: #b6c9d0;
+}
+.not-found-panel {
+  width: min(690px, 64vw);
+  position: relative;
+  z-index: 2;
+}
+.not-found-kicker {
+  margin: 0 0 14px;
+  color: var(--nf-yellow);
+  font: 9px/1.5 var(--font-press);
+  letter-spacing: 0.5px;
+}
+.not-found-panel h1 {
+  margin: 0;
+  font: 700 clamp(100px, 16vw, 220px)/0.72 var(--font-pixelify);
+  letter-spacing: -10px;
+  text-shadow:
+    0 8px 0 #06131d,
+    0 18px 40px #000a;
+}
+.not-found-panel h1 span {
+  color: var(--nf-yellow);
+}
+.not-found-panel h2 {
+  margin: 24px 0 14px;
+  max-width: 650px;
+  font: 400 clamp(26px, 3.2vw, 48px)/1.08 var(--font-press);
+  letter-spacing: -1px;
+}
+.not-found-panel h2 em {
+  font-style: normal;
+  color: var(--nf-yellow);
+}
+.not-found-copy {
+  max-width: 570px;
+  margin: 0 0 24px;
+  color: #d9e5e8;
+  font: 400 clamp(18px, 1.6vw, 23px)/1.35 var(--font-terminal);
+}
+.not-found-terminal {
+  width: min(540px, 100%);
+  margin: 0 0 24px;
+  border: 1px solid #1a607d;
+  border-radius: 7px;
+  background: rgba(1, 13, 22, 0.91);
+  box-shadow: 0 15px 38px #0008;
+  font-family: var(--font-terminal);
+  font-size: 18px;
+  color: #a9d8e8;
+  overflow: hidden;
+}
+.not-found-terminal > div {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border-bottom: 1px solid #17455e;
+}
+.not-found-terminal i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff4055;
+}
+.not-found-terminal i:nth-child(2) {
+  background: #ffd31a;
+}
+.not-found-terminal i:nth-child(3) {
+  background: #1fe78e;
+}
+.not-found-terminal span {
+  margin-left: 4px;
+  font-size: 15px;
+}
+.not-found-terminal code {
+  display: block;
+  padding: 13px 15px;
+  white-space: pre-wrap;
+  font: inherit;
+}
+.not-found-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  color: #071018;
+  text-decoration: none;
+  background: linear-gradient(#ffdc31, #ffc400);
+  border: 2px solid #ffe260;
+  box-shadow: 0 5px 0 #9c6e00;
+  font: 9px var(--font-press);
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
+    filter 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease;
+}
+
+.not-found-lady {
+  position: absolute;
+  right: max(8vw, 50px);
+  bottom: 4vh;
+  z-index: 1;
+  width: min(310px, 24vw);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px #0009);
+}
+@media (max-width: 760px) {
+  .not-found-scene {
+    align-items: flex-end;
+    padding: 105px 22px 52px;
+    background-position: 63% center;
+  }
+  .not-found-brand {
+    top: 14px;
+    left: 14px;
+  }
+  .not-found-panel {
+    width: 100%;
+    z-index: 3;
+  }
+  .not-found-panel h1 {
+    font-size: clamp(92px, 31vw, 150px);
+    letter-spacing: -6px;
+  }
+  .not-found-panel h2 {
+    font-size: clamp(23px, 7vw, 34px);
+    max-width: 95%;
+  }
+  .not-found-copy {
+    max-width: 92%;
+    font-size: 18px;
+  }
+  .not-found-terminal {
+    font-size: 16px;
+  }
+  .not-found-lady {
+    right: -18px;
+    bottom: 42%;
+    width: 42vw;
+    opacity: 0.9;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .not-found-panel {
+    animation: nfEnter 0.55s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+  .not-found-lady {
+    animation: nfLady 3.4s ease-in-out infinite;
+  }
+}
+@keyframes nfEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes nfLady {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* === v17.6 mobile HUD + Contact Lady composition === */
+@media (max-width: 760px) {
+  /* Mobile HUD stays intentionally lean: identity + Lady + menu. */
+  .hud {
+    height: 64px !important;
+    padding: 0 9px 0 11px !important;
+    gap: 8px !important;
+  }
+  .hud .brand {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    gap: 7px !important;
+    overflow: visible !important;
+  }
+  .hud .brand-mark {
+    width: 27px !important;
+    height: 27px !important;
+    flex: 0 0 27px !important;
+  }
+  .hud .brand > span {
+    font-size: 15px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+  .hud .brand > span small {
+    margin-top: 5px !important;
+    font-size: 8px !important;
+    letter-spacing: 0.8px !important;
+  }
+  .hud .brand-lady {
+    width: 48px !important;
+    height: 51px !important;
+    flex: 0 0 48px !important;
+    margin-left: 2px !important;
+  }
+  .hud .brand-lady img {
+    width: 48px !important;
+    height: 51px !important;
+  }
+  .hud-actions {
+    flex: 0 0 auto !important;
+    gap: 0 !important;
+  }
+  .hud-actions > .online,
+  .hud-actions > .display-toggle {
+    display: none !important;
+  }
+  .hud .menu-btn {
+    display: grid !important;
+    place-items: center !important;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0 !important;
+    border-radius: 9px !important;
+  }
+
+  /* Drawer owns status/display controls on phones. */
+  .mobile-drawer {
+    display: flex !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: min(350px, calc(100% - 16px)) !important;
+    padding: 66px 14px 15px !important;
+    border-color: #24637e !important;
+    background: rgba(2, 15, 25, 0.97) !important;
+    box-shadow: 0 20px 60px #000b !important;
+  }
+  .mobile-drawer > .drawer-close {
+    position: absolute !important;
+    top: 13px !important;
+    right: 13px !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    font: 24px/1 var(--font-terminal) !important;
+  }
+  .drawer-heading {
+    position: absolute;
+    left: 17px;
+    top: 25px;
+    color: #ffd21a;
+    font: 6px var(--font-press);
+    letter-spacing: 0.5px;
+  }
+  .drawer-navigation {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-drawer > .drawer-navigation > a {
+    padding: 16px 12px;
+    border-bottom: 1px solid #173d4e;
+    color: #fff;
+    text-decoration: none;
+    font: 8px var(--font-press);
+    transition:
+      background 0.18s ease,
+      color 0.18s ease,
+      padding-left 0.18s ease;
+  }
+  .mobile-drawer > .drawer-navigation > a:hover,
+  .mobile-drawer > .drawer-navigation > a:focus-visible {
+    padding-left: 16px;
+    background: rgba(255, 210, 26, 0.1);
+    color: #ffd21a;
+    outline: 0;
+  }
+  .drawer-controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    padding: 13px 10px 4px;
+    border-top: 1px solid #20536a;
+  }
+  .drawer-controls .online {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: max-content;
+    padding: 9px 11px !important;
+    font-size: 7px !important;
+  }
+  .drawer-controls .online i {
+    width: 7px !important;
+    height: 7px !important;
+    margin-right: 7px !important;
+  }
+  .drawer-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .drawer-display > span {
+    color: #7896a3;
+    font: 5px var(--font-press);
+  }
+  .drawer-display .display-toggle {
+    display: flex !important;
+  }
+
+  /* Contact companion: a compact epilogue below the terminal instead of a loose sprite. */
+  #contact .contact-layout {
+    grid-template-columns: 1fr !important;
+    row-gap: 16px !important;
+    align-items: start !important;
+  }
+  #contact .contact-lady {
+    display: flex !important;
+    justify-self: end !important;
+    width: 190px !important;
+    margin: -2px 18px 0 0 !important;
+    padding-top: 16px !important;
+    transform: none !important;
+  }
+  #contact .contact-lady > .contact-lady-character {
+    width: auto !important;
+    height: auto !important;
+  }
+  #contact .contact-lady-character > .contact-lady-stage {
+    width: auto !important;
+    height: auto !important;
+  }
+  #contact .contact-lady-image {
+    width: auto !important;
+    height: 184px !important;
+    max-width: 180px !important;
+    max-height: none !important;
+  }
+  #contact .contact-lady-character > .contact-lady-bubble {
+    top: 0 !important;
+    left: 50% !important;
+    max-width: 165px !important;
+    padding: 7px 9px !important;
+    transform: translate(-50%, calc(-100% - 9px)) !important;
+  }
+  #contact
+    .contact-lady-character
+    > .contact-lady-bubble
+    .contact-lady-bubble-text {
+    font-size: 5px !important;
+  }
+  #contact .contact-lady:hover .contact-lady-bubble,
+  #contact .contact-lady:focus-visible .contact-lady-bubble {
+    transform: translate(-50%, calc(-100% - 9px)) !important;
+  }
+}

@@ -1,5 +1,7 @@
 "use client";
 
+import { Heart } from "lucide-react";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -15,7 +17,7 @@ const frames: Record<Mood, string> = {
 const labels: Record<Mood, string> = {
   idle: "NEED A DEVELOPER?",
   question: "?",
-  love: "♥ ♥ ♥",
+  love: "",
   woof: "WOOF!",
 };
 
@@ -94,9 +96,15 @@ export default function ContactLady() {
             className="contact-lady-hearts"
             aria-hidden="true"
           >
-            <i>♥</i>
-            <i>♥</i>
-            <i>♥</i>
+            <i>
+              <Heart aria-hidden="true" />
+            </i>
+            <i>
+              <Heart aria-hidden="true" />
+            </i>
+            <i>
+              <Heart aria-hidden="true" />
+            </i>
           </span>
         )}
       </span>

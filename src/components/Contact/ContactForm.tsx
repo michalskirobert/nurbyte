@@ -1,4 +1,6 @@
 "use client";
+
+import { ChevronRight, CornerDownLeft } from "lucide-react";
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 type Step =
   "name" | "category" | "email" | "message" | "review" | "sending" | "done";
@@ -286,7 +288,11 @@ export default function ContactForm() {
                 onMouseEnter={() => setCategoryIndex(i)}
                 onClick={() => choose(x.value)}
               >
-                <b>{i === categoryIndex ? "›" : " "}</b>
+                <b>
+                  {i === categoryIndex ? (
+                    <ChevronRight aria-hidden="true" />
+                  ) : null}
+                </b>
                 <span>
                   [{i + 1}] {x.label}
                 </span>
@@ -315,7 +321,7 @@ export default function ContactForm() {
               <span>{message.length}/250</span>
               <span>Ctrl/⌘ + Enter to continue</span>
               <button type="button" onClick={saveMessage}>
-                CONTINUE ↵
+                CONTINUE <CornerDownLeft aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -342,7 +348,10 @@ export default function ContactForm() {
             </p>
             <div className="cli-rule">────────────────────────────────────</div>
             <button type="submit" className="terminal-command">
-              nurbyte@dev:~$ contact send <b>↵</b>
+              nurbyte@dev:~$ contact send{" "}
+              <b>
+                <CornerDownLeft aria-hidden="true" />
+              </b>
             </button>
           </div>
         )}

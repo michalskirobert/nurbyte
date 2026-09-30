@@ -1,5 +1,7 @@
 "use client";
 
+import { Heart } from "lucide-react";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -22,7 +24,7 @@ const ladyState = {
     src: "/assets/characters/lady/accepted/idle.png",
     width: 155,
     height: 200,
-    bubble: "WOOF! ♥",
+    bubble: "WOOF!",
   },
   toy: {
     src: "/assets/characters/lady/accepted/toy.png",
@@ -84,9 +86,15 @@ export default function NotFoundLady() {
       </span>
       {state === "love" && (
         <span className="not-found-lady-v36-hearts" aria-hidden="true">
-          <i>♥</i>
-          <i>♥</i>
-          <i>♥</i>
+          <i>
+            <Heart aria-hidden="true" />
+          </i>
+          <i>
+            <Heart aria-hidden="true" />
+          </i>
+          <i>
+            <Heart aria-hidden="true" />
+          </i>
         </span>
       )}
     </button>

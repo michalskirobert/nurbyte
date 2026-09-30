@@ -1,4 +1,6 @@
 "use client";
+
+import { Download, X, ExternalLink, LockKeyhole } from "lucide-react";
 import Image from "next/image";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
@@ -45,7 +47,7 @@ export default function ProjectDetailsModal({
           </span>
           <b>PROJECT DATABASE // NURBYTE</b>
           <button onClick={onClose} aria-label="Close">
-            ×
+            <X aria-hidden="true" className="h-5 w-5 stroke-2" />
           </button>
         </div>
         <div className="arcade-modal-scroll">
@@ -78,17 +80,39 @@ export default function ProjectDetailsModal({
             <div className="arcade-modal-actions">
               {project.url ? (
                 <a
-                  className="btn primary"
+                  className="btn primary inline-flex items-center justify-center gap-2 whitespace-nowrap"
                   href={project.url}
                   target={project.external ? "_blank" : undefined}
                   rel={project.external ? "noreferrer" : undefined}
                 >
-                  {project.actionLabel ?? "▶ OPEN PROJECT"}
+                  <>
+                    {project.actionLabel?.includes("DOWNLOAD") ? (
+                      <Download
+                        aria-hidden="true"
+                        className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
+                      />
+                    ) : (
+                      <ExternalLink
+                        aria-hidden="true"
+                        className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
+                      />
+                    )}{" "}
+                    {project.actionLabel ?? "OPEN PROJECT"}
+                  </>
                 </a>
               ) : (
-                <span className="btn ghost disabled-action">◆ LOCKED</span>
+                <span className="btn ghost disabled-action">
+                  <LockKeyhole
+                    aria-hidden="true"
+                    className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
+                  />{" "}
+                  LOCKED
+                </span>
               )}
-              <button className="btn ghost" onClick={onClose}>
+              <button
+                className="btn ghost inline-flex items-center justify-center gap-2 whitespace-nowrap"
+                onClick={onClose}
+              >
                 ESC / CLOSE
               </button>
             </div>

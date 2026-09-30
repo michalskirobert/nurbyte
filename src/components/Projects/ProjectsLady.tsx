@@ -1,5 +1,7 @@
 "use client";
 
+import { Heart } from "lucide-react";
+
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -30,7 +32,7 @@ export default function ProjectsLady() {
     clearTimers();
     setSequence(true);
     setMood("love");
-    setLabel("♥ ♥ ♥");
+    setLabel("");
     setHeartsKey((key) => key + 1);
 
     timers.current.push(
@@ -83,9 +85,15 @@ export default function ProjectsLady() {
           className="projects-lady-hearts"
           aria-hidden="true"
         >
-          <i>♥</i>
-          <i>♥</i>
-          <i>♥</i>
+          <i>
+            <Heart aria-hidden="true" />
+          </i>
+          <i>
+            <Heart aria-hidden="true" />
+          </i>
+          <i>
+            <Heart aria-hidden="true" />
+          </i>
         </span>
       )}
     </button>

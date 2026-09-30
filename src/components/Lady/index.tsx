@@ -32,6 +32,8 @@ export default function Lady({
       width={width}
       height={height}
       className={className}
+      loading="eager"
+      priority
       style={{ width: "auto", height: "auto" }}
     />
   );

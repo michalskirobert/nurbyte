@@ -1,0 +1,2182 @@
+@media (max-width: 850px) {
+  .projects-game {
+    padding: 94px 18px 42px;
+  }
+  .projects-head {
+    align-items: flex-start;
+  }
+  .project-screen {
+    grid-template-columns: 1fr;
+  }
+  .project-art {
+    min-height: 270px;
+    border-right: 0;
+    border-bottom: 2px solid #31566a;
+  }
+  .project-selector {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    gap: 7px;
+  }
+  .project-arrow {
+    width: 36px;
+    height: 58px;
+  }
+  .project-strip-wrap {
+    margin-left: 43px;
+    margin-right: 43px;
+  }
+  .project-info {
+    padding: 26px;
+  }
+  .projects-help {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .project-counter {
+    font-size: 25px;
+  }
+}
+
+/* === PROJECTS v2 — restore the actual arcade world ======================== */
+.projects-game {
+  background: #06121b url("/assets/backgrounds/projects.webp") center/cover
+    no-repeat fixed !important;
+  isolation: isolate;
+}
+.projects-game::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      #020a10c9 0%,
+      #020a1070 31%,
+      #020a1033 58%,
+      #020a1075 100%
+    ),
+    linear-gradient(180deg, #03101a73 0%, transparent 34%, #03101a8f 100%);
+}
+.projects-world {
+  background: none !important;
+  z-index: 1 !important;
+}
+.projects-world::before {
+  opacity: 0.035 !important;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff 0,
+    #fff 1px,
+    transparent 1px,
+    transparent 4px
+  ) !important;
+  transform: none !important;
+}
+.projects-world::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 19% 29%, #ffb31a66 0 2px, transparent 3px),
+    radial-gradient(circle at 68% 22%, #ffd85a55 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 53%, #ff8c2460 0 2px, transparent 3px);
+  filter: blur(0.2px);
+  animation: projectWorldGlow 2.8s ease-in-out infinite alternate;
+}
+@keyframes projectWorldGlow {
+  to {
+    opacity: 0.45;
+    filter: blur(1.2px);
+  }
+}
+.projects-shell {
+  z-index: 3 !important;
+}
+
+/* Make the selector feel like an in-world arcade cabinet / quest screen. */
+.project-screen {
+  border: 2px solid #e8bd34 !important;
+  background: #04111ce8 !important;
+  box-shadow:
+    7px 7px 0 #02070c,
+    0 0 0 3px #07131e,
+    0 0 32px #ffcb2926 !important;
+}
+.project-art {
+  background: linear-gradient(145deg, #0c2836dd, #05111bd9) !important;
+  border-color: #9d7d22 !important;
+}
+.project-art-placeholder {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #17384a, #071822) !important;
+  box-shadow:
+    inset 0 0 45px #000b,
+    0 0 30px #ffc92818 !important;
+}
+.project-art-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 38%;
+  background: repeating-linear-gradient(
+    90deg,
+    #173143 0 18px,
+    #102735 18px 36px
+  );
+  clip-path: polygon(
+    0 48%,
+    8% 31%,
+    16% 45%,
+    25% 18%,
+    36% 52%,
+    47% 29%,
+    58% 55%,
+    69% 25%,
+    79% 48%,
+    89% 20%,
+    100% 43%,
+    100% 100%,
+    0 100%
+  );
+  opacity: 0.7;
+}
+.project-art-placeholder span,
+.project-art-placeholder small {
+  position: relative;
+  z-index: 2;
+}
+.project-machine {
+  position: relative;
+}
+.project-machine::before {
+  content: "SELECT PROJECT";
+  position: absolute;
+  z-index: 5;
+  left: 18px;
+  top: -11px;
+  padding: 5px 9px;
+  background: #ffd31a;
+  color: #06121b;
+  font:
+    7px "Press Start 2P",
+    monospace;
+  box-shadow: 3px 3px 0 #0008;
+}
+.project-arrow {
+  border: 2px solid #a58427 !important;
+  color: #ffd31a !important;
+  background: #07131ee8 !important;
+}
+.project-arrow:hover {
+  box-shadow:
+    0 0 18px #ffd31a55,
+    4px 4px 0 #02090f !important;
+}
+.project-chip {
+  backdrop-filter: blur(7px);
+  background: #06131de8 !important;
+}
+.project-chip.active {
+  background: #172317e8 !important;
+}
+.projects-help {
+  color: #b6c8cf !important;
+}
+
+/* Small world-status HUD, like a game location label. */
+.projects-head::after {
+  content: "AREA 02  •  BALI COAST  •  PROJECT ARCHIVE";
+  position: absolute;
+  right: 0;
+  top: -25px;
+  color: #8eb0bd;
+  font:
+    6px "Press Start 2P",
+    monospace;
+  letter-spacing: 0.08em;
+}
+.projects-head {
+  position: relative;
+}
+
+/* HOME -> PROJECTS visual continuity. */
+.projects-game {
+  background-position: center calc(50% + var(--projectScroll, 0px)) !important;
+}
+@media (max-width: 850px) {
+  .projects-game {
+    background-attachment: scroll !important;
+    background-position: center !important;
+  }
+  .projects-head::after {
+    display: none;
+  }
+}
+
+/* === PROJECTS v3 — Living Arcade Scene ================================== */
+.project-parallax-layer {
+  position: absolute;
+  inset: -3%;
+  background: url("/assets/decor/parallax-sheet.png") center/cover no-repeat;
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  transform: translate3d(var(--worldX, 0), var(--worldY, 0), 0) scale(1.04);
+  will-change: transform;
+  pointer-events: none;
+}
+.project-water-shimmer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%;
+  opacity: 0.16;
+  background: repeating-linear-gradient(
+    174deg,
+    transparent 0 12px,
+    #ffd36b 13px 14px,
+    transparent 15px 27px
+  );
+  mask-image: linear-gradient(to bottom, transparent, #000);
+  animation: waterDrift 9s linear infinite;
+  pointer-events: none;
+}
+@keyframes waterDrift {
+  to {
+    background-position: 120px 0;
+  }
+}
+.project-birds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.project-birds i {
+  position: absolute;
+  left: -5%;
+  top: 18%;
+  width: 12px;
+  height: 6px;
+  border-top: 2px solid #07131e;
+  border-radius: 50%;
+  opacity: 0.65;
+  animation: birdFly 22s linear infinite;
+}
+.project-birds i:after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: -2px;
+  width: 10px;
+  height: 5px;
+  border-top: 2px solid #07131e;
+  border-radius: 50%;
+  transform: rotate(10deg);
+}
+.project-birds i:nth-child(2) {
+  top: 26%;
+  animation-duration: 29s;
+  animation-delay: -11s;
+  transform: scale(0.7);
+}
+.project-birds i:nth-child(3) {
+  top: 13%;
+  animation-duration: 35s;
+  animation-delay: -23s;
+  transform: scale(0.5);
+}
+@keyframes birdFly {
+  to {
+    left: 108%;
+  }
+}
+.projects-lady {
+  position: absolute;
+  z-index: 7;
+  right: 4.2vw;
+  bottom: 34px;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: end center;
+  filter: drop-shadow(4px 5px 0 #0008);
+  transition: transform 0.18s ease;
+}
+.projects-lady img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: ladyProjectsIdle 2.4s ease-in-out infinite;
+}
+.projects-lady span {
+  position: absolute;
+  right: 62px;
+  top: -4px;
+  min-width: 78px;
+  padding: 7px 9px;
+  background: #fff;
+  color: #07131e;
+  border: 2px solid #07131e;
+  font:
+    6px "Press Start 2P",
+    monospace;
+  text-align: center;
+  box-shadow: 3px 3px 0 #07131e;
+  white-space: nowrap;
+}
+.projects-lady span:after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 8px;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-right: 2px solid #07131e;
+  border-bottom: 2px solid #07131e;
+  transform: rotate(-45deg);
+}
+@keyframes ladyProjectsIdle {
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.project-transition {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #03101ad9;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.08s linear;
+}
+.project-transition span {
+  padding: 13px 16px;
+  background: #07131e;
+  border: 2px solid #ffd31a;
+  color: #ffd31a;
+  font: 9px "Press Start 2P";
+  box-shadow: 6px 6px 0 #000;
+}
+.project-transition.show {
+  opacity: 1;
+}
+.project-transition.locked span {
+  border-color: #ff755f;
+  color: #ff755f;
+}
+.project-machine.switching {
+  animation: projectCRT 0.22s steps(2, end);
+}
+@keyframes projectCRT {
+  0% {
+    transform: translateX(0);
+    filter: none;
+  }
+  25% {
+    transform: translateX(3px);
+    filter: contrast(1.6);
+  }
+  50% {
+    transform: translateX(-2px);
+    filter: hue-rotate(14deg);
+  }
+  75% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+.project-screen:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  top: -4px;
+  background: #d8fbff55;
+  box-shadow: 0 0 9px #d8fbff;
+  opacity: 0;
+  pointer-events: none;
+}
+.project-machine.switching .project-screen {
+  position: relative;
+}
+.project-machine.switching .project-screen:after {
+  opacity: 0.65;
+  animation: crtSweep 0.22s linear;
+}
+@keyframes crtSweep {
+  to {
+    top: 100%;
+  }
+}
+@media (max-width: 850px) {
+  .projects-lady {
+    right: 16px;
+    bottom: 12px;
+    transform: scale(0.82);
+    transform-origin: right bottom;
+  }
+  .project-parallax-layer {
+    opacity: 0.1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-water-shimmer,
+  .project-birds i,
+  .projects-lady img {
+    animation: none !important;
+  }
+  .project-parallax-layer {
+    transform: none !important;
+  }
+}
+
+/* === PROJECTS v4 — corrected layering ====================================
+   Verified asset audit:
+   parallax-sheet.png is RGB (no alpha), therefore it must NEVER be used as an overlay.
+   projects.png remains the sole full-scene background.
+   Only verified RGBA Lady sprites are used as independent image objects.
+============================================================================ */
+.project-parallax-layer {
+  display: none !important;
+  background: none !important;
+}
+.projects-game {
+  background-image: url("/assets/backgrounds/projects.webp") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+.projects-world {
+  background: none !important;
+}
+.project-water-shimmer {
+  opacity: 0.085 !important;
+  mix-blend-mode: screen;
+}
+.projects-lady {
+  right: 3.6vw !important;
+  bottom: 28px !important;
+}
+.projects-lady img {
+  image-rendering: pixelated;
+}
+
+/* Gentle camera depth without introducing a duplicate scene. */
+.projects-game::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 78% 43%,
+      rgba(255, 196, 65, 0.11),
+      transparent 17%
+    ),
+    radial-gradient(
+      circle at 18% 67%,
+      rgba(255, 116, 44, 0.08),
+      transparent 18%
+    );
+  opacity: 0.75;
+  animation: projectLightBreath 4.8s ease-in-out infinite alternate;
+}
+@keyframes projectLightBreath {
+  to {
+    opacity: 0.42;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-game::after {
+    animation: none !important;
+  }
+}
+
+/* === PROJECTS v5 — centered composition + real project branding ========== */
+.projects-game {
+  display: flex;
+  align-items: center;
+  padding-top: 92px !important;
+  padding-bottom: 38px !important;
+}
+.projects-shell {
+  width: min(1180px, 90vw) !important;
+  margin: auto !important;
+}
+.projects-head {
+  margin-bottom: 15px !important;
+}
+.project-screen {
+  min-height: 420px !important;
+}
+.project-art-placeholder {
+  width: min(68%, 470px) !important;
+  aspect-ratio: 16/10 !important;
+}
+.project-art-placeholder.has-logo {
+  background: linear-gradient(145deg, #0b2635, #06131e) !important;
+}
+.project-art-placeholder.has-logo span {
+  display: none !important;
+}
+.project-art-placeholder.has-logo img {
+  position: relative;
+  z-index: 3;
+  width: min(52%, 230px);
+  max-height: 190px;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(6px 7px 0 #0006);
+}
+.project-art-placeholder.has-logo small {
+  margin-top: 15px;
+}
+.project-art-placeholder.hosts-logo img {
+  width: min(44%, 190px);
+  border-radius: 22%;
+}
+.project-strip-wrap {
+  margin-top: 15px !important;
+}
+.projects-help {
+  margin-top: 4px !important;
+}
+.projects-lady {
+  bottom: 20px !important;
+}
+@media (max-height: 800px) and (min-width: 851px) {
+  .projects-game {
+    padding-top: 80px !important;
+  }
+  .project-screen {
+    min-height: 370px !important;
+  }
+  .project-info {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+  .project-info h3 {
+    margin-top: 16px !important;
+    margin-bottom: 10px !important;
+  }
+  .project-tech {
+    margin: 16px 0 !important;
+  }
+}
+
+/* === PROJECTS v6 — real application screenshots, no fake loading ========= */
+.project-art-placeholder.has-logo {
+  width: 88% !important;
+  max-width: 650px !important;
+  aspect-ratio: 16/10 !important;
+  border-color: #ffd31a66 !important;
+  padding: 0 !important;
+  background: #050b12 !important;
+}
+.project-art-placeholder.has-logo img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: left top !important;
+  border-radius: 0 !important;
+  filter: none !important;
+  image-rendering: auto !important;
+}
+.project-art-placeholder.has-logo small {
+  display: none !important;
+}
+.project-art-placeholder.has-logo::before {
+  display: none !important;
+}
+.project-art-placeholder.hosts-logo img {
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+.project-transition {
+  display: none !important;
+}
+
+/* Only the artwork screen flickers on selection; surrounding UI stays stable. */
+.project-machine.switching {
+  animation: none !important;
+}
+.project-machine.switching .project-art-placeholder {
+  animation: artworkSwitch 0.14s steps(2, end);
+}
+.project-machine.switching .project-screen:after {
+  display: none !important;
+}
+@keyframes artworkSwitch {
+  0% {
+    opacity: 1;
+    filter: none;
+  }
+  35% {
+    opacity: 0.55;
+    filter: contrast(1.45) brightness(1.18);
+  }
+  65% {
+    opacity: 0.82;
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+.project-art-placeholder:not(.has-logo) small {
+  display: block !important;
+}
+@media (max-width: 850px) {
+  .project-art-placeholder.has-logo {
+    width: 92% !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-machine.switching .project-art-placeholder {
+    animation: none !important;
+  }
+}
+
+/* === PROJECTS v6.1 — invariant selector geometry ==========================
+   Project content may change; the layout footprint must not.
+============================================================================ */
+.project-screen {
+  height: 420px !important;
+  min-height: 420px !important;
+  max-height: 420px !important;
+  grid-template-rows: 420px !important;
+}
+.project-art,
+.project-info {
+  height: 420px !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+}
+.project-art-placeholder {
+  height: 292px !important;
+  min-height: 292px !important;
+  max-height: 292px !important;
+  aspect-ratio: auto !important;
+}
+.project-info {
+  overflow: hidden !important;
+}
+.project-info h3 {
+  min-height: 68px !important;
+  max-height: 68px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  overflow: hidden !important;
+}
+.project-info p {
+  height: 54px !important;
+  min-height: 54px !important;
+  max-height: 54px !important;
+  overflow: hidden !important;
+}
+.project-tech {
+  min-height: 30px !important;
+  max-height: 30px !important;
+  overflow: hidden !important;
+  align-items: flex-start !important;
+}
+.project-actions {
+  min-height: 42px !important;
+  max-height: 42px !important;
+  align-items: flex-start !important;
+}
+.project-strip-wrap {
+  height: 69px !important;
+  min-height: 69px !important;
+}
+.projects-help {
+  height: 15px !important;
+  min-height: 15px !important;
+}
+@media (max-height: 800px) and (min-width: 851px) {
+  .project-screen {
+    height: 370px !important;
+    min-height: 370px !important;
+    max-height: 370px !important;
+    grid-template-rows: 370px !important;
+  }
+  .project-art,
+  .project-info {
+    height: 370px !important;
+  }
+  .project-art-placeholder {
+    height: 252px !important;
+    min-height: 252px !important;
+    max-height: 252px !important;
+  }
+  .project-info h3 {
+    min-height: 58px !important;
+    max-height: 58px !important;
+  }
+}
+@media (max-width: 850px) {
+  .project-screen {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    grid-template-rows: 270px 390px !important;
+  }
+  .project-art {
+    height: 270px !important;
+  }
+  .project-info {
+    height: 390px !important;
+  }
+  .project-art-placeholder {
+    height: 220px !important;
+    min-height: 220px !important;
+    max-height: 220px !important;
+  }
+}
+
+/* === PROJECTS v6.2 — mobile redesign =====================================
+   Mobile is a compact game card, not a stacked desktop cabinet.
+============================================================================ */
+@media (max-width: 850px) {
+  .projects-game {
+    display: block !important;
+    min-height: 100svh !important;
+    padding: 82px 14px 28px !important;
+    background-attachment: scroll !important;
+  }
+  .projects-shell {
+    width: 100% !important;
+    max-width: 620px !important;
+    margin: 0 auto !important;
+  }
+  .projects-head {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 8px 12px !important;
+    align-items: start !important;
+    margin-bottom: 12px !important;
+  }
+  .section-kicker {
+    font-size: 7px !important;
+  }
+  .projects-head h2 {
+    font-size: clamp(34px, 11vw, 50px) !important;
+    line-height: 0.88 !important;
+    margin-top: 8px !important;
+    max-width: 330px;
+  }
+  .project-counter {
+    font-size: 27px !important;
+    padding-top: 2px;
+  }
+  .project-selector {
+    position: relative !important;
+    display: block !important;
+    padding: 0 0 !important;
+  }
+  .project-machine {
+    width: 100% !important;
+  }
+  .project-screen {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    box-shadow: 5px 5px 0 #02070c !important;
+  }
+  .project-art {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 14px !important;
+    border-right: 0 !important;
+    border-bottom: 2px solid #9d7d22 !important;
+  }
+  .project-art-placeholder,
+  .project-art-placeholder.has-logo {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 16/10 !important;
+    margin: 0 !important;
+  }
+  .project-info {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 20px 20px 22px !important;
+    display: block !important;
+  }
+  .project-meta {
+    font-size: 6px !important;
+    gap: 8px !important;
+  }
+  .project-info h3 {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    display: block !important;
+    font-size: 43px !important;
+    line-height: 0.9 !important;
+    margin: 18px 0 12px !important;
+  }
+  .project-info p {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+  }
+  .project-tech {
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 16px 0 !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+    scrollbar-width: none;
+  }
+  .project-tech::-webkit-scrollbar {
+    display: none;
+  }
+  .project-tech span {
+    flex: 0 0 auto !important;
+    font-size: 6px !important;
+  }
+  .project-actions {
+    min-height: 0 !important;
+    max-height: none !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .project-actions a,
+  .project-actions button {
+    min-height: 44px !important;
+    padding: 12px 8px !important;
+    font-size: 6px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .project-arrow {
+    position: absolute !important;
+    z-index: 8 !important;
+    top: 118px !important;
+    width: 42px !important;
+    height: 58px !important;
+    background: #06131ef2 !important;
+  }
+  .project-arrow.prev {
+    left: -7px !important;
+    transform: translateX(-18%) !important;
+  }
+  .project-arrow.next {
+    right: -7px !important;
+    transform: translateX(18%) !important;
+  }
+  .project-arrow.prev:hover,
+  .project-arrow.next:hover {
+    transform: translateX(0) !important;
+  }
+  .project-strip-wrap {
+    width: 100% !important;
+    height: 62px !important;
+    min-height: 62px !important;
+    margin: 12px 0 0 !important;
+    overflow: hidden !important;
+  }
+  .project-strip {
+    gap: 7px !important;
+    padding-bottom: 5px !important;
+    scroll-snap-type: x mandatory;
+  }
+  .project-chip {
+    flex: 0 0 min(72vw, 250px) !important;
+    height: 56px !important;
+    scroll-snap-align: start !important;
+  }
+  .projects-help {
+    height: auto !important;
+    min-height: 0 !important;
+    margin-top: 6px !important;
+    gap: 10px !important;
+    font-size: 5px !important;
+    padding-bottom: 0 !important;
+  }
+  .projects-lady {
+    position: absolute !important;
+    right: 8px !important;
+    bottom: 2px !important;
+    width: 64px !important;
+    height: 64px !important;
+    transform: none !important;
+  }
+  .projects-lady img {
+    width: 56px !important;
+    height: 56px !important;
+  }
+  .projects-lady span {
+    right: 48px !important;
+    top: -2px !important;
+    min-width: 62px !important;
+    padding: 5px 6px !important;
+    font-size: 5px !important;
+  }
+}
+@media (max-width: 430px) {
+  .projects-game {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .projects-head h2 {
+    font-size: 38px !important;
+  }
+  .project-info h3 {
+    font-size: 38px !important;
+  }
+  .project-info {
+    padding: 18px 16px 20px !important;
+  }
+  .project-actions {
+    grid-template-columns: 1fr !important;
+  }
+  .project-arrow {
+    top: 92px !important;
+  }
+  .project-chip {
+    flex-basis: 76vw !important;
+  }
+  .projects-help span:last-child {
+    display: none;
+  }
+}
+
+/* === PROJECTS v7 — MOBILE ONLY readability pass ==========================
+   IMPORTANT: no desktop selectors are changed outside this media query.
+============================================================================ */
+@media (max-width: 850px) {
+  /* More breathing room; reduce competition between heading and project. */
+  .projects-game {
+    padding: 82px 14px 24px !important;
+  }
+  .projects-head {
+    margin-bottom: 10px !important;
+  }
+  .projects-head h2 {
+    font-size: clamp(31px, 9.4vw, 43px) !important;
+    line-height: 0.9 !important;
+    max-width: 290px !important;
+  }
+  .project-counter {
+    font-size: 24px !important;
+  }
+
+  /* Compact card. */
+  .project-screen {
+    grid-template-rows: auto auto !important;
+  }
+  .project-art {
+    padding: 10px !important;
+  }
+  .project-art-placeholder,
+  .project-art-placeholder.has-logo {
+    aspect-ratio: 16/8.2 !important;
+    overflow: hidden !important;
+  }
+
+  /* On mobile the real product screenshot is deliberately zoomed/cropped.
+     Full screenshots remain untouched on desktop. */
+  .project-art-placeholder.has-logo img {
+    width: 122% !important;
+    height: 122% !important;
+    object-fit: cover !important;
+    object-position: left top !important;
+    transform: none !important;
+  }
+  .project-art-placeholder.hosts-logo img {
+    width: 116% !important;
+    height: 116% !important;
+  }
+
+  .project-info {
+    padding: 17px 18px 18px !important;
+  }
+  .project-meta {
+    font-size: 5.5px !important;
+  }
+  .project-info h3 {
+    font-size: 38px !important;
+    margin: 14px 0 9px !important;
+  }
+  .project-info p {
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+    -webkit-line-clamp: 2 !important;
+  }
+  .project-tech {
+    margin: 13px 0 !important;
+    gap: 6px !important;
+  }
+  .project-tech span {
+    padding: 6px 7px !important;
+    font-size: 5.5px !important;
+  }
+
+  /* Primary action dominates; archive becomes secondary. */
+  .project-actions {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr) !important;
+    gap: 7px !important;
+  }
+  .project-actions a,
+  .project-actions button {
+    min-height: 40px !important;
+    font-size: 5.7px !important;
+    padding: 9px 7px !important;
+  }
+
+  /* Small edge controls instead of giant desktop arrows. */
+  .project-arrow {
+    top: 76px !important;
+    width: 32px !important;
+    height: 46px !important;
+    font-size: 16px !important;
+    box-shadow: 2px 2px 0 #02090f !important;
+  }
+  .project-arrow.prev {
+    left: -2px !important;
+    transform: translateX(-18%) !important;
+  }
+  .project-arrow.next {
+    right: -2px !important;
+    transform: translateX(18%) !important;
+  }
+
+  /* One clear project + a peek of the next. */
+  .project-strip-wrap {
+    height: 60px !important;
+    min-height: 60px !important;
+    margin-top: 9px !important;
+  }
+  .project-strip {
+    gap: 7px !important;
+  }
+  .project-chip {
+    flex: 0 0 78% !important;
+    height: 54px !important;
+  }
+  .project-chip b {
+    font-size: 16px !important;
+  }
+  .project-chip small {
+    font-size: 5px !important;
+  }
+
+  /* Touch UI does not need desktop keyboard instructions. */
+  .projects-help {
+    justify-content: center !important;
+    margin-top: 3px !important;
+  }
+  .projects-help span {
+    display: none !important;
+  }
+  .projects-help::after {
+    content: "↔ SWIPE TO SELECT";
+    color: #9db0b8;
+    font:
+      5px "Press Start 2P",
+      monospace;
+  }
+
+  /* Lady is already prominent in the mobile navbar. Avoid another competing
+     character next to the carousel. */
+  .projects-lady {
+    display: none !important;
+  }
+}
+@media (max-width: 430px) {
+  .projects-game {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .projects-head h2 {
+    font-size: 34px !important;
+    max-width: 250px !important;
+  }
+  .project-counter {
+    font-size: 21px !important;
+  }
+  .project-info {
+    padding: 15px 14px 16px !important;
+  }
+  .project-info h3 {
+    font-size: 34px !important;
+  }
+  .project-actions {
+    grid-template-columns: 1fr !important;
+  }
+  .project-actions button {
+    min-height: 34px !important;
+  }
+  .project-chip {
+    flex-basis: 84% !important;
+  }
+}
+
+/* === PROJECTS v8 — one selector, one navigation model ====================
+   Thumbnail pagination/helper strip removed on every breakpoint.
+   The main PROJECT SELECT is the carousel.
+============================================================================ */
+.project-strip-wrap,
+.project-strip,
+.projects-help {
+  display: none !important;
+}
+
+/* Reclaim the space below the cabinet. */
+.projects-shell {
+  padding-bottom: 0 !important;
+}
+
+/* Desktop: arrows remain the subtle previous/next controls. */
+@media (min-width: 851px) {
+  .project-selector {
+    margin-bottom: 0 !important;
+  }
+  .project-arrow {
+    opacity: 0.88;
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .project-selector:hover .project-arrow {
+    opacity: 1;
+  }
+}
+
+/* Mobile: swipe/drag is primary, arrows are small secondary controls.
+   No pagination and no explanatory helper text. */
+@media (max-width: 850px) {
+  .project-strip-wrap,
+  .projects-help {
+    display: none !important;
+  }
+  .project-selector {
+    margin-bottom: 0 !important;
+  }
+  .projects-game {
+    padding-bottom: 28px !important;
+  }
+  .project-arrow {
+    opacity: 0.92 !important;
+  }
+}
+
+/* === v8.1 HOTFIX — HOME mobile isolation ================================
+   PROJECTS v8 must not change the established HOME mobile composition.
+   Later desktop parallax rules were winning over the original <=760px HOME
+   rules because of !important/specificity. Restore HOME mobile explicitly.
+============================================================================ */
+@media (max-width: 760px) {
+  #home {
+    min-height: 100svh !important;
+    --px: 0px !important;
+    --py: 0px !important;
+    --scrollY: 0px !important;
+  }
+  #home::before {
+    transform: scale(1.04) !important;
+  }
+  #home .hero-copy {
+    left: 22px !important;
+    right: 22px !important;
+    top: auto !important;
+    bottom: 70px !important;
+    width: auto !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+  #home .hero-copy h1 {
+    font-size: clamp(48px, 15vw, 70px) !important;
+    margin: 12px 0 !important;
+  }
+  #home .hero-copy p {
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+    max-width: 360px !important;
+    margin-top: 10px !important;
+  }
+  #home .hero-actions {
+    margin-top: 14px !important;
+    gap: 8px !important;
+  }
+  #home .characters,
+  #home .hero-characters {
+    right: -2vw !important;
+    bottom: 40% !important;
+    width: 112vw !important;
+    max-width: none !important;
+    transform: none !important;
+  }
+  #home .terminal {
+    display: none !important;
+  }
+  #home .scroll-hint {
+    display: none !important;
+  }
+  #home .home-game-status {
+    display: none !important;
+  }
+}
+
+/* === PROJECTS v9 — real horizontal carousel / peek model =================
+   One active card. Neighbor previews communicate horizontal navigation.
+   No thumbnail pagination. Same mental model desktop + mobile.
+============================================================================ */
+.project-selector {
+  grid-template-columns: 44px minmax(0, 1fr) 44px !important;
+  gap: 10px !important;
+}
+.project-carousel {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) 76px;
+  gap: 10px;
+  align-items: stretch;
+  overflow: hidden;
+}
+.project-machine {
+  min-width: 0;
+  z-index: 2;
+}
+.project-peek {
+  min-width: 0;
+  border: 1px solid #8f7427;
+  background: #06131ed9;
+  opacity: 0.58;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #02070c;
+}
+.project-peek::before {
+  content: attr(data-index);
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffd31a;
+  font:
+    700 22px "Pixelify Sans",
+    sans-serif;
+}
+.project-peek::after {
+  content: attr(data-name);
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%) rotate(-90deg);
+  white-space: nowrap;
+  color: #d6e2e7;
+  font:
+    7px "Press Start 2P",
+    monospace;
+}
+.project-peek:hover {
+  opacity: 0.9;
+  border-color: #ffd31a;
+}
+.project-arrow {
+  width: 42px !important;
+}
+
+/* Lady belongs to the PROJECTS world and remains visible below the selector. */
+.projects-lady {
+  display: grid !important;
+  right: 3.2vw !important;
+  bottom: 20px !important;
+}
+
+/* MOBILE: horizontal interaction first. Keep the active card compact and
+   show a real slice of the next/previous item. */
+@media (max-width: 850px) {
+  .projects-game {
+    min-height: 100svh !important;
+    padding: 82px 10px 18px !important;
+  }
+  .projects-head h2 {
+    font-size: 34px !important;
+    max-width: 250px !important;
+  }
+  .project-counter {
+    font-size: 22px !important;
+  }
+
+  .project-selector {
+    display: block !important;
+    margin: 0 !important;
+  }
+  .project-carousel {
+    width: calc(100% + 20px) !important;
+    margin-left: -10px !important;
+    display: grid !important;
+    grid-template-columns: 26px minmax(0, 1fr) 26px !important;
+    gap: 6px !important;
+    overflow: hidden !important;
+    align-items: stretch !important;
+  }
+  .project-peek {
+    display: block !important;
+    border-color: #8f7427 !important;
+    opacity: 0.72 !important;
+    box-shadow: none !important;
+  }
+  .project-peek::before {
+    font-size: 15px !important;
+    top: 10px !important;
+  }
+  .project-peek::after {
+    font-size: 4px !important;
+    bottom: 34px !important;
+  }
+
+  .project-screen {
+    border-width: 2px !important;
+    box-shadow: 3px 3px 0 #02070c !important;
+  }
+  .project-art {
+    padding: 7px !important;
+  }
+  .project-art-placeholder,
+  .project-art-placeholder.has-logo {
+    aspect-ratio: 16/7.2 !important;
+  }
+  .project-art-placeholder.has-logo img {
+    width: 108% !important;
+    height: 108% !important;
+  }
+  .project-info {
+    padding: 14px 14px 15px !important;
+  }
+  .project-info h3 {
+    font-size: 32px !important;
+    margin: 11px 0 8px !important;
+  }
+  .project-info p {
+    font-size: 11px !important;
+    line-height: 1.4 !important;
+  }
+  .project-tech {
+    margin: 10px 0 !important;
+  }
+  .project-tech span {
+    font-size: 5px !important;
+    padding: 5px 6px !important;
+  }
+  .project-actions {
+    grid-template-columns: 1.25fr 0.95fr !important;
+  }
+  .project-actions a,
+  .project-actions button {
+    min-height: 38px !important;
+    font-size: 5.3px !important;
+  }
+
+  /* Swipe/drag is primary. Remove redundant giant side arrows on touch. */
+  .project-arrow {
+    display: none !important;
+  }
+
+  /* Lady returns, but below the card rather than covering controls. */
+  .projects-lady {
+    display: grid !important;
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 10px 10px 0 auto !important;
+    width: 58px !important;
+    height: 58px !important;
+  }
+  .projects-lady img {
+    width: 52px !important;
+    height: 52px !important;
+  }
+  .projects-lady span {
+    right: 45px !important;
+    top: 0 !important;
+    min-width: 56px !important;
+    padding: 5px !important;
+    font-size: 4.5px !important;
+  }
+}
+@media (max-width: 430px) {
+  .projects-head h2 {
+    font-size: 31px !important;
+  }
+  .project-carousel {
+    grid-template-columns: 20px minmax(0, 1fr) 20px !important;
+  }
+  .project-actions {
+    grid-template-columns: 1fr !important;
+  }
+  .project-actions button {
+    min-height: 32px !important;
+  }
+}
+
+/* === PROJECTS v9.1 — real horizontal swipe/drag ==========================
+   v9 only detected pointer start/end. This version lets the carousel track
+   the finger/mouse continuously and commits the slide after the threshold.
+============================================================================ */
+.project-carousel {
+  touch-action: pan-y !important; /* keep vertical page scroll, own horizontal gesture */
+  user-select: none !important;
+  cursor: grab;
+}
+.project-carousel.is-dragging {
+  cursor: grabbing;
+}
+.project-machine,
+.project-peek {
+  transition:
+    transform 0.22s ease,
+    opacity 0.22s ease;
+  will-change: transform;
+}
+.project-carousel.is-dragging .project-machine,
+.project-carousel.is-dragging .project-peek {
+  transition: none !important;
+}
+
+/* === PROJECTS v10 — NATIVE HORIZONTAL RAIL ===============================
+   No pagination, no active-slide swapping, no fake drag. All cards coexist.
+============================================================================ */
+#projects .projects-head {
+  grid-template-columns: 1fr !important;
+}
+#projects .project-counter,
+#projects .project-selector,
+#projects .project-carousel {
+  display: none !important;
+}
+.projects-track {
+  width: 100%;
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px max(5vw, 24px) 22px 0;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #ffd31a #07131e;
+  touch-action: pan-x pan-y;
+}
+.projects-track::-webkit-scrollbar {
+  height: 7px;
+}
+.projects-track::-webkit-scrollbar-track {
+  background: #07131e;
+}
+.projects-track::-webkit-scrollbar-thumb {
+  background: #ffd31a;
+}
+.project-rail-card {
+  flex: 0 0 min(880px, 78vw);
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  height: 420px;
+  border: 2px solid #b38e25;
+  background: #06131ef2;
+  box-shadow: 8px 8px 0 #02070c;
+  overflow: hidden;
+}
+.project-rail-art {
+  position: relative;
+  min-width: 0;
+  padding: 22px;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid #9d7d22;
+  background: #0b2533;
+  overflow: hidden;
+}
+.project-rail-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+  border: 1px solid #8f7427;
+}
+.rail-number {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  padding: 5px 7px;
+  background: #07131ee6;
+  border: 1px solid #ffd31a;
+  color: #ffd31a;
+  font:
+    8px "Press Start 2P",
+    monospace;
+}
+.project-rail-info {
+  min-width: 0;
+  padding: 42px 38px 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.project-rail-info h3 {
+  font-size: 52px;
+  line-height: 0.92;
+  margin: 20px 0 14px;
+}
+.project-rail-info p {
+  min-height: 58px;
+  margin: 0;
+}
+.project-rail-info .project-tech {
+  margin: 20px 0;
+}
+.project-open.disabled {
+  pointer-events: none;
+  opacity: 0.55;
+}
+.locked-art {
+  display: grid;
+  place-items: center;
+  gap: 16px;
+  color: #ffd31a;
+}
+.locked-art b {
+  font:
+    700 120px "Pixelify Sans",
+    sans-serif;
+  line-height: 0.7;
+}
+.locked-art span {
+  font:
+    8px "Press Start 2P",
+    monospace;
+}
+
+/* Leave a visible slice of the next card: that is the only carousel affordance. */
+@media (min-width: 851px) {
+  #projects .projects-shell {
+    width: min(1320px, 92vw) !important;
+    overflow: visible;
+  }
+  .projects-track {
+    padding-right: 12vw;
+  }
+}
+
+/* Mobile: native overflow-x, ~88% card width, next card peeks in. */
+@media (max-width: 850px) {
+  #projects .projects-game {
+    padding: 82px 0 24px !important;
+  }
+  #projects .projects-shell {
+    width: 100% !important;
+    max-width: none !important;
+  }
+  #projects .projects-head {
+    padding: 0 18px;
+    margin-bottom: 10px !important;
+  }
+  #projects .projects-head h2 {
+    font-size: 34px !important;
+    max-width: 290px !important;
+  }
+  .projects-track {
+    gap: 12px;
+    padding: 6px 12vw 18px 18px;
+    scrollbar-width: none;
+  }
+  .projects-track::-webkit-scrollbar {
+    display: none;
+  }
+  .project-rail-card {
+    flex: 0 0 88vw;
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    box-shadow: 4px 4px 0 #02070c;
+  }
+  .project-rail-art {
+    height: 210px;
+    padding: 8px;
+    border-right: 0;
+    border-bottom: 2px solid #9d7d22;
+  }
+  .project-rail-info {
+    padding: 17px 16px 18px;
+  }
+  .project-rail-info h3 {
+    font-size: 36px;
+    margin: 13px 0 9px;
+  }
+  .project-rail-info p {
+    min-height: 0;
+    font-size: 12px;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .project-rail-info .project-tech {
+    margin: 12px 0;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .project-rail-info .project-tech::-webkit-scrollbar {
+    display: none;
+  }
+  .project-rail-info .project-tech span {
+    flex: 0 0 auto;
+  }
+  .project-rail-info .project-actions {
+    display: grid !important;
+    grid-template-columns: 1.2fr 0.9fr !important;
+    gap: 7px;
+  }
+  .project-rail-info .project-actions > * {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .projects-lady {
+    display: grid !important;
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    margin: 10px 18px 0 auto !important;
+    width: 62px !important;
+    height: 62px !important;
+  }
+  .projects-lady img {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+@media (max-width: 430px) {
+  #projects .projects-head h2 {
+    font-size: 31px !important;
+  }
+  .project-rail-card {
+    flex-basis: 89vw;
+  }
+  .project-rail-art {
+    height: 185px;
+  }
+  .project-rail-info h3 {
+    font-size: 32px;
+  }
+  .project-rail-info .project-actions {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* === PROJECTS v10.1 — mobile scroll affordance ===========================
+   iPhone Pro Max can fit one card too cleanly, so the next item must peek.
+   The hint is visual, not explanatory text.
+============================================================================ */
+@media (max-width: 850px) {
+  .projects-track {
+    /* Card + gap deliberately leave 14–18% of the next card visible. */
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+    gap: 12px !important;
+    position: relative;
+  }
+  .project-rail-card {
+    flex: 0 0 min(82vw, 520px) !important;
+  }
+
+  /* Soft edge cue: suggests more content without adding "SWIPE" copy. */
+  #projects .projects-shell {
+    position: relative;
+  }
+  #projects .projects-shell::after {
+    content: "›";
+    position: absolute;
+    z-index: 12;
+    right: 8px;
+    top: 54%;
+    width: 30px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    color: #ffd31a;
+    background: #06131ed9;
+    border: 1px solid #ffd31a99;
+    box-shadow: 3px 3px 0 #02070c;
+    font:
+      700 27px/1 "Pixelify Sans",
+      sans-serif;
+    pointer-events: none;
+    animation: railHintNudge 1.8s ease-in-out infinite;
+  }
+  @keyframes railHintNudge {
+    0%,
+    100% {
+      transform: translateX(0);
+      opacity: 0.72;
+    }
+    50% {
+      transform: translateX(4px);
+      opacity: 1;
+    }
+  }
+}
+@media (max-width: 430px) {
+  .project-rail-card {
+    flex-basis: 80vw !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #projects .projects-shell::after {
+    animation: none !important;
+  }
+}
+
+/* === PROJECTS v10.2 — clean native mobile rail ===========================
+   No directional arrow/hint. The visible slice of the next card is the
+   horizontal-scroll affordance.
+============================================================================ */
+@media (max-width: 850px) {
+  #projects .projects-shell::after {
+    content: none !important;
+    display: none !important;
+    animation: none !important;
+  }
+}
+
+/* === PROJECTS v10.3 — AREA label readability =============================
+   Preserve the location/world-building label, but separate it from the sky
+   with a restrained arcade HUD badge.
+============================================================================ */
+#projects .area-label {
+  display: inline-flex !important;
+  align-items: center;
+  width: max-content;
+  padding: 8px 12px 7px !important;
+  color: #e9f5f7 !important;
+  background: rgba(4, 15, 23, 0.78) !important;
+  border: 1px solid rgba(255, 211, 26, 0.72) !important;
+  box-shadow:
+    3px 3px 0 rgba(2, 7, 12, 0.72),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.035) !important;
+  text-shadow: 1px 1px 0 #02070c !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+@media (max-width: 850px) {
+  #projects .area-label {
+    padding: 6px 9px 5px !important;
+    background: rgba(4, 15, 23, 0.82) !important;
+    border-color: rgba(255, 211, 26, 0.65) !important;
+    box-shadow: 2px 2px 0 rgba(2, 7, 12, 0.68) !important;
+  }
+}
+
+/* === SECTION 03 / ABOUT v1 ============================================== */
+#about.about-game {
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #07151d url("/assets/backgrounds/about.webp") center center/cover
+    no-repeat;
+  padding: 104px 0 42px;
+}
+#about .about-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 9, 14, 0.84) 0%,
+      rgba(3, 9, 14, 0.66) 40%,
+      rgba(3, 9, 14, 0.2) 70%,
+      rgba(3, 9, 14, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(2, 7, 11, 0.56), transparent 42%);
+}
+#about .about-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(0, 0, 0, 0.38) 4px
+  );
+}
+#about .about-shell {
+  width: min(1320px, 92vw);
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+#about .about-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+#about .about-head h2 {
+  margin: 7px 0 0;
+  font:
+    700 clamp(46px, 5.2vw, 76px)/0.86 "Pixelify Sans",
+    sans-serif;
+  color: #f5f5ed;
+  text-shadow: 4px 4px 0 #061019;
+}
+#about .about-head h2 em {
+  font-style: normal;
+  color: #ffd31a;
+}
+#about .about-area {
+  width: max-content;
+  padding: 8px 11px 7px;
+  color: #eaf5f6;
+  background: rgba(4, 15, 23, 0.78);
+  border: 1px solid rgba(255, 211, 26, 0.72);
+  box-shadow: 3px 3px 0 rgba(2, 7, 12, 0.72);
+  font:
+    8px "Press Start 2P",
+    monospace;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+#about .about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.92fr);
+  gap: 22px;
+  align-items: stretch;
+}
+#about .about-profile,
+#about .about-log {
+  border: 2px solid #a98725;
+  background: rgba(4, 15, 23, 0.9);
+  box-shadow: 8px 8px 0 rgba(2, 7, 12, 0.84);
+}
+#about .about-profile {
+  padding: 36px 38px 32px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#about .about-card-label {
+  color: #78d7dd;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  letter-spacing: 0.08em;
+}
+#about .about-profile h3 {
+  margin: 18px 0 14px;
+  font:
+    700 clamp(43px, 4.3vw, 65px)/0.82 "Pixelify Sans",
+    sans-serif;
+  color: #f4f3e9;
+}
+#about .about-profile h3 em {
+  font-style: normal;
+  color: #ffd31a;
+}
+#about .about-profile > p {
+  max-width: 680px;
+  margin: 0;
+  color: #d7dedc;
+  font:
+    18px/1.45 "VT323",
+    monospace;
+}
+#about .about-location {
+  display: grid;
+  grid-template-columns: auto auto 28px auto auto;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+  max-width: 100%;
+  margin: 23px 0;
+  color: #d7dedc;
+  font:
+    8px "Press Start 2P",
+    monospace;
+}
+#about .about-location span {
+  opacity: 0.58;
+}
+#about .about-location b {
+  color: #ffd31a;
+}
+#about .about-location i {
+  font-style: normal;
+  text-align: center;
+  color: #78d7dd;
+  font-size: 14px;
+}
+#about .about-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#about .about-log {
+  padding: 0;
+  min-height: 420px;
+}
+#about .about-log-title {
+  min-height: 48px;
+  padding: 0 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #816b2c;
+  background: #071722;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  color: #ffd31a;
+}
+#about .about-log-title i {
+  font-style: normal;
+  color: #6bd38a;
+  font-size: 7px;
+}
+#about .about-stat {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 13px;
+  padding: 18px 18px 15px;
+  border-bottom: 1px solid rgba(169, 135, 37, 0.45);
+}
+#about .about-stat > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #ffd31a;
+  color: #ffd31a;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  background: #0b1d27;
+}
+#about .about-stat b {
+  color: #f1f2e8;
+  font:
+    8px/1.4 "Press Start 2P",
+    monospace;
+}
+#about .about-stat p {
+  margin: 7px 0 0;
+  color: #bfcac8;
+  font:
+    16px/1.25 "VT323",
+    monospace;
+}
+#about .about-inventory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 16px 18px 18px;
+}
+#about .about-inventory span {
+  padding: 7px 8px;
+  border: 1px solid rgba(120, 215, 221, 0.46);
+  background: #0a202a;
+  color: #c8e8e9;
+  font:
+    7px "Press Start 2P",
+    monospace;
+}
+
+@media (max-height: 780px) and (min-width: 851px) {
+  #about.about-game {
+    padding-top: 86px;
+    padding-bottom: 24px;
+  }
+  #about .about-head {
+    margin-bottom: 14px;
+  }
+  #about .about-profile,
+  #about .about-log {
+    min-height: 350px;
+  }
+  #about .about-profile {
+    padding: 25px 30px;
+  }
+  #about .about-profile h3 {
+    font-size: 49px;
+  }
+  #about .about-stat {
+    padding: 12px 15px;
+  }
+  #about .about-inventory {
+    padding: 11px 15px 14px;
+  }
+}
+@media (max-width: 850px) {
+  #about.about-game {
+    min-height: auto;
+    overflow: hidden;
+    align-items: flex-start;
+    padding: 86px 0 34px;
+    background-position: 61% center;
+  }
+  #about .about-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 9, 14, 0.36),
+      rgba(3, 9, 14, 0.77) 38%,
+      rgba(3, 9, 14, 0.92) 100%
+    );
+  }
+  #about .about-shell {
+    width: 100%;
+  }
+  #about .about-head {
+    display: block;
+    padding: 0 18px;
+    margin-bottom: 15px;
+  }
+  #about .about-head h2 {
+    font-size: 43px;
+    max-width: 330px;
+  }
+  #about .about-area {
+    margin-top: 12px;
+    font-size: 6px;
+    padding: 6px 8px 5px;
+  }
+  #about .about-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 18px;
+  }
+  #about .about-profile,
+  #about .about-log {
+    min-height: 0;
+    box-shadow: 4px 4px 0 rgba(2, 7, 12, 0.84);
+  }
+  #about .about-profile {
+    padding: 22px 18px 20px;
+  }
+  #about .about-profile h3 {
+    font-size: 42px;
+    margin: 15px 0 10px;
+  }
+  #about .about-profile > p {
+    font-size: 17px;
+  }
+  #about .about-location {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 10px;
+    margin: 18px 0;
+  }
+  #about .about-location i {
+    display: none;
+  }
+  #about .about-location span:nth-of-type(2) {
+    grid-column: 1;
+  }
+  #about .about-actions {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+  #about .about-actions .btn {
+    min-width: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  #about .about-stat {
+    padding: 14px;
+  }
+  #about .about-inventory {
+    padding: 13px 14px 15px;
+  }
+}
+@media (max-width: 430px) {
+  #about .about-head h2 {
+    font-size: 38px;
+  }
+  #about .about-profile h3 {
+    font-size: 37px;
+  }
+  #about .about-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === ABOUT v2 — professional content refinement ========================= */
+#about .about-professional-meta {
+  grid-template-columns: auto auto 18px auto auto;
+}
+#about .about-professional-meta b:last-child {
+  color: #f2f3e9;
+}
+@media (max-width: 850px) {
+  #about .about-professional-meta {
+    grid-template-columns: auto 1fr !important;
+  }
+  #about .about-professional-meta span:nth-of-type(2) {
+    grid-column: 1 !important;
+  }
+}
+
+/* === SECTION 04 / TECH v1 ============================================== */
+#tech.tech-game {
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #07151d url("/assets/backgrounds/tech.webp") center/cover
+    no-repeat;
+  padding: 104px 0 42px;
+}

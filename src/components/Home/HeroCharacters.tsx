@@ -1,5 +1,7 @@
 "use client";
 
+import { Heart } from "lucide-react";
+
 import Image from "next/image";
 import { useState } from "react";
 
@@ -22,7 +24,7 @@ export default function HeroCharacters() {
       />
 
       <div className={`lady-bubble ${show ? "show" : ""}`}>
-        Ready to build something amazing? ♥
+        Ready to build something amazing? <Heart aria-hidden="true" />
       </div>
     </>
   );

@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import { projects } from "./projects.data";
 
 type Props = {
@@ -27,7 +28,7 @@ export default function ProjectsArchive({ open, onClose, onSelect }: Props) {
             <h3 id="allProjectsTitle">ALL PROJECTS</h3>
           </div>
           <button type="button" aria-label="Close" onClick={onClose}>
-            ×
+            <X aria-hidden="true" />
           </button>
         </header>
         <div className="project-grid">

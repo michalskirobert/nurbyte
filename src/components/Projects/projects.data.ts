@@ -12,7 +12,7 @@ export const projects: Project[] = [
     image: "/assets/projects/docflow-dashboard.webp",
     tech: ["NEXT.JS", "TYPESCRIPT", "PRISMA", "POSTGRESQL"],
     url: "https://docflow.nurbyte.dev",
-    actionLabel: "▶ OPEN DOCFLOW",
+    actionLabel: "OPEN DOCFLOW",
     external: true,
   },
   {
@@ -27,14 +27,14 @@ export const projects: Project[] = [
     image: "/assets/projects/hosts-editor-settings.webp",
     tech: ["ELECTRON", "REACT", "TYPESCRIPT", "VITE"],
     url: "https://github.com/michalskirobert/hosts-editor/releases/latest",
-    actionLabel: "↓ DOWNLOAD LATEST",
+    actionLabel: "DOWNLOAD LATEST",
     external: true,
   },
   {
     id: "locked",
     name: "???",
     type: "LOCKED SLOT",
-    status: "◆ LOCKED",
+    status: "LOCKED",
     description:
       "A new project will unlock here. The final slot always stays open for the next build.",
     image: null,
