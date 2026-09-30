@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import {
   confirmationMail,
-  mailBrandAttachment,
   ownerMail,
   type ContactPayload,
 } from "@/lib/mail/templates";
@@ -75,14 +74,12 @@ export async function POST(request: Request) {
         from,
         to: process.env.MAIL_TO_EMAIL,
         replyTo: email,
-        attachments: [mailBrandAttachment],
         ...ownerMail(payload),
       }),
       transporter.sendMail({
         from,
         to: email,
         replyTo: process.env.MAIL_TO_EMAIL,
-        attachments: [mailBrandAttachment],
         ...confirmationMail(payload),
       }),
     ]);

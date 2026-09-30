@@ -23,11 +23,7 @@ const topic = (v: ContactPayload["category"]) =>
     hello: "HELLO",
   })[v];
 const site = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nurbyte.dev";
-export const mailBrandAttachment = {
-  filename: "nurbyte-mark.png",
-  path: `${process.cwd()}/public/assets/brand/nurbyte-mark.png`,
-  cid: "nurbyte-brand-mark",
-};
+const mailBrandMarkUrl = `${site}/assets/brand/nurbyte-mark.png`;
 
 const layout = (
   status: string,
@@ -49,7 +45,7 @@ const layout = (
     <table role="presentation" cellpadding="0" cellspacing="0">
      <tr>
       <td style="padding-right:11px;vertical-align:middle">
-       <img src="cid:nurbyte-brand-mark" width="34" height="34" alt="NurByte" style="display:block;width:34px;height:34px;border:0">
+       <img src="${mailBrandMarkUrl}" width="34" height="34" alt="NurByte" style="display:block;width:34px;height:34px;border:0">
       </td>
       <td style="vertical-align:middle;color:#fff">
        <div style="font-size:16px;font-weight:700;letter-spacing:1px;line-height:1.05">NUR<span style="color:#ffd21a">BYTE</span></div>
