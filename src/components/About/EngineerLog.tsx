@@ -2,12 +2,12 @@ const stats = [
   [
     "01",
     "PRODUCT ENGINEERING",
-    "From idea and architecture to polished production UI — focused on solving real business problems.",
+    "From idea and architecture to polished production UI. focused on solving real business problems.",
   ],
   [
     "02",
     "END-TO-END THINKING",
-    "UX, accessibility, security and maintainable code are part of the product — not afterthoughts.",
+    "UX, accessibility, security and maintainable code are part of the product. not afterthoughts.",
   ],
   [
     "03",

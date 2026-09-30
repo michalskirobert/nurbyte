@@ -91,7 +91,7 @@ export function ownerMail(d: ContactPayload) {
  <div style="margin-top:18px;border-left:4px solid #ffd21a;background:#030c12;padding:18px;color:#d5e3dc;font-family:Arial,sans-serif;font-size:15px;line-height:1.7">${message}</div>
  <div style="margin-top:20px"><a href="mailto:${email}" style="display:inline-block;background:#ffd21a;color:#071018;text-decoration:none;padding:13px 18px;border:2px solid #ffe260;font-weight:700;font-size:12px">↳ REPLY TO MESSAGE</a></div>`;
   return {
-    subject: `[NurByte] ${topic(d.category)} — ${d.name}`,
+    subject: `[NurByte] ${topic(d.category)}. ${d.name}`,
     text: `New NurByte contact\nName: ${d.name}\nEmail: ${d.email}\nTopic: ${topic(d.category)}\n\n${d.message}`,
     html: layout(
       "NEW MESSAGE RECEIVED",
@@ -114,7 +114,7 @@ export function confirmationMail(d: ContactPayload) {
   <div style="font-family:Arial,sans-serif;color:#aebfb7;line-height:1.65">${message}</div>
  </div>`;
   return {
-    subject: "✓ Message received — NurByte Software Lab",
+    subject: "✓ Message received. NurByte Software Lab",
     text: `Hi ${d.name},\n\nYour message reached NurByte Software Lab successfully. I'll get back to you as soon as possible.\n\n${d.message}`,
     html: layout(
       "MESSAGE DELIVERED",

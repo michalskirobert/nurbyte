@@ -45,7 +45,7 @@ export default function NotFound() {
             <i />
             <i />
             <i />
-            <span>nurbyte@dev: ~ — zsh</span>
+            <span>nurbyte@dev: ~. zsh</span>
           </div>
           <code>
             nurbyte@dev:~$ locate route{"\n"}✗ route_not_found{"\n"}✓ fallback

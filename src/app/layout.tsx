@@ -35,36 +35,45 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default:
-      "NurByte Software Lab | Web Apps, Developer Tools & Digital Products",
+    default: "NurByte Software Lab | Software Engineering & Web Development",
     template: "%s | NurByte Software Lab",
   },
   description:
-    "NurByte Software Lab builds fast, maintainable web applications, SaaS products and cross-platform developer tools with React, Next.js, TypeScript and Electron.",
+    "Software engineering, web development, web design, SaaS and developer tools by NurByte Software Lab. Building modern websites and web apps for clients in Poland, Europe and Asia.",
   applicationName: "NurByte Software Lab",
   authors: [{ name: "NurByte Software Lab", url: siteUrl }],
   creator: "NurByte Software Lab",
   publisher: "NurByte Software Lab",
   category: "technology",
   keywords: [
-    "NurByte",
-    "NurByte Software Lab",
-    "software engineer",
-    "frontend developer",
+    "software engineering",
+    "software development",
+    "web development",
+    "web developer",
+    "web design",
+    "website development",
+    "website creation",
+    "frontend development",
     "React developer",
     "Next.js developer",
-    "TypeScript",
-    "Electron",
-    "web applications",
+    "TypeScript developer",
     "SaaS development",
+    "custom web applications",
     "developer tools",
-    "cross-platform applications",
-    "frontend engineering",
-    "software development",
-    "React",
-    "Next.js",
+    "DocFlow",
+    "document workflow software",
+    "Hosts Editor",
+    "hosts file editor",
+    "free hosts editor",
+    "NurByte",
+    "NurByte Software Lab",
     "Poland",
+    "European Union",
     "Indonesia",
+    "Singapore",
+    "Malaysia",
+    "Japan",
+    "South Korea",
   ],
   alternates: { canonical: "/" },
   icons: {
@@ -82,9 +91,9 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     siteName: "NurByte Software Lab",
-    title: "NurByte Software Lab | Digital Solutions With Purpose",
+    title: "NurByte Software Lab | Software Engineering & Web Development",
     description:
-      "Web apps, SaaS products and developer tools built with product thinking, clean engineering and a cross-platform mindset.",
+      "Custom websites, web applications, SaaS products and developer tools built with modern software engineering.",
     images: [
       {
         url: "/social-preview.jpeg",
@@ -97,9 +106,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NurByte Software Lab | Digital Solutions With Purpose",
+    title: "NurByte Software Lab | Software Engineering & Web Development",
     description:
-      "Web apps, SaaS products and developer tools by NurByte Software Lab.",
+      "Software engineering, web development, SaaS products and developer tools by NurByte Software Lab.",
     images: ["/social-preview.jpeg"],
   },
   robots: {
@@ -134,7 +143,16 @@ const structuredData = {
       url: siteUrl,
       logo: `${siteUrl}/icon-192.png`,
       description:
-        "Software engineering studio focused on web applications, SaaS products and developer tools.",
+        "Software engineering studio building websites, custom web applications, SaaS products and developer tools.",
+      areaServed: [
+        { "@type": "Country", name: "Poland" },
+        { "@type": "AdministrativeArea", name: "European Union" },
+        { "@type": "Country", name: "Indonesia" },
+        { "@type": "Country", name: "Singapore" },
+        { "@type": "Country", name: "Malaysia" },
+        { "@type": "Country", name: "Japan" },
+        { "@type": "Country", name: "South Korea" },
+      ],
       knowsAbout: [
         "React",
         "Next.js",
@@ -143,7 +161,50 @@ const structuredData = {
         "Frontend Engineering",
         "SaaS",
         "Developer Tools",
+        "Web Development",
+        "Web Design",
+        "Website Development",
       ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Web Development",
+            description:
+              "Custom websites and web applications built with React, Next.js and TypeScript.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Software Engineering",
+            description:
+              "Custom software, SaaS products, frontend engineering and developer tooling.",
+          },
+        },
+      ],
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "DocFlow",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: "https://docflow.nurbyte.dev",
+      description:
+        "Document workflow software for reusable templates, document generation, email preparation and invoicing.",
+      creator: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "SoftwareApplication",
+      name: "Hosts Editor",
+      applicationCategory: "DeveloperApplication",
+      operatingSystem: "macOS, Windows, Linux",
+      description:
+        "Free cross-platform hosts file editor with profiles, backups and safe apply flows.",
+      creator: { "@id": `${siteUrl}/#organization` },
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },
   ],
 };

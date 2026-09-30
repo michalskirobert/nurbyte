@@ -28,7 +28,7 @@ export default function ContactForm() {
     { text: "nurbyte@dev:~$ contact --start", tone: "command" },
     { text: "✓ Contact form ready", tone: "success" },
     {
-      text: "Tell me a little about yourself — I'll guide you step by step.",
+      text: "Tell me a little about yourself. I'll guide you step by step.",
       tone: "muted",
     },
     { text: "", tone: "muted" },
@@ -103,7 +103,7 @@ export default function ContactForm() {
       if (!selected) {
         fail(
           "I don't recognize that option.",
-          "Choose 1, 2 or 3 — or click one.",
+          "Choose 1, 2 or 3. or click one.",
         );
         setValue("");
         return;
@@ -215,7 +215,7 @@ export default function ContactForm() {
         { text: "✓ Message delivered", tone: "success" },
         { text: `✓ Confirmation sent to ${email}`, tone: "success" },
         {
-          text: "Thank you — I'll get back to you as soon as possible.",
+          text: "Thank you. I'll get back to you as soon as possible.",
           tone: "success",
         },
         { text: "nurbyte@dev:~$ _", tone: "command" },
@@ -242,7 +242,7 @@ export default function ContactForm() {
         <i />
         <i />
         <i />
-        <span>nurbyte@dev: ~/contact — zsh</span>
+        <span>nurbyte@dev: ~/contact. zsh</span>
       </div>
       <div
         ref={viewportRef}

@@ -6,7 +6,7 @@ export const projects: Project[] = [
     type: "WEB APP / SAAS",
     status: "● ACTIVE",
     description:
-      "Document workflows, reusable templates, email preparation and billing in one focused workspace.",
+      "Document workflow software for reusable templates, document generation, email preparation and invoicing in one focused workspace.",
     details:
       "DocFlow is a document productivity workspace for building reusable templates, generating documents, preparing email content and managing invoicing workflows from one application.",
     image: "/assets/projects/docflow-dashboard.webp",
@@ -21,7 +21,7 @@ export const projects: Project[] = [
     type: "DESKTOP / DEV TOOL",
     status: "● ACTIVE",
     description:
-      "A cross-platform hosts editor with profiles, backups, safe apply flows and a focused developer experience.",
+      "A free cross-platform hosts file editor for macOS, Windows and Linux with profiles, backups and safe apply flows.",
     details:
       "A free cross-platform developer utility for managing hosts entries in isolated tabs, keeping manual backups and safely applying profiles to the system hosts file on macOS, Windows and Linux.",
     image: "/assets/projects/hosts-editor-settings.webp",

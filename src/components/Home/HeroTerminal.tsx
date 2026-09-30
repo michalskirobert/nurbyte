@@ -72,7 +72,7 @@ export default function HeroTerminal() {
         <i />
         <i />
         <i />
-        <span>nurbyte — terminal</span>
+        <span>nurbyte. terminal</span>
       </div>
       <div ref={viewport} className="terminal-viewport">
         <pre>

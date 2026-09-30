@@ -15,8 +15,9 @@ export default function HeroContent() {
         </em>
       </h1>
       <p className="lede">
-        Web apps, developer tools and digital experiences inspired by real
-        engineering, curiosity and the world between Poland and Indonesia.
+        Software engineering, web development and web design for modern
+        websites, SaaS products and developer tools. Built in Poland for clients
+        and users across Europe and Asia.
       </p>
       <div className="actions">
         <a

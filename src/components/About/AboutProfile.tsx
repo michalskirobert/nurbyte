@@ -12,7 +12,7 @@ export default function AboutProfile() {
       </h3>
       <p>
         I design and build production-ready web applications, SaaS products and
-        developer tools — combining maintainable engineering with product
+        developer tools. combining maintainable engineering with product
         thinking, accessibility and a strong focus on the people who actually
         use the software.
       </p>

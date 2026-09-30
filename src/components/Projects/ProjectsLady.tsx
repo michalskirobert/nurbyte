@@ -65,7 +65,7 @@ export default function ProjectsLady() {
           setLabel("SELECT!");
         }
       }}
-      aria-label="Lady — select a project"
+      aria-label="Lady. select a project"
     >
       <span className="projects-lady-sprite">
         <Image
