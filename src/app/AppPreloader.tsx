@@ -13,6 +13,7 @@ const assets = [
   "/assets/projects/hosts-editor-settings.webp",
   "/assets/characters/lady/accepted/sniff.png",
   "/assets/characters/lady/accepted/question.png",
+  "/assets/characters/lady/accepted/contact-normalized/question.png",
   "/assets/characters/lady/accepted/idle.png",
   "/assets/characters/lady/accepted/toy.png",
   "/assets/characters/lady/accepted/header.png",

@@ -83,9 +83,11 @@ export default function ContactLady() {
             />
           ))}
         </span>
-        <span className="contact-lady-bubble" aria-live="polite">
-          {labels[mood]}
-        </span>
+        {mood !== "question" && mood !== "love" && (
+          <span className="contact-lady-bubble" aria-live="polite">
+            {labels[mood]}
+          </span>
+        )}
         {mood === "love" && (
           <span
             key={heartsKey}

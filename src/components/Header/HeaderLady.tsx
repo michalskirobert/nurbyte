@@ -101,13 +101,13 @@ export default function HeaderLady({
         className={`lady-bubble ${displayedMood === "question" || displayedMood === "woof" ? "show" : ""}`}
         aria-live="polite"
       >
-        {mood === "woof"
+        {displayedMood === "woof"
           ? "WOOF!"
-          : brandHovered && !ladyHovered
-            ? "HOME"
-            : mood === "question"
-              ? "?"
-              : ""}
+          : displayedMood === "question"
+            ? brandHovered && !ladyHovered
+              ? "HOME"
+              : "?"
+            : ""}
       </span>
 
       {mood === "love" && (

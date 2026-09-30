@@ -64,9 +64,11 @@ export default function NotFoundLady() {
       onBlur={() => state === "question" && setState("search")}
       onClick={play}
     >
-      <span className="not-found-lady-v36-bubble" aria-hidden="true">
-        {current.bubble}
-      </span>
+      {state !== "question" && (
+        <span className="not-found-lady-v36-bubble" aria-hidden="true">
+          {current.bubble}
+        </span>
+      )}
       <span className="not-found-lady-v36-stage" aria-hidden="true">
         {Object.entries(ladyState).map(([key, item]) => (
           <Image

@@ -74,7 +74,9 @@ export default function ProjectsLady() {
           priority={false}
         />
       </span>
-      <span className="projects-lady-bubble">{label}</span>
+      {mood !== "question" && mood !== "love" && (
+        <span className="projects-lady-bubble">{label}</span>
+      )}
       {mood === "love" && (
         <span
           key={heartsKey}
