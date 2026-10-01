@@ -12,6 +12,10 @@ export default function TechInspector({
         <img
           src={`https://cdn.simpleicons.org/${technology.icon}/${technology.color}`}
           alt=""
+          width={32}
+          height={32}
+          loading="lazy"
+          decoding="async"
         />
       </div>
       <h3>{technology.name.toUpperCase()}</h3>

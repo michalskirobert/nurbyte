@@ -1,0 +1,433 @@
+/* === v17.5 404 — unused night/contact world === */
+.not-found-scene {
+  --nf-yellow: #ffd21a;
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  padding: clamp(90px, 10vh, 130px) max(6vw, 28px) 60px;
+  color: #eef5f6;
+  background: #020b12 url("/assets/backgrounds/contact.webp") center/cover
+    no-repeat;
+}
+.not-found-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(1, 9, 15, 0.94) 0%,
+      rgba(1, 9, 15, 0.82) 38%,
+      rgba(1, 9, 15, 0.3) 72%,
+      rgba(1, 9, 15, 0.58) 100%
+    ),
+    linear-gradient(0deg, rgba(1, 8, 14, 0.72), transparent 58%);
+}
+.not-found-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.16;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(0, 0, 0, 0.35) 4px
+  );
+}
+.not-found-brand {
+  position: absolute;
+  top: 28px;
+  left: max(6vw, 28px);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 13px;
+  border: 1px solid #1a536d;
+  border-radius: 8px;
+  background: rgba(2, 14, 24, 0.86);
+  box-shadow: 0 10px 30px #0008;
+  backdrop-filter: blur(10px);
+}
+.not-found-brand img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+.not-found-brand strong {
+  display: block;
+  font: 16px/1 var(--font-press);
+  color: #fff;
+}
+.not-found-brand strong b {
+  color: var(--nf-yellow);
+}
+.not-found-brand small {
+  display: block;
+  margin-top: 6px;
+  font: 12px/1 var(--font-terminal);
+  letter-spacing: 1px;
+  color: #b6c9d0;
+}
+.not-found-panel {
+  width: min(690px, 64vw);
+  position: relative;
+  z-index: 2;
+}
+.not-found-kicker {
+  margin: 0 0 14px;
+  color: var(--nf-yellow);
+  font: 9px/1.5 var(--font-press);
+  letter-spacing: 0.5px;
+}
+.not-found-panel h1 {
+  margin: 0;
+  font: 700 clamp(100px, 16vw, 220px)/0.72 var(--font-pixelify);
+  letter-spacing: -10px;
+  text-shadow:
+    0 8px 0 #06131d,
+    0 18px 40px #000a;
+}
+.not-found-panel h1 span {
+  color: var(--nf-yellow);
+}
+.not-found-panel h2 {
+  margin: 24px 0 14px;
+  max-width: 650px;
+  font: 400 clamp(26px, 3.2vw, 48px)/1.08 var(--font-press);
+  letter-spacing: -1px;
+}
+.not-found-panel h2 em {
+  font-style: normal;
+  color: var(--nf-yellow);
+}
+.not-found-copy {
+  max-width: 570px;
+  margin: 0 0 24px;
+  color: #d9e5e8;
+  font: 400 clamp(18px, 1.6vw, 23px)/1.35 var(--font-terminal);
+}
+.not-found-terminal {
+  width: min(540px, 100%);
+  margin: 0 0 24px;
+  border: 1px solid #1a607d;
+  border-radius: 7px;
+  background: rgba(1, 13, 22, 0.91);
+  box-shadow: 0 15px 38px #0008;
+  font-family: var(--font-terminal);
+  font-size: 18px;
+  color: #a9d8e8;
+  overflow: hidden;
+}
+.not-found-terminal > div {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  border-bottom: 1px solid #17455e;
+}
+.not-found-terminal i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff4055;
+}
+.not-found-terminal i:nth-child(2) {
+  background: #ffd31a;
+}
+.not-found-terminal i:nth-child(3) {
+  background: #1fe78e;
+}
+.not-found-terminal span {
+  margin-left: 4px;
+  font-size: 15px;
+}
+.not-found-terminal code {
+  display: block;
+  padding: 13px 15px;
+  white-space: pre-wrap;
+  font: inherit;
+}
+.not-found-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  color: #071018;
+  text-decoration: none;
+  background: linear-gradient(#ffdc31, #ffc400);
+  border: 2px solid #ffe260;
+  box-shadow: 0 5px 0 #9c6e00;
+  font: 9px var(--font-press);
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
+    filter 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease;
+}
+
+.not-found-lady {
+  position: absolute;
+  right: max(8vw, 50px);
+  bottom: 4vh;
+  z-index: 1;
+  width: min(310px, 24vw);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px #0009);
+}
+@media (max-width: 760px) {
+  .not-found-scene {
+    align-items: flex-end;
+    padding: 105px 22px 52px;
+    background-position: 63% center;
+  }
+  .not-found-brand {
+    top: 14px;
+    left: 14px;
+  }
+  .not-found-panel {
+    width: 100%;
+    z-index: 3;
+  }
+  .not-found-panel h1 {
+    font-size: clamp(92px, 31vw, 150px);
+    letter-spacing: -6px;
+  }
+  .not-found-panel h2 {
+    font-size: clamp(23px, 7vw, 34px);
+    max-width: 95%;
+  }
+  .not-found-copy {
+    max-width: 92%;
+    font-size: 18px;
+  }
+  .not-found-terminal {
+    font-size: 16px;
+  }
+  .not-found-lady {
+    right: -18px;
+    bottom: 42%;
+    width: 42vw;
+    opacity: 0.9;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .not-found-panel {
+    animation: nfEnter 0.55s cubic-bezier(0.2, 0.75, 0.25, 1) both;
+  }
+  .not-found-lady {
+    animation: nfLady 3.4s ease-in-out infinite;
+  }
+}
+@keyframes nfEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes nfLady {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* === v17.6 mobile HUD + Contact Lady composition === */
+@media (max-width: 760px) {
+  /* Mobile HUD stays intentionally lean: identity + Lady + menu. */
+  .hud {
+    height: 64px !important;
+    padding: 0 9px 0 11px !important;
+    gap: 8px !important;
+  }
+  .hud .brand {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    gap: 7px !important;
+    overflow: visible !important;
+  }
+  .hud .brand-mark {
+    width: 27px !important;
+    height: 27px !important;
+    flex: 0 0 27px !important;
+  }
+  .hud .brand > span {
+    font-size: 15px !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+  .hud .brand > span small {
+    margin-top: 5px !important;
+    font-size: 8px !important;
+    letter-spacing: 0.8px !important;
+  }
+  .hud .brand-lady {
+    width: 48px !important;
+    height: 51px !important;
+    flex: 0 0 48px !important;
+    margin-left: 2px !important;
+  }
+  .hud .brand-lady img {
+    width: 48px !important;
+    height: 51px !important;
+  }
+  .hud-actions {
+    flex: 0 0 auto !important;
+    gap: 0 !important;
+  }
+  .hud-actions > .online,
+  .hud-actions > .display-toggle {
+    display: none !important;
+  }
+  .hud .menu-btn {
+    display: grid !important;
+    place-items: center !important;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0 !important;
+    border-radius: 9px !important;
+  }
+
+  /* Drawer owns status/display controls on phones. */
+  .mobile-drawer {
+    display: flex !important;
+    top: 8px !important;
+    right: 8px !important;
+    width: min(350px, calc(100% - 16px)) !important;
+    padding: 66px 14px 15px !important;
+    border-color: #24637e !important;
+    background: rgba(2, 15, 25, 0.97) !important;
+    box-shadow: 0 20px 60px #000b !important;
+  }
+  .mobile-drawer > .drawer-close {
+    position: absolute !important;
+    top: 13px !important;
+    right: 13px !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    font: 24px/1 var(--font-terminal) !important;
+  }
+  .drawer-heading {
+    position: absolute;
+    left: 17px;
+    top: 25px;
+    color: #ffd21a;
+    font: 6px var(--font-press);
+    letter-spacing: 0.5px;
+  }
+  .drawer-navigation {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-drawer > .drawer-navigation > a {
+    padding: 16px 12px;
+    border-bottom: 1px solid #173d4e;
+    color: #fff;
+    text-decoration: none;
+    font: 8px var(--font-press);
+    transition:
+      background 0.18s ease,
+      color 0.18s ease,
+      padding-left 0.18s ease;
+  }
+  .mobile-drawer > .drawer-navigation > a:hover,
+  .mobile-drawer > .drawer-navigation > a:focus-visible {
+    padding-left: 16px;
+    background: rgba(255, 210, 26, 0.1);
+    color: #ffd21a;
+    outline: 0;
+  }
+  .drawer-controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    padding: 13px 10px 4px;
+    border-top: 1px solid #20536a;
+  }
+  .drawer-controls .online {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: max-content;
+    padding: 9px 11px !important;
+    font-size: 7px !important;
+  }
+  .drawer-controls .online i {
+    width: 7px !important;
+    height: 7px !important;
+    margin-right: 7px !important;
+  }
+  .drawer-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .drawer-display > span {
+    color: #7896a3;
+    font: 5px var(--font-press);
+  }
+  .drawer-display .display-toggle {
+    display: flex !important;
+  }
+
+  /* Contact companion: a compact epilogue below the terminal instead of a loose sprite. */
+  #contact .contact-layout {
+    grid-template-columns: 1fr !important;
+    row-gap: 16px !important;
+    align-items: start !important;
+  }
+  #contact .contact-lady {
+    display: flex !important;
+    justify-self: end !important;
+    width: 190px !important;
+    margin: -2px 18px 0 0 !important;
+    padding-top: 16px !important;
+    transform: none !important;
+  }
+  #contact .contact-lady > .contact-lady-character {
+    width: auto !important;
+    height: auto !important;
+  }
+  #contact .contact-lady-character > .contact-lady-stage {
+    width: auto !important;
+    height: auto !important;
+  }
+  #contact .contact-lady-image {
+    width: auto !important;
+    height: 184px !important;
+    max-width: 180px !important;
+    max-height: none !important;
+  }
+  #contact .contact-lady-character > .contact-lady-bubble {
+    top: 0 !important;
+    left: 50% !important;
+    max-width: 165px !important;
+    padding: 7px 9px !important;
+    transform: translate(-50%, calc(-100% - 9px)) !important;
+  }
+  #contact
+    .contact-lady-character
+    > .contact-lady-bubble
+    .contact-lady-bubble-text {
+    font-size: 5px !important;
+  }
+  #contact .contact-lady:hover .contact-lady-bubble,
+  #contact .contact-lady:focus-visible .contact-lady-bubble {
+    transform: translate(-50%, calc(-100% - 9px)) !important;
+  }
+}

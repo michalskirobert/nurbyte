@@ -8,8 +8,8 @@ import { useEffect, useRef, useState } from "react";
 type Mood = "idle" | "question" | "love" | "woof";
 
 const frames: Record<Mood, string> = {
-  idle: "/assets/characters/lady/accepted/header.png",
-  question: "/assets/characters/lady/accepted/header.png",
+  idle: "/assets/characters/lady/accepted/header-small.webp",
+  question: "/assets/characters/lady/accepted/header-small.webp",
   love: "/assets/characters/lady/accepted/wave.png",
   woof: "/assets/characters/lady/accepted/howl.png",
 };
@@ -84,7 +84,8 @@ export default function HeaderLady({
             alt=""
             width={160}
             height={160}
-            priority
+            sizes="48px"
+            priority={src === frames.idle}
             className={`brand-lady-frame ${frames[displayedMood] === src ? "is-active" : ""}`}
           />
         ))}

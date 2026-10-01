@@ -1,0 +1,54 @@
+.terminal {
+  position: absolute;
+  z-index: 5;
+  right: 4vw;
+  top: 110px;
+  width: min(480px, 31vw);
+  min-height: 215px;
+  border: 2px solid #0d789f;
+  border-radius: 8px;
+  background: rgba(1, 17, 28, 0.93);
+  box-shadow: 0 18px 50px #000a;
+  font-family: var(--terminal);
+  font-size: 20px;
+  padding: 46px 18px 16px;
+  color: #9ed9ef;
+}
+.term-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 36px;
+  border-bottom: 1px solid #17455e;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 11px;
+}
+.term-bar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff4055;
+}
+.term-bar i:nth-child(2) {
+  background: #ffd31a;
+}
+.term-bar i:nth-child(3) {
+  background: #1fe78e;
+}
+.term-bar span {
+  font-size: 15px;
+  margin-left: 5px;
+  color: #a6c5d2;
+}
+.terminal pre {
+  white-space: pre-wrap;
+  margin: 0;
+  font: inherit;
+}
+.cursor {
+  animation: blink 0.75s step-end infinite;
+  color: #fff;
+}

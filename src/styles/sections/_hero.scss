@@ -1,0 +1,65 @@
+.hero {
+  background-image: url("/assets/backgrounds/home.webp");
+}
+.projects {
+  background-image: url("/assets/backgrounds/projects.webp");
+}
+.about {
+  background-image: url("/assets/backgrounds/about.webp");
+}
+.tech {
+  background-image: url("/assets/backgrounds/tech.webp");
+}
+.contact {
+  background-image: url("/assets/backgrounds/contact.webp");
+}
+.ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 67% 40%,
+    rgba(255, 180, 0, 0.14),
+    transparent 30%
+  );
+  animation: pulse 5s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero-copy {
+  position: absolute;
+  z-index: 4;
+  left: max(4vw, 54px);
+  top: 50%;
+  width: min(530px, 38vw);
+  transform: translateY(-47%);
+}
+.eyebrow {
+  color: var(--yellow);
+  font: 12px/1.5 var(--hud);
+  text-shadow: 0 2px 4px #000;
+}
+.hero h1,
+.content-scene h2 {
+  font: 700 clamp(52px, 5.5vw, 92px)/0.78 var(--display);
+  letter-spacing: -2px;
+  margin: 20px 0;
+  text-shadow:
+    0 5px 0 #07121a,
+    0 8px 20px #000;
+}
+.hero h1 em,
+.content-scene h2 em {
+  font-style: normal;
+  color: var(--yellow);
+}
+.lede,
+.content-scene p {
+  font-size: 19px;
+  line-height: 1.25;
+  max-width: 520px;
+  text-shadow: 0 2px 8px #000;
+}
+.actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 25px;
+}

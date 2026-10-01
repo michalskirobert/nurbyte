@@ -1,0 +1,171 @@
+/* === HOME v8 — Living World / stronger arcade identity =================== */
+#home {
+  --px: 0px;
+  --py: 0px;
+  --scrollY: 0px;
+}
+#home::before {
+  transform: translate3d(
+      calc(var(--px) * 0.12),
+      calc(var(--py) * 0.12 + var(--scrollY) * 0.08),
+      0
+    )
+    scale(1.025);
+  transform-origin: center;
+  will-change: transform;
+}
+#home .characters {
+  transform: translate3d(
+    calc(var(--px) * -0.08),
+    calc(var(--py) * -0.06 + var(--scrollY) * -0.035),
+    0
+  );
+  will-change: transform;
+}
+#home .hero-copy {
+  transform: translate3d(
+    calc(var(--px) * 0.035),
+    calc(-16% + var(--py) * 0.025),
+    0
+  ) !important;
+}
+.ambient-world {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+.ambient-glow {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.35;
+  filter: blur(4px);
+  animation: lanternPulse 2.8s ease-in-out infinite;
+}
+.glow-a {
+  left: 35%;
+  top: 31%;
+  box-shadow: 0 0 32px 12px #ffb11a;
+}
+.glow-b {
+  right: 22%;
+  top: 45%;
+  box-shadow: 0 0 28px 10px #ff7a18;
+  animation-delay: 1.2s;
+}
+@keyframes lanternPulse {
+  50% {
+    opacity: 0.65;
+    transform: scale(1.18);
+  }
+}
+.firefly {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffd84a;
+  box-shadow: 0 0 7px #ffd84a;
+  opacity: 0;
+  animation: firefly var(--dur) ease-in-out var(--delay) infinite;
+}
+@keyframes firefly {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(0, 8px);
+  }
+  35% {
+    opacity: 0.8;
+  }
+  65% {
+    opacity: 0.25;
+    transform: translate(var(--dx), -18px);
+  }
+}
+.scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff 0,
+    #fff 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: overlay;
+}
+.home-game-status {
+  position: absolute;
+  left: 52px;
+  top: 118px;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 4px 10px;
+  padding: 8px 10px;
+  border-left: 2px solid #ffd31a;
+  background: #0614218c;
+  backdrop-filter: blur(4px);
+  font-family: "Press Start 2P", monospace;
+  pointer-events: none;
+}
+.home-game-status span {
+  grid-column: 1/-1;
+  font-size: 7px;
+  color: #ffd31a;
+}
+.home-game-status b {
+  font-size: 8px;
+  color: #fff;
+}
+.home-game-status i {
+  font-style: normal;
+  font-size: 7px;
+  color: #50ef9c;
+}
+.arcade-audio {
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid #244457;
+  border-radius: 999px;
+  background: #071624;
+  color: #d9edf4;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  cursor: pointer;
+}
+.arcade-audio[aria-pressed="true"] {
+  border-color: #ffd31a;
+  color: #ffd31a;
+  box-shadow: 0 0 12px #ffd31a33;
+}
+
+/* Transition hint: HOME begins to sink into the next scene rather than hard-cut. */
+#home {
+  transition: filter 0.15s linear;
+}
+#home.is-leaving .ambient-world {
+  opacity: calc(1 - var(--leave, 0));
+  transform: translateY(calc(var(--leave, 0) * -18px));
+}
+#home.is-leaving .hero-copy,
+#home.is-leaving .terminal {
+  opacity: calc(1 - var(--leave, 0) * 1.35);
+}
+@media (max-width: 900px) {
+  .home-game-status {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow,
+  .firefly {
+    animation: none !important;
+  }
+}

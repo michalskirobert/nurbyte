@@ -1,0 +1,23 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 3px;
+  text-decoration: none;
+  font: 10px var(--hud);
+  cursor: pointer;
+}
+.primary {
+  background: linear-gradient(#ffdc31, #ffc400);
+  color: #071018;
+  border: 2px solid #ffe260;
+  box-shadow: 0 5px 0 #9c6e00;
+}
+.ghost {
+  background: #0b1a24dd;
+  color: #fff;
+  border: 2px solid #e7eef1;
+  box-shadow: 0 5px 0 #071018;
+}

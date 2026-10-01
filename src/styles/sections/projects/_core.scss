@@ -1,0 +1,452 @@
+@media (max-width: 850px) {
+  .projects-game {
+    padding: 94px 18px 42px;
+  }
+  .projects-head {
+    align-items: flex-start;
+  }
+  .project-screen {
+    grid-template-columns: 1fr;
+  }
+  .project-art {
+    min-height: 270px;
+    border-right: 0;
+    border-bottom: 2px solid #31566a;
+  }
+  .project-selector {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    gap: 7px;
+  }
+  .project-arrow {
+    width: 36px;
+    height: 58px;
+  }
+  .project-strip-wrap {
+    margin-left: 43px;
+    margin-right: 43px;
+  }
+  .project-info {
+    padding: 26px;
+  }
+  .projects-help {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .project-counter {
+    font-size: 25px;
+  }
+}
+
+/* === PROJECTS v2 — restore the actual arcade world ======================== */
+.projects-game {
+  background: #06121b url("/assets/backgrounds/projects.webp") center/cover
+    no-repeat fixed !important;
+  isolation: isolate;
+}
+.projects-game::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      #020a10c9 0%,
+      #020a1070 31%,
+      #020a1033 58%,
+      #020a1075 100%
+    ),
+    linear-gradient(180deg, #03101a73 0%, transparent 34%, #03101a8f 100%);
+}
+.projects-world {
+  background: none !important;
+  z-index: 1 !important;
+}
+.projects-world::before {
+  opacity: 0.035 !important;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff 0,
+    #fff 1px,
+    transparent 1px,
+    transparent 4px
+  ) !important;
+  transform: none !important;
+}
+.projects-world::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 19% 29%, #ffb31a66 0 2px, transparent 3px),
+    radial-gradient(circle at 68% 22%, #ffd85a55 0 2px, transparent 3px),
+    radial-gradient(circle at 82% 53%, #ff8c2460 0 2px, transparent 3px);
+  filter: blur(0.2px);
+  animation: projectWorldGlow 2.8s ease-in-out infinite alternate;
+}
+@keyframes projectWorldGlow {
+  to {
+    opacity: 0.45;
+    filter: blur(1.2px);
+  }
+}
+.projects-shell {
+  z-index: 3 !important;
+}
+
+/* Make the selector feel like an in-world arcade cabinet / quest screen. */
+.project-screen {
+  border: 2px solid #e8bd34 !important;
+  background: #04111ce8 !important;
+  box-shadow:
+    7px 7px 0 #02070c,
+    0 0 0 3px #07131e,
+    0 0 32px #ffcb2926 !important;
+}
+.project-art {
+  background: linear-gradient(145deg, #0c2836dd, #05111bd9) !important;
+  border-color: #9d7d22 !important;
+}
+.project-art-placeholder {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #17384a, #071822) !important;
+  box-shadow:
+    inset 0 0 45px #000b,
+    0 0 30px #ffc92818 !important;
+}
+.project-art-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 38%;
+  background: repeating-linear-gradient(
+    90deg,
+    #173143 0 18px,
+    #102735 18px 36px
+  );
+  clip-path: polygon(
+    0 48%,
+    8% 31%,
+    16% 45%,
+    25% 18%,
+    36% 52%,
+    47% 29%,
+    58% 55%,
+    69% 25%,
+    79% 48%,
+    89% 20%,
+    100% 43%,
+    100% 100%,
+    0 100%
+  );
+  opacity: 0.7;
+}
+.project-art-placeholder span,
+.project-art-placeholder small {
+  position: relative;
+  z-index: 2;
+}
+.project-machine {
+  position: relative;
+}
+.project-machine::before {
+  content: "SELECT PROJECT";
+  position: absolute;
+  z-index: 5;
+  left: 18px;
+  top: -11px;
+  padding: 5px 9px;
+  background: #ffd31a;
+  color: #06121b;
+  font:
+    7px "Press Start 2P",
+    monospace;
+  box-shadow: 3px 3px 0 #0008;
+}
+.project-arrow {
+  border: 2px solid #a58427 !important;
+  color: #ffd31a !important;
+  background: #07131ee8 !important;
+}
+.project-arrow:hover {
+  box-shadow:
+    0 0 18px #ffd31a55,
+    4px 4px 0 #02090f !important;
+}
+.project-chip {
+  backdrop-filter: blur(7px);
+  background: #06131de8 !important;
+}
+.project-chip.active {
+  background: #172317e8 !important;
+}
+.projects-help {
+  color: #b6c8cf !important;
+}
+
+/* Small world-status HUD, like a game location label. */
+.projects-head::after {
+  content: "AREA 02  •  BALI COAST  •  PROJECT ARCHIVE";
+  position: absolute;
+  right: 0;
+  top: -25px;
+  color: #8eb0bd;
+  font:
+    6px "Press Start 2P",
+    monospace;
+  letter-spacing: 0.08em;
+}
+.projects-head {
+  position: relative;
+}
+
+/* HOME -> PROJECTS visual continuity. */
+.projects-game {
+  background-position: center calc(50% + var(--projectScroll, 0px)) !important;
+}
+@media (max-width: 850px) {
+  .projects-game {
+    background-attachment: scroll !important;
+    background-position: center !important;
+  }
+  .projects-head::after {
+    display: none;
+  }
+}
+
+/* === PROJECTS v3 — Living Arcade Scene ================================== */
+.project-parallax-layer {
+  position: absolute;
+  inset: -3%;
+  background: url("/assets/decor/parallax-sheet.webp") center/cover no-repeat;
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  transform: translate3d(var(--worldX, 0), var(--worldY, 0), 0) scale(1.04);
+  will-change: transform;
+  pointer-events: none;
+}
+.project-water-shimmer {
+  position: absolute;
+  left: -120px;
+  right: -120px;
+  bottom: 0;
+  height: 42%;
+  opacity: 0.16;
+  background: repeating-linear-gradient(
+    174deg,
+    transparent 0 12px,
+    #ffd36b 13px 14px,
+    transparent 15px 27px
+  );
+  mask-image: linear-gradient(to bottom, transparent, #000);
+  animation: waterDrift 9s linear infinite;
+  pointer-events: none;
+}
+@keyframes waterDrift {
+  from {
+    transform: translate3d(-120px, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.project-birds {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.project-birds i {
+  position: absolute;
+  left: -5%;
+  top: 18%;
+  width: 12px;
+  height: 6px;
+  border-top: 2px solid #07131e;
+  border-radius: 50%;
+  opacity: 0.65;
+  --bird-scale: 1;
+  animation: birdFly 22s linear infinite;
+  will-change: transform;
+}
+.project-birds i:after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: -2px;
+  width: 10px;
+  height: 5px;
+  border-top: 2px solid #07131e;
+  border-radius: 50%;
+  transform: rotate(10deg);
+}
+.project-birds i:nth-child(2) {
+  top: 26%;
+  animation-duration: 29s;
+  animation-delay: -11s;
+  --bird-scale: 0.7;
+}
+.project-birds i:nth-child(3) {
+  top: 13%;
+  animation-duration: 35s;
+  animation-delay: -23s;
+  --bird-scale: 0.5;
+}
+@keyframes birdFly {
+  from {
+    transform: translate3d(0, 0, 0) scale(var(--bird-scale));
+  }
+  to {
+    transform: translate3d(113vw, 0, 0) scale(var(--bird-scale));
+  }
+}
+.projects-lady {
+  position: absolute;
+  z-index: 7;
+  right: 4.2vw;
+  bottom: 34px;
+  width: 86px;
+  height: 86px;
+  display: grid;
+  place-items: end center;
+  filter: drop-shadow(4px 5px 0 #0008);
+  transition: transform 0.18s ease;
+}
+.projects-lady img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: ladyProjectsIdle 2.4s ease-in-out infinite;
+}
+.projects-lady span {
+  position: absolute;
+  right: 62px;
+  top: -4px;
+  min-width: 78px;
+  padding: 7px 9px;
+  background: #fff;
+  color: #07131e;
+  border: 2px solid #07131e;
+  font:
+    6px "Press Start 2P",
+    monospace;
+  text-align: center;
+  box-shadow: 3px 3px 0 #07131e;
+  white-space: nowrap;
+}
+.projects-lady span:after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 8px;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-right: 2px solid #07131e;
+  border-bottom: 2px solid #07131e;
+  transform: rotate(-45deg);
+}
+@keyframes ladyProjectsIdle {
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.project-transition {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #03101ad9;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.08s linear;
+}
+.project-transition span {
+  padding: 13px 16px;
+  background: #07131e;
+  border: 2px solid #ffd31a;
+  color: #ffd31a;
+  font: 9px "Press Start 2P";
+  box-shadow: 6px 6px 0 #000;
+}
+.project-transition.show {
+  opacity: 1;
+}
+.project-transition.locked span {
+  border-color: #ff755f;
+  color: #ff755f;
+}
+.project-machine.switching {
+  animation: projectCRT 0.22s steps(2, end);
+}
+@keyframes projectCRT {
+  0% {
+    transform: translateX(0);
+    filter: none;
+  }
+  25% {
+    transform: translateX(3px);
+    filter: contrast(1.6);
+  }
+  50% {
+    transform: translateX(-2px);
+    filter: hue-rotate(14deg);
+  }
+  75% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+.project-screen:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  top: -4px;
+  background: #d8fbff55;
+  box-shadow: 0 0 9px #d8fbff;
+  opacity: 0;
+  pointer-events: none;
+}
+.project-machine.switching .project-screen {
+  position: relative;
+}
+.project-machine.switching .project-screen:after {
+  opacity: 0.65;
+  animation: crtSweep 0.22s linear;
+}
+@keyframes crtSweep {
+  to {
+    top: 100%;
+  }
+}
+@media (max-width: 850px) {
+  .projects-lady {
+    right: 16px;
+    bottom: 12px;
+    transform: scale(0.82);
+    transform-origin: right bottom;
+  }
+  .project-parallax-layer {
+    opacity: 0.1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-water-shimmer,
+  .project-birds i,
+  .projects-lady img {
+    animation: none !important;
+  }
+  .project-parallax-layer {
+    transform: none !important;
+  }
+}

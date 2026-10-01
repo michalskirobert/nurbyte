@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import NotFoundLady from "./NotFoundLady";
+import "../styles/lady-404.scss";
 
 export default function NotFound() {
   return (

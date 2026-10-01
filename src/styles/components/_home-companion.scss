@@ -1,0 +1,80 @@
+/* === HOME v7 — natural arcade companion ================================== */
+/* The supplied sprite sheet already contains the game-like emotions.
+   Motion stays smooth/subtle; personality comes from real ? / heart frames. */
+.brand-lady {
+  width: 62px !important;
+  height: 58px !important;
+  overflow: visible !important;
+}
+.brand-lady img {
+  left: 5px !important;
+  bottom: 0 !important;
+  width: 52px !important;
+  height: 52px !important;
+  object-fit: contain !important;
+  image-rendering: auto !important;
+  transition: transform 0.32s ease !important;
+  animation: ladyNaturalIdle 3.4s ease-in-out infinite !important;
+}
+@keyframes ladyNaturalIdle {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0);
+  }
+  35% {
+    transform: translate3d(0, -1px, 0) rotate(-0.7deg);
+  }
+  70% {
+    transform: translate3d(0, -2px, 0) rotate(0.7deg);
+  }
+}
+.brand-lady.lady-react img {
+  animation: ladyNaturalReact 0.72s ease-in-out !important;
+}
+@keyframes ladyNaturalReact {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  45% {
+    transform: translateY(-3px) scale(1.035);
+  }
+}
+/* Retire the previous fake overworld movement classes. */
+.brand-lady.lady-step-right img,
+.brand-lady.lady-step-left img,
+.brand-lady.lady-hop img,
+.brand-lady.lady-turn img,
+.brand-lady.lady-walk img,
+.brand-lady.lady-peek img,
+.brand-lady.lady-jump img {
+  animation: ladyNaturalIdle 3.4s ease-in-out infinite !important;
+}
+
+/* HOME v7.1 — Lady speech bubble: enough room for short reactions such as "Woof!" */
+.lady-bubble {
+  box-sizing: border-box !important;
+  min-width: max-content !important;
+  width: auto !important;
+  max-width: 240px !important;
+  padding: 10px 14px !important;
+  line-height: 1.55 !important;
+  white-space: nowrap !important;
+}
+
+/* HOME v7.2 — speech bubble must size to pixel-font text, not clip it. */
+.lady-bubble {
+  box-sizing: border-box !important;
+  display: block !important;
+  width: max-content !important;
+  min-width: 128px !important;
+  max-width: 260px !important;
+  height: auto !important;
+  min-height: 32px !important;
+  padding: 8px 18px 9px !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  line-height: 14px !important;
+  text-align: center !important;
+  top: 54px !important;
+}

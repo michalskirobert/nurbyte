@@ -1,0 +1,12 @@
+/* === SECTION 04 / TECH v1 ============================================== */
+#tech.tech-game {
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #07151d url("/assets/backgrounds/tech.webp") center/cover
+    no-repeat;
+  padding: 104px 0 42px;
+}

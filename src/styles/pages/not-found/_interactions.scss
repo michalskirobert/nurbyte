@@ -1,0 +1,179 @@
+/* === v20 Header Lady interaction — component-driven sequence === */
+.hud .brand-lady,
+.brand-lady {
+  width: 58px !important;
+  height: 54px !important;
+  flex: 0 0 58px !important;
+  flex-basis: 58px !important;
+  margin-left: 7px !important;
+  overflow: visible !important;
+}
+.hud .brand-lady img,
+.brand-lady img {
+  width: 55px !important;
+  height: 55px !important;
+  left: 1px !important;
+  bottom: -2px !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+.brand-lady-question {
+  filter: drop-shadow(0 0 8px rgba(255, 211, 26, 0.8)) !important;
+}
+.brand-lady .lady-bubble {
+  top: 47px !important;
+  left: 50% !important;
+  z-index: 500 !important;
+}
+.brand-lady-hearts.is-active {
+  display: block !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  inset: -10px -9px -5px -9px !important;
+  overflow: visible !important;
+  z-index: 501 !important;
+  pointer-events: none !important;
+}
+.brand-lady-hearts.is-active span {
+  display: block !important;
+  opacity: 0;
+  color: #ffd31a !important;
+  font-size: 17px !important;
+  text-shadow: 0 0 7px rgba(255, 211, 26, 0.8);
+  animation: headerLadyHeartV20 0.82s ease-out forwards !important;
+}
+.brand-lady-hearts.is-active span:nth-child(1) {
+  left: 0 !important;
+  top: 24px !important;
+  animation-delay: 0s !important;
+}
+.brand-lady-hearts.is-active span:nth-child(2) {
+  right: 0 !important;
+  top: 10px !important;
+  animation-delay: 0.09s !important;
+}
+.brand-lady-hearts.is-active span:nth-child(3) {
+  right: 12px !important;
+  top: -1px !important;
+  animation-delay: 0.18s !important;
+}
+@keyframes headerLadyHeartV20 {
+  0% {
+    opacity: 0;
+    transform: translateY(7px) scale(0.55) rotate(-8deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-24px) scale(1.18) rotate(7deg);
+  }
+}
+@media (max-width: 760px) {
+  .hud .brand-lady,
+  .brand-lady {
+    width: 50px !important;
+    height: 48px !important;
+    flex: 0 0 50px !important;
+  }
+  .hud .brand-lady img,
+  .brand-lady img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .brand-lady .lady-bubble {
+    top: 42px !important;
+  }
+}
+
+/* === v10 Projects Lady: placement + header-consistent interaction === */
+#projects .projects-lady.projects-lady-button {
+  position: absolute !important;
+  z-index: 12 !important;
+  right: clamp(28px, 4.2vw, 76px) !important;
+  bottom: clamp(58px, 7vh, 96px) !important;
+  width: 158px !important;
+  height: 158px !important;
+  display: grid !important;
+  place-items: end center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  overflow: visible !important;
+  filter: none !important;
+  transform: none !important;
+  isolation: isolate;
+}
+#projects .projects-lady-sprite {
+  position: relative !important;
+  display: grid !important;
+  place-items: end center !important;
+  width: 148px !important;
+  height: 148px !important;
+  overflow: visible !important;
+  filter: drop-shadow(5px 7px 0 rgba(0, 0, 0, 0.42));
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease !important;
+}
+#projects .projects-lady-sprite img {
+  position: static !important;
+  width: 142px !important;
+  height: 142px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  image-rendering: pixelated !important;
+  animation: ladyProjectsIdle 2.4s ease-in-out infinite !important;
+}
+#projects .projects-lady-button:hover .projects-lady-sprite {
+  transform: translateY(-5px) scale(1.035) !important;
+  filter: drop-shadow(0 0 10px rgba(255, 211, 26, 0.62))
+    drop-shadow(5px 7px 0 rgba(0, 0, 0, 0.42)) !important;
+}
+#projects .projects-lady-bubble {
+  position: absolute !important;
+  z-index: 4 !important;
+  right: 116px !important;
+  top: 4px !important;
+  min-width: 72px !important;
+  width: max-content !important;
+  padding: 7px 9px !important;
+  background: #fff !important;
+  color: #07131e !important;
+  border: 2px solid #07131e !important;
+  font:
+    6px "Press Start 2P",
+    monospace !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+  box-shadow: 3px 3px 0 #07131e !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+}
+#projects .projects-lady-bubble::after {
+  content: "" !important;
+  position: absolute !important;
+  right: -7px !important;
+  bottom: 8px !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: #fff !important;
+  border-right: 2px solid #07131e !important;
+  border-bottom: 2px solid #07131e !important;
+  transform: rotate(-45deg) !important;
+}
+#projects .projects-lady-hearts {
+  position: absolute !important;
+  z-index: 6 !important;
+  left: 48% !important;
+  top: -5px !important;
+  width: 100px !important;
+  height: 70px !important;
+  pointer-events: none !important;
+}

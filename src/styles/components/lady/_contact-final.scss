@@ -1,0 +1,156 @@
+/* v22 Contact Lady: active sprite must remain visible during hover/focus/click. */
+#contact .contact-lady .contact-lady-sprites > .contact-lady-image.is-active,
+#contact
+  .contact-lady:hover
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady:focus
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady:focus-visible
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady:active
+  .contact-lady-sprites
+  > .contact-lady-image.is-active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  z-index: 2 !important;
+  transform: none !important;
+}
+
+/* v24 Contact Lady: keep the hover/question pose visually the same size as idle. */
+#contact
+  .contact-lady.contact-lady-question
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-question:hover
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-question:focus
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-question:focus-visible
+  .contact-lady-sprites
+  > .contact-lady-image.is-active {
+  transform: scale(0.82) !important;
+  transform-origin: 50% 100% !important;
+}
+
+/* v25 Contact Lady: keep the click/woof pose at the same visual scale as hover/idle. */
+#contact
+  .contact-lady.contact-lady-woof
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-woof:hover
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-woof:focus
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-woof:focus-visible
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-woof:active
+  .contact-lady-sprites
+  > .contact-lady-image.is-active {
+  transform: scale(0.82) !important;
+  transform-origin: 50% 100% !important;
+}
+
+/* v26: normalized contact sprites — identical canvas, baseline and visual height */
+#contact .contact-lady-stage > .contact-lady-sprites {
+  width: 270px !important;
+  height: 288px !important;
+}
+#contact .contact-lady-sprites > .contact-lady-image,
+#contact .contact-lady:hover .contact-lady-sprites > .contact-lady-image,
+#contact .contact-lady:focus .contact-lady-sprites > .contact-lady-image,
+#contact
+  .contact-lady:focus-visible
+  .contact-lady-sprites
+  > .contact-lady-image,
+#contact .contact-lady:active .contact-lady-sprites > .contact-lady-image,
+#contact
+  .contact-lady.contact-lady-question
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-question:hover
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-woof
+  .contact-lady-sprites
+  > .contact-lady-image.is-active,
+#contact
+  .contact-lady.contact-lady-woof:hover
+  .contact-lady-sprites
+  > .contact-lady-image.is-active {
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  transform: none !important;
+}
+#contact .contact-lady-stage > .contact-lady-bubble,
+#contact .contact-lady:hover .contact-lady-stage > .contact-lady-bubble,
+#contact .contact-lady:focus .contact-lady-stage > .contact-lady-bubble,
+#contact
+  .contact-lady:focus-visible
+  .contact-lady-stage
+  > .contact-lady-bubble {
+  bottom: 286px !important;
+}
+#contact .contact-lady-stage > .contact-lady-hearts {
+  bottom: 250px !important;
+}
+
+@media (max-width: 820px) {
+  #contact .contact-lady-stage > .contact-lady-sprites {
+    width: 250px !important;
+    height: 267px !important;
+  }
+  #contact .contact-lady-stage > .contact-lady-bubble,
+  #contact .contact-lady:hover .contact-lady-stage > .contact-lady-bubble,
+  #contact .contact-lady:focus .contact-lady-stage > .contact-lady-bubble,
+  #contact
+    .contact-lady:focus-visible
+    .contact-lady-stage
+    > .contact-lady-bubble {
+    bottom: 265px !important;
+  }
+  #contact .contact-lady-stage > .contact-lady-hearts {
+    bottom: 229px !important;
+  }
+}
+@media (max-width: 520px) {
+  #contact .contact-lady-stage > .contact-lady-sprites {
+    width: 215px !important;
+    height: 229px !important;
+  }
+  #contact .contact-lady-stage > .contact-lady-bubble,
+  #contact .contact-lady:hover .contact-lady-stage > .contact-lady-bubble,
+  #contact .contact-lady:focus .contact-lady-stage > .contact-lady-bubble,
+  #contact
+    .contact-lady:focus-visible
+    .contact-lady-stage
+    > .contact-lady-bubble {
+    bottom: 227px !important;
+  }
+  #contact .contact-lady-stage > .contact-lady-hearts {
+    bottom: 194px !important;
+  }
+}

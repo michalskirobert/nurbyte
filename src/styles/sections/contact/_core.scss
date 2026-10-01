@@ -1,0 +1,478 @@
+.cli-field {
+  display: block !important;
+  margin: 12px 0 !important;
+}
+.cli-field > span {
+  display: block;
+  color: #8ebca4 !important;
+  font-family: var(--terminal-font);
+  font-size: 19px !important;
+  margin-bottom: 3px;
+}
+.cli-field > span b {
+  color: #f5c518;
+}
+.cli-input {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: start;
+  border-bottom: 1px solid rgba(112, 220, 153, 0.22);
+  background: rgba(2, 15, 18, 0.72);
+}
+.cli-input:focus-within {
+  border-color: #f5c518;
+  box-shadow: 0 2px 0 rgba(245, 197, 24, 0.12);
+}
+.cli-input > i {
+  font-style: normal;
+  color: #f5c518;
+  padding: 9px 0 0 7px;
+  font-family: var(--terminal-font);
+}
+.contact-terminal .cli-input input,
+.contact-terminal .cli-input textarea {
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 8px !important;
+  color: #c9f2dc;
+}
+.cli-textarea textarea {
+  min-height: 108px;
+}
+.cli-field small {
+  display: block;
+  text-align: right;
+  color: #527564;
+  font-family: var(--terminal-font);
+  font-size: 15px;
+  margin-top: 2px;
+}
+.contact-categories {
+  display: flex;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin: 3px 0 0 !important;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(112, 220, 153, 0.22);
+}
+.contact-categories button {
+  font-family: var(--terminal-font) !important;
+  font-size: 18px !important;
+}
+.contact-categories button.active {
+  color: #f5c518 !important;
+  text-shadow: 0 0 8px rgba(245, 197, 24, 0.3);
+}
+.cli-divider {
+  overflow: hidden;
+  white-space: nowrap;
+  color: #214638;
+  font-family: var(--terminal-font);
+  font-size: 17px;
+  margin: 15px 0;
+}
+.terminal-submit {
+  font-family: var(--terminal-font) !important;
+  font-size: 17px !important;
+  letter-spacing: 0.02em;
+}
+.cli-status {
+  color: #69df91 !important;
+}
+.cli-prompt {
+  margin-top: 16px;
+  color: #c9f2dc;
+}
+@media (max-width: 760px), (pointer: coarse) {
+  .section-parallax-bg {
+    inset: 0;
+    transform: none !important;
+    scale: 1.03;
+  }
+  #about .scene-content,
+  #tech .scene-content,
+  #contact .scene-content,
+  #about .about-head,
+  #tech .tech-head,
+  #contact .contact-head,
+  #about .about-profile,
+  #about .about-log,
+  #tech .tech-inventory,
+  #tech .tech-inspector,
+  #contact .contact-terminal,
+  #contact .contact-lady {
+    transform: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-parallax-bg,
+  #about .scene-content,
+  #tech .scene-content,
+  #contact .scene-content {
+    transform: none !important;
+  }
+}
+
+/* === v6: visible parallax layers, no legacy pseudo-layer collision === */
+#about.about-game::before,
+#tech.tech-game::before,
+#contact.contact-game::before {
+  display: none !important;
+}
+#about.about-game,
+#tech.tech-game,
+#contact.contact-game {
+  background: #06131b !important;
+  position: relative !important;
+  isolation: isolate;
+}
+#about .section-parallax-bg,
+#tech .section-parallax-bg,
+#contact .section-parallax-bg {
+  z-index: 0 !important;
+  inset: -9% !important;
+  transform: translate3d(
+      calc(var(--mx, 0px) * -0.72),
+      calc(var(--my, 0px) * -0.58 + var(--sy, 0px) * -0.52),
+      0
+    )
+    scale(1.14) !important;
+  transition: transform 0.08s linear;
+}
+#about .about-shade,
+#about .about-scanlines,
+#tech .tech-shade,
+#tech .tech-scanlines,
+#contact .contact-shade,
+#contact .contact-scanlines {
+  z-index: 1 !important;
+  pointer-events: none;
+}
+#about .about-shell,
+#tech .tech-shell,
+#contact .contact-shell {
+  position: relative;
+  z-index: 2 !important;
+  transform: translate3d(
+    calc(var(--mx, 0px) * 0.11),
+    calc(var(--my, 0px) * 0.08 + var(--sy, 0px) * 0.035),
+    0
+  ) !important;
+}
+#contact .contact-lady {
+  z-index: 3;
+}
+@media (max-width: 760px), (pointer: coarse) {
+  #about .section-parallax-bg,
+  #tech .section-parallax-bg,
+  #contact .section-parallax-bg {
+    inset: 0 !important;
+    transform: scale(1.04) !important;
+  }
+  #about .about-shell,
+  #tech .tech-shell,
+  #contact .contact-shell {
+    transform: none !important;
+  }
+}
+
+/* Buttons: dark arcade inversion instead of white fill */
+.btn::before,
+.project-open::before,
+.all-projects-trigger::before {
+  background: #050b10 !important;
+}
+.btn:hover,
+.project-open:hover,
+.all-projects-trigger:hover {
+  color: #f5c518 !important;
+  background: #050b10 !important;
+  border-color: #f5c518 !important;
+  box-shadow:
+    3px 3px 0 #f5c518,
+    7px 7px 0 rgba(0, 0, 0, 0.75) !important;
+  text-shadow: 0 0 9px rgba(245, 197, 24, 0.38);
+}
+.btn:active,
+.project-open:active,
+.all-projects-trigger:active {
+  color: #050b10 !important;
+  background: #f5c518 !important;
+  box-shadow: 1px 1px 0 #000 !important;
+}
+
+/* Contact is a CLI session now, not a conventional form */
+.contact-cli {
+  min-height: 510px;
+}
+.contact-cli .term-bar {
+  position: relative !important;
+  height: 36px;
+}
+.cli-screen {
+  height: 474px;
+  overflow-y: auto;
+  padding: 20px 22px;
+  background: rgba(0, 8, 10, 0.94);
+  font-family: var(--terminal-font);
+  font-size: 21px;
+  line-height: 1.35;
+  color: #a9cbb9;
+  scrollbar-width: thin;
+  scrollbar-color: #806d17 #020708;
+}
+.cli-history > div {
+  margin: 2px 0;
+}
+.cli-history > div:first-child,
+.cli-question {
+  color: #f5c518;
+}
+.cli-history .ok {
+  color: #70dc95;
+}
+.cli-active {
+  margin-top: 18px;
+  animation: cliIn 0.18s steps(3, end);
+}
+.cli-active > span {
+  display: block;
+  margin-bottom: 6px;
+}
+.cli-active > div:not(.cli-options) {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.cli-active b {
+  color: #f5c518;
+  font-weight: 400;
+}
+.cli-active input,
+.cli-active textarea {
+  flex: 1 !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #e0f3e8 !important;
+  font: inherit !important;
+  outline: 0 !important;
+}
+.cli-active textarea {
+  min-height: 130px !important;
+  resize: none !important;
+}
+.cli-active small {
+  display: block;
+  color: #587266;
+  font-size: 16px;
+  margin-top: 7px;
+}
+.cli-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.cli-options button,
+.terminal-command {
+  border: 0;
+  background: transparent;
+  color: #b7d1c2;
+  font: inherit;
+  cursor: pointer;
+  padding: 3px 6px;
+}
+.cli-options button:hover,
+.cli-options button:focus-visible {
+  background: #f5c518;
+  color: #06131b;
+  outline: 0;
+}
+.cli-confirm {
+  border-top: 1px dashed #2b5946;
+  padding-top: 15px;
+}
+.cli-confirm em {
+  color: #f5c518;
+  font-style: normal;
+}
+.terminal-command {
+  display: block !important;
+  margin-top: 12px !important;
+  color: #f5c518 !important;
+  text-align: left;
+}
+.terminal-command:hover {
+  background: #f5c518 !important;
+  color: #06131b !important;
+}
+.terminal-command span {
+  color: #fff;
+}
+.cli-done {
+  margin-top: 18px;
+  color: #70dc95;
+}
+@keyframes cliIn {
+  from {
+    opacity: 0.2;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* === v7: contact behaves like a real terminal session === */
+.contact-cli .cli-screen {
+  position: relative;
+}
+.cli-history > div {
+  font-family: var(--terminal-font);
+  white-space: pre-wrap;
+}
+.cli-command {
+  color: #f5c518 !important;
+}
+.cli-success {
+  color: #65df91 !important;
+}
+.cli-error {
+  color: #ff5b62 !important;
+  text-shadow: 0 0 8px rgba(255, 70, 80, 0.16);
+}
+.cli-warning {
+  color: #f5c518 !important;
+}
+.cli-muted {
+  color: #789486 !important;
+}
+.cli-live-prompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-family: var(--terminal-font);
+  font-size: 21px;
+  color: #d9eee2;
+}
+.cli-shell {
+  color: #f5c518;
+  white-space: nowrap;
+}
+.cli-live-prompt input {
+  width: 1px;
+  min-width: 0;
+  flex: 1;
+  border: 0 !important;
+  background: transparent !important;
+  color: #d9eee2 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  caret-color: transparent;
+}
+.cli-caret {
+  color: #eaf6ef;
+  animation: terminalBlink 1s steps(1, end) infinite;
+}
+.cli-hint {
+  margin: 4px 0 0;
+  color: #577265;
+  font-family: var(--terminal-font);
+  font-size: 16px;
+}
+.cli-editor {
+  margin-top: 12px;
+  border: 1px solid #718b7d;
+  background: #061015;
+  box-shadow: 0 0 0 1px #172b22 inset;
+}
+.cli-editor-bar {
+  background: #d9e2dc;
+  color: #07110d;
+  text-align: center;
+  padding: 3px 8px;
+  font-family: var(--terminal-font);
+  font-size: 17px;
+}
+.contact-cli .cli-editor textarea {
+  display: block;
+  width: 100%;
+  height: 150px !important;
+  min-height: 150px !important;
+  border: 0 !important;
+  background: #061015 !important;
+  color: #d9eee2 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  padding: 10px 12px !important;
+  resize: none !important;
+  font-family: var(--terminal-font) !important;
+  font-size: 20px !important;
+  caret-color: #f5c518;
+}
+.cli-editor-footer {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  gap: 10px;
+  border-top: 1px solid #32483d;
+  padding: 4px 8px;
+  color: #b6c8be;
+  font-family: var(--terminal-font);
+  font-size: 15px;
+}
+.cli-editor-footer span:nth-child(3) {
+  text-align: right;
+}
+.cli-review {
+  margin-top: 15px;
+  border-top: 1px dashed #315142;
+  padding-top: 10px;
+  color: #b7d2c3;
+  font-family: var(--terminal-font);
+  font-size: 19px;
+}
+.cli-review > div:first-child {
+  color: #f5c518;
+}
+.cli-rule {
+  color: #315142;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.cli-review p {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  margin: 3px 0;
+}
+.cli-review p span {
+  color: #6e8f7e;
+}
+@keyframes terminalBlink {
+  0%,
+  48% {
+    opacity: 1;
+  }
+  49%,
+  100% {
+    opacity: 0;
+  }
+}
+@media (max-width: 760px) {
+  .cli-editor-footer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .cli-editor-footer span:nth-child(3) {
+    text-align: left;
+  }
+  .cli-review p {
+    grid-template-columns: 82px 1fr;
+  }
+}

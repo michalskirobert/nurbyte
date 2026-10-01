@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="DocFlow">
-<path d="M53 25h102l48 48v158H53z" fill="#fff7df" stroke="#07131e" stroke-width="12" stroke-linejoin="round"/>
-<path d="M155 25v50h48" fill="#ffd229" stroke="#07131e" stroke-width="12" stroke-linejoin="round"/>
-<path d="M81 105h94M81 137h94M81 169h58" stroke="#07131e" stroke-width="12" stroke-linecap="square"/>
-<path d="M135 178h78v45h-78z" fill="#ffd229" stroke="#07131e" stroke-width="10"/>
-<path d="M160 194l13 13 25-28" fill="none" stroke="#07131e" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/>
-</svg>

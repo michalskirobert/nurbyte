@@ -20,10 +20,13 @@ export default function TechInventory({ items, selected, onSelect }: Props) {
           onMouseOver={() => onSelect(index)}
           onFocus={() => onSelect(index)}
         >
-          {/* External Simple Icons URL is intentionally kept exactly as in the HTML master. */}
           <img
             src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`}
             alt=""
+            width={28}
+            height={28}
+            loading="lazy"
+            decoding="async"
           />
           <span>{String(index + 1).padStart(2, "0")}</span>
         </button>

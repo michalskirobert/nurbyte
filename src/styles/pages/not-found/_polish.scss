@@ -1,0 +1,195 @@
+/* === v36 404: Lady locked beside 404 + single rendered state ============ */
+.not-found-brand {
+  gap: 10px !important;
+}
+.not-found-brand img {
+  width: 54px !important;
+  height: 54px !important;
+}
+.not-found-brand-copy {
+  font-family: var(--hud) !important;
+  font-size: 22px !important;
+  line-height: 1 !important;
+  color: #fff !important;
+}
+.not-found-brand-copy strong {
+  display: block !important;
+  font: inherit !important;
+  color: inherit !important;
+}
+.not-found-brand-copy strong b {
+  color: var(--yellow) !important;
+}
+.not-found-brand-copy small {
+  display: block !important;
+  margin-top: 7px !important;
+  font-family: var(--display) !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  letter-spacing: 1px !important;
+  color: #fff !important;
+}
+.not-found-hero-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 3vw, 46px);
+  width: max-content;
+  max-width: calc(100vw - 8vw);
+}
+.not-found-hero-row .not-found-lady-v36 {
+  position: relative !important;
+  inset: auto !important;
+  flex: 0 0 clamp(250px, 24vw, 350px);
+  width: clamp(250px, 24vw, 350px) !important;
+  height: clamp(190px, 20vw, 270px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  cursor: pointer;
+  transform: none !important;
+  animation: none !important;
+  z-index: 4;
+}
+.not-found-lady-v36-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+.not-found-lady-v36-stage img {
+  display: block !important;
+  position: static !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  max-width: 100% !important;
+  filter: drop-shadow(0 16px 18px #0008);
+  transform: none !important;
+}
+.not-found-lady-v36.is-search .not-found-lady-v36-stage img,
+.not-found-lady-v36.is-toy .not-found-lady-v36-stage img {
+  width: 100% !important;
+  height: 88% !important;
+}
+.not-found-lady-v36.is-question .not-found-lady-v36-stage img,
+.not-found-lady-v36.is-love .not-found-lady-v36-stage img {
+  width: auto !important;
+  height: 88% !important;
+}
+.not-found-lady-v36-bubble {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  z-index: 8;
+  transform: translateX(-50%);
+  min-width: max-content;
+  padding: 9px 13px;
+  border: 2px solid #071018;
+  background: var(--nf-yellow);
+  color: #071018;
+  box-shadow: 5px 5px 0 #071018;
+  font: 9px/1 var(--font-press);
+  pointer-events: none;
+}
+.not-found-lady-v36-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  transform: translateX(-50%) rotate(45deg);
+  border-right: 2px solid #071018;
+  border-bottom: 2px solid #071018;
+  background: inherit;
+}
+.not-found-lady-v36.is-love .not-found-lady-v36-bubble {
+  background: #ff668c;
+}
+.not-found-lady-v36-hearts {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  width: 180px;
+  transform: translateX(-50%);
+  z-index: 9;
+  pointer-events: none;
+}
+.not-found-lady-v36-hearts i {
+  position: absolute;
+  color: #ff668c;
+  font-style: normal;
+  font-size: 24px;
+  animation: nfV36Heart 850ms ease-out both;
+}
+.not-found-lady-v36-hearts i:nth-child(1) {
+  left: 10px;
+  top: 20px;
+}
+.not-found-lady-v36-hearts i:nth-child(2) {
+  left: 78px;
+  top: -12px;
+  animation-delay: 70ms;
+}
+.not-found-lady-v36-hearts i:nth-child(3) {
+  right: 8px;
+  top: 22px;
+  animation-delay: 130ms;
+}
+@keyframes nfV36Heart {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-12px) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .not-found-hero-row {
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+  .not-found-hero-row h1 {
+    flex: 0 1 auto;
+    font-size: clamp(82px, 27vw, 138px) !important;
+  }
+  .not-found-hero-row .not-found-lady-v36 {
+    flex-basis: clamp(118px, 31vw, 180px);
+    width: clamp(118px, 31vw, 180px) !important;
+    height: clamp(112px, 29vw, 168px) !important;
+  }
+  .not-found-lady-v36-bubble {
+    top: -5px;
+    padding: 6px 7px;
+    font-size: 6px;
+    box-shadow: 3px 3px 0 #071018;
+  }
+  .not-found-brand img {
+    width: 42px !important;
+    height: 42px !important;
+  }
+  .not-found-brand-copy {
+    font-size: 18px !important;
+  }
+  .not-found-brand-copy small {
+    font-size: 9px !important;
+  }
+}
+
+/* === v37 preload gate + 404 Lady facing the route number ================= */
+/* Sniffing Lady looks back toward 404. Only the artwork is mirrored. */
+.not-found-lady-v36.is-search .not-found-lady-v36-stage img {
+  transform: scaleX(-1) !important;
+}

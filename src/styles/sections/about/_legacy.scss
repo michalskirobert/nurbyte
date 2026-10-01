@@ -1,0 +1,354 @@
+/* === SECTION 03 / ABOUT v1 ============================================== */
+#about.about-game {
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #07151d url("/assets/backgrounds/about.webp") center center/cover
+    no-repeat;
+  padding: 104px 0 42px;
+}
+#about .about-shade {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 9, 14, 0.84) 0%,
+      rgba(3, 9, 14, 0.66) 40%,
+      rgba(3, 9, 14, 0.2) 70%,
+      rgba(3, 9, 14, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(2, 7, 11, 0.56), transparent 42%);
+}
+#about .about-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.13;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(0, 0, 0, 0.38) 4px
+  );
+}
+#about .about-shell {
+  width: min(1320px, 92vw);
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+#about .about-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+#about .about-head h2 {
+  margin: 7px 0 0;
+  font:
+    700 clamp(46px, 5.2vw, 76px)/0.86 "Pixelify Sans",
+    sans-serif;
+  color: #f5f5ed;
+  text-shadow: 4px 4px 0 #061019;
+}
+#about .about-head h2 em {
+  font-style: normal;
+  color: #ffd31a;
+}
+#about .about-area {
+  width: max-content;
+  padding: 8px 11px 7px;
+  color: #eaf5f6;
+  background: rgba(4, 15, 23, 0.78);
+  border: 1px solid rgba(255, 211, 26, 0.72);
+  box-shadow: 3px 3px 0 rgba(2, 7, 12, 0.72);
+  font:
+    8px "Press Start 2P",
+    monospace;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+#about .about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(390px, 0.92fr);
+  gap: 22px;
+  align-items: stretch;
+}
+#about .about-profile,
+#about .about-log {
+  border: 2px solid #a98725;
+  background: rgba(4, 15, 23, 0.9);
+  box-shadow: 8px 8px 0 rgba(2, 7, 12, 0.84);
+}
+#about .about-profile {
+  padding: 36px 38px 32px;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#about .about-card-label {
+  color: #78d7dd;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  letter-spacing: 0.08em;
+}
+#about .about-profile h3 {
+  margin: 18px 0 14px;
+  font:
+    700 clamp(43px, 4.3vw, 65px)/0.82 "Pixelify Sans",
+    sans-serif;
+  color: #f4f3e9;
+}
+#about .about-profile h3 em {
+  font-style: normal;
+  color: #ffd31a;
+}
+#about .about-profile > p {
+  max-width: 680px;
+  margin: 0;
+  color: #d7dedc;
+  font:
+    18px/1.45 "VT323",
+    monospace;
+}
+#about .about-location {
+  display: grid;
+  grid-template-columns: auto auto 28px auto auto;
+  align-items: center;
+  gap: 9px;
+  width: max-content;
+  max-width: 100%;
+  margin: 23px 0;
+  color: #d7dedc;
+  font:
+    8px "Press Start 2P",
+    monospace;
+}
+#about .about-location span {
+  opacity: 0.58;
+}
+#about .about-location b {
+  color: #ffd31a;
+}
+#about .about-location i {
+  font-style: normal;
+  text-align: center;
+  color: #78d7dd;
+  font-size: 14px;
+}
+#about .about-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#about .about-log {
+  padding: 0;
+  min-height: 420px;
+}
+#about .about-log-title {
+  min-height: 48px;
+  padding: 0 17px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #816b2c;
+  background: #071722;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  color: #ffd31a;
+}
+#about .about-log-title i {
+  font-style: normal;
+  color: #6bd38a;
+  font-size: 7px;
+}
+#about .about-stat {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 13px;
+  padding: 18px 18px 15px;
+  border-bottom: 1px solid rgba(169, 135, 37, 0.45);
+}
+#about .about-stat > span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid #ffd31a;
+  color: #ffd31a;
+  font:
+    8px "Press Start 2P",
+    monospace;
+  background: #0b1d27;
+}
+#about .about-stat b {
+  color: #f1f2e8;
+  font:
+    8px/1.4 "Press Start 2P",
+    monospace;
+}
+#about .about-stat p {
+  margin: 7px 0 0;
+  color: #bfcac8;
+  font:
+    16px/1.25 "VT323",
+    monospace;
+}
+#about .about-inventory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  padding: 16px 18px 18px;
+}
+#about .about-inventory span {
+  padding: 7px 8px;
+  border: 1px solid rgba(120, 215, 221, 0.46);
+  background: #0a202a;
+  color: #c8e8e9;
+  font:
+    7px "Press Start 2P",
+    monospace;
+}
+
+@media (max-height: 780px) and (min-width: 851px) {
+  #about.about-game {
+    padding-top: 86px;
+    padding-bottom: 24px;
+  }
+  #about .about-head {
+    margin-bottom: 14px;
+  }
+  #about .about-profile,
+  #about .about-log {
+    min-height: 350px;
+  }
+  #about .about-profile {
+    padding: 25px 30px;
+  }
+  #about .about-profile h3 {
+    font-size: 49px;
+  }
+  #about .about-stat {
+    padding: 12px 15px;
+  }
+  #about .about-inventory {
+    padding: 11px 15px 14px;
+  }
+}
+@media (max-width: 850px) {
+  #about.about-game {
+    min-height: auto;
+    overflow: hidden;
+    align-items: flex-start;
+    padding: 86px 0 34px;
+    background-position: 61% center;
+  }
+  #about .about-shade {
+    background: linear-gradient(
+      180deg,
+      rgba(3, 9, 14, 0.36),
+      rgba(3, 9, 14, 0.77) 38%,
+      rgba(3, 9, 14, 0.92) 100%
+    );
+  }
+  #about .about-shell {
+    width: 100%;
+  }
+  #about .about-head {
+    display: block;
+    padding: 0 18px;
+    margin-bottom: 15px;
+  }
+  #about .about-head h2 {
+    font-size: 43px;
+    max-width: 330px;
+  }
+  #about .about-area {
+    margin-top: 12px;
+    font-size: 6px;
+    padding: 6px 8px 5px;
+  }
+  #about .about-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 18px;
+  }
+  #about .about-profile,
+  #about .about-log {
+    min-height: 0;
+    box-shadow: 4px 4px 0 rgba(2, 7, 12, 0.84);
+  }
+  #about .about-profile {
+    padding: 22px 18px 20px;
+  }
+  #about .about-profile h3 {
+    font-size: 42px;
+    margin: 15px 0 10px;
+  }
+  #about .about-profile > p {
+    font-size: 17px;
+  }
+  #about .about-location {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 10px;
+    margin: 18px 0;
+  }
+  #about .about-location i {
+    display: none;
+  }
+  #about .about-location span:nth-of-type(2) {
+    grid-column: 1;
+  }
+  #about .about-actions {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+  #about .about-actions .btn {
+    min-width: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  #about .about-stat {
+    padding: 14px;
+  }
+  #about .about-inventory {
+    padding: 13px 14px 15px;
+  }
+}
+@media (max-width: 430px) {
+  #about .about-head h2 {
+    font-size: 38px;
+  }
+  #about .about-profile h3 {
+    font-size: 37px;
+  }
+  #about .about-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === ABOUT v2 — professional content refinement ========================= */
+#about .about-professional-meta {
+  grid-template-columns: auto auto 18px auto auto;
+}
+#about .about-professional-meta b:last-child {
+  color: #f2f3e9;
+}
+@media (max-width: 850px) {
+  #about .about-professional-meta {
+    grid-template-columns: auto 1fr !important;
+  }
+  #about .about-professional-meta span:nth-of-type(2) {
+    grid-column: 1 !important;
+  }
+}

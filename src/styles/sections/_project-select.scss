@@ -1,0 +1,330 @@
+/* === SECTION 02 / PROJECT SELECT ========================================= */
+.projects-game {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #071622;
+  color: #fff;
+  padding: 118px 5vw 58px;
+}
+.projects-world {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 25%, #234d61aa 0, transparent 34%),
+    linear-gradient(to bottom, #081a29 0%, #0d2938 48%, #07151e 100%);
+  z-index: 0;
+}
+.projects-world:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 62px, #ffd31a 63px 64px),
+    repeating-linear-gradient(0deg, transparent 0 62px, #50d5ff 63px 64px);
+  transform: perspective(500px) rotateX(64deg) scale(1.35);
+  transform-origin: center bottom;
+}
+.projects-shell {
+  position: relative;
+  z-index: 2;
+  max-width: 1380px;
+  margin: auto;
+}
+.projects-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.section-kicker {
+  font:
+    9px "Press Start 2P",
+    monospace;
+  color: #ffd31a;
+  letter-spacing: 0.08em;
+}
+.projects-head h2 {
+  font:
+    700 clamp(34px, 4vw, 66px)/0.95 "Pixelify Sans",
+    sans-serif;
+  margin: 10px 0 0;
+}
+.projects-head h2 em {
+  font-style: normal;
+  color: #ffd31a;
+}
+.project-counter {
+  font: 700 34px "Pixelify Sans";
+  color: #ffd31a;
+}
+.project-counter small {
+  font-size: 18px;
+  color: #7d98a5;
+  margin: 0 7px;
+}
+.project-counter span:last-child {
+  color: #fff;
+}
+.project-selector {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 54px;
+  align-items: center;
+  gap: 18px;
+}
+.project-arrow {
+  width: 52px;
+  height: 72px;
+  border: 1px solid #31566a;
+  background: #071725cc;
+  color: #ffd31a;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #02090f;
+}
+.project-arrow:hover {
+  border-color: #ffd31a;
+  transform: translateY(-2px);
+}
+.project-machine {
+  min-width: 0;
+  outline: none;
+}
+.project-machine:focus-visible {
+  box-shadow: 0 0 0 2px #ffd31a;
+}
+.project-screen {
+  display: grid;
+  grid-template-columns: minmax(320px, 1.08fr) minmax(330px, 0.92fr);
+  min-height: 470px;
+  border: 2px solid #31566a;
+  background: #07131ed9;
+  box-shadow:
+    8px 8px 0 #02090f,
+    0 0 38px #21b8ff10;
+  backdrop-filter: blur(8px);
+}
+.project-art {
+  position: relative;
+  overflow: hidden;
+  border-right: 2px solid #31566a;
+  background: linear-gradient(145deg, #102f40, #07131e);
+  display: grid;
+  place-items: center;
+}
+.project-art-placeholder {
+  width: 72%;
+  aspect-ratio: 16/10;
+  border: 2px solid #ffd31a55;
+  background: linear-gradient(135deg, #132f3f, #0a1c29);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  box-shadow:
+    inset 0 0 40px #0008,
+    0 0 34px #ffd31a0d;
+}
+.project-art-placeholder span {
+  font: 700 clamp(60px, 9vw, 130px)/1 "Pixelify Sans";
+  color: #ffd31a;
+  text-shadow: 6px 6px 0 #0008;
+}
+.project-art-placeholder small {
+  font: 8px "Press Start 2P";
+  color: #bcd0d9;
+}
+.crt-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.055;
+  background: repeating-linear-gradient(
+    to bottom,
+    #fff 0 1px,
+    transparent 1px 4px
+  );
+}
+.project-info {
+  padding: clamp(28px, 4vw, 54px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font: 8px "Press Start 2P";
+  color: #7ea1b1;
+}
+.project-meta i {
+  font-style: normal;
+  color: #52efa0;
+}
+.project-info h3 {
+  font: 700 clamp(42px, 5vw, 76px)/0.9 "Pixelify Sans";
+  margin: 22px 0 15px;
+  color: #fff;
+}
+.project-info p {
+  max-width: 540px;
+  color: #c5d6de;
+  line-height: 1.65;
+  margin: 0;
+}
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 23px 0;
+}
+.project-tech span {
+  padding: 7px 9px;
+  border: 1px solid #31566a;
+  background: #0b2230;
+  font: 8px "Press Start 2P";
+  color: #bcd0d9;
+}
+.project-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.project-actions a,
+.project-actions button {
+  padding: 13px 15px;
+  border: 1px solid #ffd31a;
+  background: #ffd31a;
+  color: #07131e;
+  font: 8px "Press Start 2P";
+  text-decoration: none;
+  cursor: pointer;
+}
+.project-actions button {
+  background: transparent;
+  color: #fff;
+  border-color: #31566a;
+}
+.project-strip-wrap {
+  overflow: hidden;
+  margin: 20px 72px 0;
+}
+.project-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 3px 2px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #31566a transparent;
+}
+.project-chip {
+  flex: 0 0 170px;
+  height: 56px;
+  border: 1px solid #294b5c;
+  background: #081925;
+  color: #8fa8b3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+.project-chip b {
+  font: 700 18px "Pixelify Sans";
+  color: #fff;
+}
+.project-chip small {
+  display: block;
+  font: 6px "Press Start 2P";
+  margin-top: 3px;
+}
+.project-chip.active {
+  border-color: #ffd31a;
+  background: #16291f;
+  box-shadow: inset 3px 0 #ffd31a;
+}
+.project-chip.locked b {
+  color: #ffd31a;
+}
+.projects-help {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  color: #668390;
+  font: 7px "Press Start 2P";
+  margin-top: 7px;
+}
+.project-grid-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #02080dd9;
+  display: grid;
+  place-items: center;
+  padding: 5vw;
+}
+.project-grid-modal[hidden] {
+  display: none;
+}
+.project-grid-panel {
+  width: min(1180px, 100%);
+  max-height: 82vh;
+  overflow: auto;
+  border: 2px solid #31566a;
+  background: #07131e;
+  padding: 24px;
+  box-shadow: 10px 10px 0 #000;
+}
+.project-grid-panel > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.project-grid-panel header span {
+  font: 7px "Press Start 2P";
+  color: #ffd31a;
+}
+.project-grid-panel h3 {
+  font: 700 38px "Pixelify Sans";
+  margin: 4px 0;
+}
+.project-grid-panel header button {
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid #31566a;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+.grid-project {
+  min-height: 130px;
+  border: 1px solid #294b5c;
+  background: #0a1d29;
+  padding: 16px;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+.grid-project b {
+  font: 700 24px "Pixelify Sans";
+}
+.grid-project span {
+  display: block;
+  color: #7895a2;
+  font: 7px "Press Start 2P";
+  margin-top: 8px;
+}
+.grid-project.locked {
+  border-style: dashed;
+  color: #ffd31a;
+}

@@ -1,0 +1,260 @@
+/* v27 Contact Lady — final state geometry lock.
+   Hover/click may swap the artwork only; they cannot resize or move Lady. */
+#contact button.contact-lady,
+#contact button.contact-lady:hover,
+#contact button.contact-lady:focus,
+#contact button.contact-lady:focus-visible,
+#contact button.contact-lady:active,
+#contact button.contact-lady.contact-lady-idle,
+#contact button.contact-lady.contact-lady-question,
+#contact button.contact-lady.contact-lady-love,
+#contact button.contact-lady.contact-lady-woof {
+  transform: none !important;
+}
+
+#contact button.contact-lady > .contact-lady-stage,
+#contact button.contact-lady:hover > .contact-lady-stage,
+#contact button.contact-lady:focus > .contact-lady-stage,
+#contact button.contact-lady:focus-visible > .contact-lady-stage,
+#contact button.contact-lady:active > .contact-lady-stage,
+#contact button.contact-lady.contact-lady-idle > .contact-lady-stage,
+#contact button.contact-lady.contact-lady-question > .contact-lady-stage,
+#contact button.contact-lady.contact-lady-love > .contact-lady-stage,
+#contact button.contact-lady.contact-lady-woof > .contact-lady-stage {
+  width: 300px !important;
+  height: 350px !important;
+  min-width: 300px !important;
+  min-height: 350px !important;
+  transform: none !important;
+}
+
+#contact button.contact-lady .contact-lady-stage > .contact-lady-sprites,
+#contact button.contact-lady:hover .contact-lady-stage > .contact-lady-sprites,
+#contact button.contact-lady:focus .contact-lady-stage > .contact-lady-sprites,
+#contact
+  button.contact-lady:focus-visible
+  .contact-lady-stage
+  > .contact-lady-sprites,
+#contact button.contact-lady:active .contact-lady-stage > .contact-lady-sprites,
+#contact
+  button.contact-lady.contact-lady-idle
+  .contact-lady-stage
+  > .contact-lady-sprites,
+#contact
+  button.contact-lady.contact-lady-question
+  .contact-lady-stage
+  > .contact-lady-sprites,
+#contact
+  button.contact-lady.contact-lady-love
+  .contact-lady-stage
+  > .contact-lady-sprites,
+#contact
+  button.contact-lady.contact-lady-woof
+  .contact-lady-stage
+  > .contact-lady-sprites {
+  position: absolute !important;
+  left: 50% !important;
+  right: auto !important;
+  top: auto !important;
+  bottom: 0 !important;
+  width: 270px !important;
+  height: 288px !important;
+  min-width: 270px !important;
+  min-height: 288px !important;
+  max-width: 270px !important;
+  max-height: 288px !important;
+  transform: translateX(-50%) !important;
+  transform-origin: 50% 100% !important;
+}
+
+#contact button.contact-lady .contact-lady-sprites > img.contact-lady-image,
+#contact
+  button.contact-lady:hover
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady:focus
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady:focus-visible
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady:active
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady.contact-lady-idle
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady.contact-lady-question
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady.contact-lady-love
+  .contact-lady-sprites
+  > img.contact-lady-image,
+#contact
+  button.contact-lady.contact-lady-woof
+  .contact-lady-sprites
+  > img.contact-lady-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 270px !important;
+  height: 288px !important;
+  min-width: 270px !important;
+  min-height: 288px !important;
+  max-width: 270px !important;
+  max-height: 288px !important;
+  object-fit: contain !important;
+  object-position: 50% 100% !important;
+  transform: none !important;
+  transform-origin: 50% 100% !important;
+}
+
+#contact button.contact-lady .contact-lady-stage > .contact-lady-bubble,
+#contact button.contact-lady:hover .contact-lady-stage > .contact-lady-bubble,
+#contact button.contact-lady:focus .contact-lady-stage > .contact-lady-bubble,
+#contact
+  button.contact-lady:focus-visible
+  .contact-lady-stage
+  > .contact-lady-bubble,
+#contact button.contact-lady:active .contact-lady-stage > .contact-lady-bubble,
+#contact
+  button.contact-lady.contact-lady-idle
+  .contact-lady-stage
+  > .contact-lady-bubble,
+#contact
+  button.contact-lady.contact-lady-question
+  .contact-lady-stage
+  > .contact-lady-bubble,
+#contact
+  button.contact-lady.contact-lady-love
+  .contact-lady-stage
+  > .contact-lady-bubble,
+#contact
+  button.contact-lady.contact-lady-woof
+  .contact-lady-stage
+  > .contact-lady-bubble {
+  top: auto !important;
+  bottom: 286px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+
+#contact button.contact-lady .contact-lady-stage > .contact-lady-hearts,
+#contact button.contact-lady:hover .contact-lady-stage > .contact-lady-hearts,
+#contact button.contact-lady:active .contact-lady-stage > .contact-lady-hearts {
+  top: auto !important;
+  bottom: 250px !important;
+}
+
+@media (max-width: 820px) {
+  #contact button.contact-lady .contact-lady-stage > .contact-lady-sprites,
+  #contact
+    button.contact-lady:hover
+    .contact-lady-stage
+    > .contact-lady-sprites,
+  #contact
+    button.contact-lady:active
+    .contact-lady-stage
+    > .contact-lady-sprites {
+    width: 250px !important;
+    height: 267px !important;
+    min-width: 250px !important;
+    min-height: 267px !important;
+    max-width: 250px !important;
+    max-height: 267px !important;
+  }
+  #contact button.contact-lady .contact-lady-sprites > img.contact-lady-image,
+  #contact
+    button.contact-lady:hover
+    .contact-lady-sprites
+    > img.contact-lady-image,
+  #contact
+    button.contact-lady:active
+    .contact-lady-sprites
+    > img.contact-lady-image {
+    width: 250px !important;
+    height: 267px !important;
+    min-width: 250px !important;
+    min-height: 267px !important;
+    max-width: 250px !important;
+    max-height: 267px !important;
+  }
+  #contact button.contact-lady .contact-lady-stage > .contact-lady-bubble,
+  #contact button.contact-lady:hover .contact-lady-stage > .contact-lady-bubble,
+  #contact
+    button.contact-lady:active
+    .contact-lady-stage
+    > .contact-lady-bubble {
+    top: auto !important;
+    bottom: 265px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #contact button.contact-lady .contact-lady-stage > .contact-lady-sprites,
+  #contact
+    button.contact-lady:hover
+    .contact-lady-stage
+    > .contact-lady-sprites,
+  #contact
+    button.contact-lady:active
+    .contact-lady-stage
+    > .contact-lady-sprites {
+    width: 215px !important;
+    height: 229px !important;
+    min-width: 215px !important;
+    min-height: 229px !important;
+    max-width: 215px !important;
+    max-height: 229px !important;
+  }
+  #contact button.contact-lady .contact-lady-sprites > img.contact-lady-image,
+  #contact
+    button.contact-lady:hover
+    .contact-lady-sprites
+    > img.contact-lady-image,
+  #contact
+    button.contact-lady:active
+    .contact-lady-sprites
+    > img.contact-lady-image {
+    width: 215px !important;
+    height: 229px !important;
+    min-width: 215px !important;
+    min-height: 229px !important;
+    max-width: 215px !important;
+    max-height: 229px !important;
+  }
+  #contact button.contact-lady .contact-lady-stage > .contact-lady-bubble,
+  #contact button.contact-lady:hover .contact-lady-stage > .contact-lady-bubble,
+  #contact
+    button.contact-lady:active
+    .contact-lady-stage
+    > .contact-lady-bubble {
+    top: auto !important;
+    bottom: 227px !important;
+  }
+}
+
+/* v28 Projects Lady — 10px lower */
+@media (min-width: 901px) {
+  #projects > .projects-lady.projects-lady-button {
+    bottom: clamp(34px, calc(7vh - 20px), 62px) !important;
+  }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  #projects > .projects-lady.projects-lady-button {
+    bottom: 32px !important;
+  }
+}
+
+/* === v29 Projects: force Lady visibly 12px lower ========================== */
+@media (min-width: 601px) {
+  #projects > button.projects-lady.projects-lady-button {
+    transform: translateY(12px) !important;
+  }
+}

@@ -1,0 +1,306 @@
+/* === PROJECTS v4 — corrected layering ====================================
+   Verified asset audit:
+   parallax-sheet.webp is RGB (no alpha), therefore it must NEVER be used as an overlay.
+   projects.png remains the sole full-scene background.
+   Only verified RGBA Lady sprites are used as independent image objects.
+============================================================================ */
+.project-parallax-layer {
+  display: none !important;
+  background: none !important;
+}
+.projects-game {
+  background-image: url("/assets/backgrounds/projects.webp") !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+.projects-world {
+  background: none !important;
+}
+.project-water-shimmer {
+  opacity: 0.085 !important;
+  mix-blend-mode: screen;
+}
+.projects-lady {
+  right: 3.6vw !important;
+  bottom: 28px !important;
+}
+.projects-lady img {
+  image-rendering: pixelated;
+}
+
+/* Gentle camera depth without introducing a duplicate scene. */
+.projects-game::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 78% 43%,
+      rgba(255, 196, 65, 0.11),
+      transparent 17%
+    ),
+    radial-gradient(
+      circle at 18% 67%,
+      rgba(255, 116, 44, 0.08),
+      transparent 18%
+    );
+  opacity: 0.75;
+  animation: projectLightBreath 4.8s ease-in-out infinite alternate;
+}
+@keyframes projectLightBreath {
+  to {
+    opacity: 0.42;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .projects-game::after {
+    animation: none !important;
+  }
+}
+
+/* === PROJECTS v5 — centered composition + real project branding ========== */
+.projects-game {
+  display: flex;
+  align-items: center;
+  padding-top: 92px !important;
+  padding-bottom: 38px !important;
+}
+.projects-shell {
+  width: min(1180px, 90vw) !important;
+  margin: auto !important;
+}
+.projects-head {
+  margin-bottom: 15px !important;
+}
+.project-screen {
+  min-height: 420px !important;
+}
+.project-art-placeholder {
+  width: min(68%, 470px) !important;
+  aspect-ratio: 16/10 !important;
+}
+.project-art-placeholder.has-logo {
+  background: linear-gradient(145deg, #0b2635, #06131e) !important;
+}
+.project-art-placeholder.has-logo span {
+  display: none !important;
+}
+.project-art-placeholder.has-logo img {
+  position: relative;
+  z-index: 3;
+  width: min(52%, 230px);
+  max-height: 190px;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(6px 7px 0 #0006);
+}
+.project-art-placeholder.has-logo small {
+  margin-top: 15px;
+}
+.project-art-placeholder.hosts-logo img {
+  width: min(44%, 190px);
+  border-radius: 22%;
+}
+.project-strip-wrap {
+  margin-top: 15px !important;
+}
+.projects-help {
+  margin-top: 4px !important;
+}
+.projects-lady {
+  bottom: 20px !important;
+}
+@media (max-height: 800px) and (min-width: 851px) {
+  .projects-game {
+    padding-top: 80px !important;
+  }
+  .project-screen {
+    min-height: 370px !important;
+  }
+  .project-info {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+  }
+  .project-info h3 {
+    margin-top: 16px !important;
+    margin-bottom: 10px !important;
+  }
+  .project-tech {
+    margin: 16px 0 !important;
+  }
+}
+
+/* === PROJECTS v6 — real application screenshots, no fake loading ========= */
+.project-art-placeholder.has-logo {
+  width: 88% !important;
+  max-width: 650px !important;
+  aspect-ratio: 16/10 !important;
+  border-color: #ffd31a66 !important;
+  padding: 0 !important;
+  background: #050b12 !important;
+}
+.project-art-placeholder.has-logo img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover !important;
+  object-position: left top !important;
+  border-radius: 0 !important;
+  filter: none !important;
+  image-rendering: auto !important;
+}
+.project-art-placeholder.has-logo small {
+  display: none !important;
+}
+.project-art-placeholder.has-logo::before {
+  display: none !important;
+}
+.project-art-placeholder.hosts-logo img {
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+.project-transition {
+  display: none !important;
+}
+
+/* Only the artwork screen flickers on selection; surrounding UI stays stable. */
+.project-machine.switching {
+  animation: none !important;
+}
+.project-machine.switching .project-art-placeholder {
+  animation: artworkSwitch 0.14s steps(2, end);
+}
+.project-machine.switching .project-screen:after {
+  display: none !important;
+}
+@keyframes artworkSwitch {
+  0% {
+    opacity: 1;
+    filter: none;
+  }
+  35% {
+    opacity: 0.55;
+    filter: contrast(1.45) brightness(1.18);
+  }
+  65% {
+    opacity: 0.82;
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+.project-art-placeholder:not(.has-logo) small {
+  display: block !important;
+}
+@media (max-width: 850px) {
+  .project-art-placeholder.has-logo {
+    width: 92% !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-machine.switching .project-art-placeholder {
+    animation: none !important;
+  }
+}
+
+/* === PROJECTS v6.1 — invariant selector geometry ==========================
+   Project content may change; the layout footprint must not.
+============================================================================ */
+.project-screen {
+  height: 420px !important;
+  min-height: 420px !important;
+  max-height: 420px !important;
+  grid-template-rows: 420px !important;
+}
+.project-art,
+.project-info {
+  height: 420px !important;
+  min-height: 0 !important;
+  box-sizing: border-box !important;
+}
+.project-art-placeholder {
+  height: 292px !important;
+  min-height: 292px !important;
+  max-height: 292px !important;
+  aspect-ratio: auto !important;
+}
+.project-info {
+  overflow: hidden !important;
+}
+.project-info h3 {
+  min-height: 68px !important;
+  max-height: 68px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  overflow: hidden !important;
+}
+.project-info p {
+  height: 54px !important;
+  min-height: 54px !important;
+  max-height: 54px !important;
+  overflow: hidden !important;
+}
+.project-tech {
+  min-height: 30px !important;
+  max-height: 30px !important;
+  overflow: hidden !important;
+  align-items: flex-start !important;
+}
+.project-actions {
+  min-height: 42px !important;
+  max-height: 42px !important;
+  align-items: flex-start !important;
+}
+.project-strip-wrap {
+  height: 69px !important;
+  min-height: 69px !important;
+}
+.projects-help {
+  height: 15px !important;
+  min-height: 15px !important;
+}
+@media (max-height: 800px) and (min-width: 851px) {
+  .project-screen {
+    height: 370px !important;
+    min-height: 370px !important;
+    max-height: 370px !important;
+    grid-template-rows: 370px !important;
+  }
+  .project-art,
+  .project-info {
+    height: 370px !important;
+  }
+  .project-art-placeholder {
+    height: 252px !important;
+    min-height: 252px !important;
+    max-height: 252px !important;
+  }
+  .project-info h3 {
+    min-height: 58px !important;
+    max-height: 58px !important;
+  }
+}
+@media (max-width: 850px) {
+  .project-screen {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    grid-template-rows: 270px 390px !important;
+  }
+  .project-art {
+    height: 270px !important;
+  }
+  .project-info {
+    height: 390px !important;
+  }
+  .project-art-placeholder {
+    height: 220px !important;
+    min-height: 220px !important;
+    max-height: 220px !important;
+  }
+}

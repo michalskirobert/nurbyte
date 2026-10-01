@@ -1,0 +1,168 @@
+/* === HOME LOCK CANDIDATE v3 =============================================== */
+/* Keep hero copy/CTA in its own flow so the bottom-left elements never collide. */
+#home .hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  max-width: min(610px, 42vw);
+}
+#home .hero-copy p {
+  position: static !important;
+  margin: 18px 0 0 !important;
+  max-width: 560px;
+  line-height: 1.55;
+}
+#home .hero-actions {
+  position: static !important;
+  display: flex !important;
+  gap: 14px !important;
+  margin-top: 22px !important;
+  flex-wrap: wrap;
+}
+#home .scroll-hint {
+  position: absolute !important;
+  left: 58px !important;
+  bottom: 20px !important;
+  margin: 0 !important;
+  z-index: 8;
+  white-space: nowrap;
+}
+#home .hero-actions + .scroll-hint {
+  margin-top: 0 !important;
+}
+
+/* Terminal: actual animated output, not a static screenshot. */
+.terminal {
+  overflow: hidden;
+}
+.terminal-body {
+  position: relative;
+  min-height: 210px;
+}
+#terminalOutput {
+  margin: 0;
+  white-space: pre-wrap;
+  min-height: 185px;
+}
+.terminal-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: terminalBlink 0.85s steps(1, end) infinite;
+}
+@keyframes terminalBlink {
+  50% {
+    opacity: 0;
+  }
+}
+.terminal.is-success {
+  box-shadow:
+    0 0 0 1px #42f5a455,
+    0 0 24px #42f5a422;
+}
+.terminal.is-error {
+  box-shadow:
+    0 0 0 1px #ff5c6c66,
+    0 0 24px #ff5c6c22;
+}
+
+/* Lady lives inside the navbar and reacts to terminal/menu states. */
+.brand-lady {
+  position: relative;
+  overflow: visible !important;
+  cursor: pointer;
+}
+.brand-lady img {
+  will-change: transform;
+  animation: navLadyIdle 3.2s ease-in-out infinite;
+}
+.brand-lady.is-looking img {
+  animation: navLadyLook 0.55s ease-in-out;
+}
+.brand-lady.is-celebrating img {
+  animation: navLadyCelebrate 0.48s ease-in-out 2;
+}
+.brand-lady.is-alert img {
+  animation: navLadyAlert 0.35s ease-in-out 2;
+}
+@keyframes navLadyIdle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-2px) rotate(0.8deg);
+  }
+}
+@keyframes navLadyLook {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px) rotate(3deg);
+  }
+}
+@keyframes navLadyCelebrate {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-7px) scale(1.08);
+  }
+}
+@keyframes navLadyAlert {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  35% {
+    transform: rotate(-5deg);
+  }
+  70% {
+    transform: rotate(5deg);
+  }
+}
+.lady-bubble {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  translate: -50% 0;
+  width: max-content;
+  max-width: 220px;
+  padding: 8px 10px;
+  border: 1px solid #ffd31a;
+  border-radius: 7px;
+  background: #061421f2;
+  color: #fff;
+  font:
+    10px/1.45 "Press Start 2P",
+    monospace;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-5px);
+  transition: 0.18s;
+  z-index: 50;
+  box-shadow: 0 8px 24px #0008;
+}
+.lady-bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  #home .hero-copy {
+    max-width: 90vw;
+  }
+  #home .scroll-hint {
+    left: 24px !important;
+    bottom: 14px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-lady img,
+  .terminal-cursor {
+    animation: none !important;
+  }
+}

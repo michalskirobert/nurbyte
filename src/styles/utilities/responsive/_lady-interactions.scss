@@ -1,0 +1,287 @@
+/* === v17.4 Lady full-pose interactions === */
+#contact .contact-lady {
+  width: min(250px, 100%) !important;
+  min-height: 260px !important;
+  display: grid !important;
+  place-items: end center !important;
+}
+#contact .contact-lady-stage {
+  width: 220px;
+  height: 245px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+}
+#contact .contact-lady-image {
+  width: auto !important;
+  height: auto !important;
+  max-width: 220px !important;
+  max-height: 245px !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.35));
+  animation: ladyPoseIn 0.18s steps(3, end);
+}
+#contact .contact-lady:hover .contact-lady-image {
+  transform: none !important;
+}
+#contact .contact-lady-bubble {
+  right: 68% !important;
+  top: 7% !important;
+}
+@keyframes ladyPoseIn {
+  from {
+    opacity: 0.72;
+    transform: translateY(3px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 170px !important;
+    min-height: 190px !important;
+  }
+  #contact .contact-lady-stage {
+    width: 150px !important;
+    height: 170px !important;
+  }
+  #contact .contact-lady-image {
+    max-width: 150px !important;
+    max-height: 170px !important;
+  }
+  #contact .contact-lady-bubble {
+    right: 58% !important;
+    top: 3% !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #contact .contact-lady-image {
+    animation: none !important;
+  }
+}
+
+/* === v17.4.1 Lady transparency hotfix ===
+   Legacy `.contact-lady span` styles were accidentally styling the new image stage
+   as if it were the speech bubble. */
+#contact .contact-lady > .contact-lady-stage {
+  position: static !important;
+  inset: auto !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+  width: 220px !important;
+  height: 245px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+  overflow: visible !important;
+}
+#contact .contact-lady:hover > .contact-lady-stage {
+  background: transparent !important;
+  color: inherit !important;
+  transform: none !important;
+}
+#contact .contact-lady > .contact-lady-bubble {
+  position: absolute !important;
+  right: 68% !important;
+  top: 7% !important;
+  width: max-content !important;
+  border: 3px solid #101820 !important;
+  background: #fff !important;
+  color: #101820 !important;
+  padding: 12px 15px !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 8px !important;
+  box-shadow: 5px 5px 0 #02070c !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble {
+  background: #050b10 !important;
+  color: #f5c518 !important;
+  transform: translate(-3px, -2px) !important;
+}
+@media (max-width: 760px) {
+  #contact .contact-lady > .contact-lady-stage {
+    width: 150px !important;
+    height: 170px !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble {
+    right: 58% !important;
+    top: 3% !important;
+    font-size: 6px !important;
+  }
+}
+
+/* === v17.4.2 Lady speech bubble ===
+   Bubble is real HTML, independently styled and anchored to the character. */
+#contact .contact-lady {
+  position: relative !important;
+}
+#contact .contact-lady > .contact-lady-bubble {
+  position: absolute !important;
+  top: 8px !important;
+  right: auto !important;
+  left: 50% !important;
+  width: max-content !important;
+  max-width: 220px !important;
+  transform: translate(-78%, -100%) !important;
+  padding: 10px 13px !important;
+  border: 2px solid #111a22 !important;
+  border-radius: 2px !important;
+  background: rgba(248, 248, 244, 0.98) !important;
+  color: #101820 !important;
+  box-shadow: 4px 4px 0 rgba(2, 7, 12, 0.92) !important;
+  z-index: 4 !important;
+  pointer-events: none !important;
+  transition:
+    background-color 0.18s ease,
+    color 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+  position: static !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 7px !important;
+  line-height: 1.45 !important;
+  white-space: nowrap !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-tail {
+  position: absolute !important;
+  display: block !important;
+  left: 72% !important;
+  bottom: -9px !important;
+  width: 14px !important;
+  height: 14px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-right: 2px solid #111a22 !important;
+  border-bottom: 2px solid #111a22 !important;
+  background: rgba(248, 248, 244, 0.98) !important;
+  box-shadow: none !important;
+  transform: rotate(45deg) !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble,
+#contact .contact-lady:focus-visible > .contact-lady-bubble {
+  transform: translate(-78%, -100%) !important;
+  background: #ffd21a !important;
+  color: #071018 !important;
+  border-color: #071018 !important;
+  box-shadow:
+    4px 4px 0 rgba(2, 7, 12, 0.92),
+    0 0 16px rgba(255, 210, 26, 0.16) !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble .contact-lady-bubble-tail,
+#contact
+  .contact-lady:focus-visible
+  > .contact-lady-bubble
+  .contact-lady-bubble-tail {
+  background: #ffd21a !important;
+}
+@media (max-width: 760px) {
+  #contact .contact-lady > .contact-lady-bubble {
+    top: 5px !important;
+    max-width: 170px !important;
+    transform: translate(-72%, -100%) !important;
+    padding: 8px 10px !important;
+  }
+  #contact .contact-lady:hover > .contact-lady-bubble,
+  #contact .contact-lady:focus-visible > .contact-lady-bubble {
+    transform: translate(-72%, -100%) !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+    font-size: 6px !important;
+  }
+}
+
+/* === v17.4.3 Lady dialog placement + complete pose ===
+   Keep the dialog attached to Lady's head, never floating over the terminal. */
+#contact .contact-lady {
+  overflow: visible !important;
+}
+#contact .contact-lady > .contact-lady-bubble {
+  top: auto !important;
+  bottom: 82% !important;
+  left: 50% !important;
+  right: auto !important;
+  max-width: 190px !important;
+  transform: translateX(-50%) !important;
+  padding: 9px 12px !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+  font-size: 6px !important;
+  line-height: 1.35 !important;
+}
+#contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-tail {
+  left: 50% !important;
+  bottom: -7px !important;
+  width: 12px !important;
+  height: 12px !important;
+  transform: translateX(-50%) rotate(45deg) !important;
+}
+#contact .contact-lady:hover > .contact-lady-bubble,
+#contact .contact-lady:focus-visible > .contact-lady-bubble {
+  transform: translateX(-50%) !important;
+}
+
+/* Every pose gets enough room; contain prevents toy/paws/tail clipping. */
+#contact .contact-lady-stage {
+  width: 245px !important;
+  height: 255px !important;
+  overflow: visible !important;
+}
+#contact .contact-lady-image {
+  max-width: 245px !important;
+  max-height: 255px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+}
+
+@media (max-width: 760px) {
+  #contact .contact-lady {
+    width: 155px !important;
+    min-height: 180px !important;
+  }
+  #contact .contact-lady-stage {
+    width: 145px !important;
+    height: 165px !important;
+  }
+  #contact .contact-lady-image {
+    max-width: 145px !important;
+    max-height: 165px !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble {
+    bottom: 80% !important;
+    left: 50% !important;
+    max-width: 138px !important;
+    padding: 7px 8px !important;
+    transform: translateX(-50%) !important;
+  }
+  #contact .contact-lady > .contact-lady-bubble .contact-lady-bubble-text {
+    font-size: 5px !important;
+    white-space: nowrap !important;
+  }
+  #contact .contact-lady:hover > .contact-lady-bubble,
+  #contact .contact-lady:focus-visible > .contact-lady-bubble {
+    transform: translateX(-50%) !important;
+  }
+}

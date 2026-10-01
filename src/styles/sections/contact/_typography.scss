@@ -1,0 +1,132 @@
+/* === v13: deliberate arcade typography hierarchy ===
+   Press Start 2P = display/HUD headings.
+   Pixelify Sans = readable body copy.
+   VT323 = terminal only. */
+.hero h1,
+.projects-head h2,
+.about-head h2,
+.tech-head h2,
+#contact .contact-head h2,
+.content-scene h2 {
+  font-family: var(--arcade-font) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.045em !important;
+  line-height: 1.08 !important;
+}
+#contact .contact-head h2 {
+  font-size: clamp(2.15rem, 4.6vw, 4.65rem) !important;
+}
+.hero h1 {
+  font-size: clamp(2.65rem, 4.75vw, 5.15rem) !important;
+}
+.hero-copy .lede,
+.project-rail-info > p,
+.about-profile p,
+.about-log p,
+.tech-inspector p,
+.arcade-modal-body > p {
+  font-family: var(--pixel-font) !important;
+  font-weight: 400 !important;
+}
+.section-kicker,
+.contact-area,
+.project-meta,
+.project-tech,
+.actions .btn,
+.project-actions button,
+.project-actions a {
+  font-family: var(--arcade-font) !important;
+}
+
+/* Keep the project rail as the exclusive wheel-scroll surface while hovered. */
+.projects-track {
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: none;
+  touch-action: pan-x pan-y;
+}
+
+/* === v14 iOS/touch scroll parallax === */
+@media (pointer: coarse), (max-width: 760px) {
+  .interactive-scene.scene,
+  .projects-game.interactive-scene {
+    background-position: center calc(50% + var(--scene-scroll, 0px) * -0.13) !important;
+  }
+  .interactive-scene .scene-world {
+    transform: translate3d(0, calc(var(--scene-scroll, 0px) * -0.16), 0)
+      scale(1.035) !important;
+  }
+  .interactive-scene .scene-content {
+    transform: translate3d(
+      0,
+      calc(var(--scene-scroll, 0px) * 0.018),
+      0
+    ) !important;
+  }
+  #about .section-parallax-bg,
+  #tech .section-parallax-bg,
+  #contact .section-parallax-bg {
+    inset: -7% !important;
+    transform: translate3d(0, calc(var(--sy, 0px) * -0.34), 0) scale(1.12) !important;
+    will-change: transform;
+  }
+  #about .about-shell,
+  #tech .tech-shell,
+  #contact .contact-shell {
+    transform: translate3d(0, calc(var(--sy, 0px) * 0.022), 0) !important;
+  }
+}
+
+/* === v15 HOTFIX: restore the arcade typography system === */
+:root {
+  --font-arcade: var(--font-press), "Press Start 2P", monospace;
+  --font-pixel: var(--font-pixelify), "Pixelify Sans", monospace;
+  --font-cli: var(--font-terminal), "VT323", monospace;
+  --arcade-font: var(--font-arcade) !important;
+  --pixel-font: var(--font-pixel) !important;
+  --terminal-font: var(--font-cli) !important;
+  --display: var(--font-arcade) !important;
+  --hud: var(--font-arcade) !important;
+  --terminal: var(--font-cli) !important;
+}
+.hero-copy h1,
+.projects-head h2,
+.about-head h2,
+.tech-head h2,
+#contact .contact-head h2,
+.project-rail-info h3,
+.about-profile h3,
+.about-log h3,
+.tech-inspector h3,
+.nav-link,
+.mobile-nav a,
+.section-kicker,
+.contact-area,
+.project-meta,
+.project-tech,
+.btn,
+.project-open,
+.status-pill,
+.brand-text,
+.logo-text {
+  font-family: var(--font-arcade) !important;
+  font-weight: 400 !important;
+}
+#contact .contact-head h2 {
+  font-family: var(--font-arcade) !important;
+  letter-spacing: -0.045em !important;
+}
+.hero-copy .lede,
+.project-rail-info > p,
+.about-profile p,
+.about-log p,
+.tech-inspector p {
+  font-family: var(--font-pixel) !important;
+}
+.contact-terminal,
+.contact-terminal input,
+.contact-terminal textarea,
+.contact-terminal button,
+.hero-terminal,
+.hero-terminal * {
+  font-family: var(--font-cli) !important;
+}

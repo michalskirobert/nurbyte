@@ -1,0 +1,286 @@
+/* === HOME v5 — viewport fit + Game Boy / arcade mascot =================== */
+#home {
+  min-height: 100svh !important;
+  height: auto !important;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-bottom: clamp(28px, 4vh, 54px);
+}
+#home .hero-copy {
+  bottom: auto !important;
+  top: clamp(48%, 52vh, 56%) !important;
+  transform: translateY(-16%) !important;
+}
+#home .hero-copy h1 {
+  font-size: clamp(46px, 5.25vw, 82px) !important;
+  line-height: 0.91 !important;
+}
+#home .hero-copy p {
+  font-size: clamp(12px, 1vw, 16px) !important;
+  line-height: 1.45 !important;
+  margin-top: 14px !important;
+}
+#home .hero-actions {
+  margin-top: 16px !important;
+}
+#home .scroll-hint {
+  bottom: 10px !important;
+}
+@media (max-height: 820px) and (min-width: 901px) {
+  #home .hero-copy {
+    top: 48% !important;
+    transform: translateY(-10%) !important;
+  }
+  #home .hero-copy h1 {
+    font-size: clamp(43px, 4.8vw, 70px) !important;
+  }
+  #home .hero-copy p {
+    margin-top: 10px !important;
+    line-height: 1.35 !important;
+  }
+  #home .hero-actions {
+    margin-top: 10px !important;
+  }
+}
+
+/* Navbar Lady behaves like a tiny Game Boy overworld sprite:
+   discrete pixel steps, pauses and turns — no floating/big smooth orbit. */
+.brand-lady {
+  width: 62px !important;
+  height: 58px !important;
+  overflow: hidden !important;
+  image-rendering: pixelated;
+}
+.brand-lady img {
+  left: 5px !important;
+  bottom: 0 !important;
+  width: 52px !important;
+  height: 52px !important;
+  image-rendering: pixelated;
+  animation: ladyGameIdle 1.6s steps(4, end) infinite !important;
+}
+@keyframes ladyGameIdle {
+  0%,
+  24% {
+    transform: translate(0, 0);
+  }
+  25%,
+  49% {
+    transform: translate(0, -2px);
+  }
+  50%,
+  74% {
+    transform: translate(1px, 0);
+  }
+  75%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.brand-lady.lady-step-right img {
+  animation: ladyStepRight 0.72s steps(4, end) !important;
+}
+.brand-lady.lady-step-left img {
+  animation: ladyStepLeft 0.72s steps(4, end) !important;
+}
+.brand-lady.lady-hop img {
+  animation: ladyHop 0.58s steps(4, end) !important;
+}
+.brand-lady.lady-turn img {
+  animation: ladyTurn 0.55s steps(3, end) !important;
+}
+@keyframes ladyStepRight {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(4px, -2px);
+  }
+  50% {
+    transform: translate(8px, 0);
+  }
+  75% {
+    transform: translate(4px, -2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes ladyStepLeft {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-4px, -2px);
+  }
+  50% {
+    transform: translate(-8px, 0);
+  }
+  75% {
+    transform: translate(-4px, -2px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes ladyHop {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -7px);
+  }
+}
+@keyframes ladyTurn {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+}
+
+/* Lady under terminal: status NPC / arcade companion. */
+.terminal-lady-reaction {
+  position: absolute;
+  right: clamp(58px, 5vw, 92px);
+  top: clamp(305px, 35vh, 355px);
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 245px;
+  padding: 7px 11px 7px 7px;
+  border: 2px solid #173b50;
+  border-radius: 6px;
+  background: #061421e8;
+  box-shadow: 4px 4px 0 #020a10aa;
+  font-family: "Press Start 2P", monospace;
+}
+.terminal-lady-reaction img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  animation: terminalLadyIdle 1.2s steps(3, end) infinite;
+}
+.terminal-lady-reaction div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.terminal-lady-reaction span {
+  font-size: 9px;
+  color: #ffd31a;
+}
+.terminal-lady-reaction small {
+  font:
+    12px/1.15 "VT323",
+    monospace;
+  color: #d7edf5;
+}
+.terminal-lady-reaction.success {
+  border-color: #31e69a;
+}
+.terminal-lady-reaction.success img {
+  animation: terminalLadyHappy 0.55s steps(4, end) 3;
+}
+.terminal-lady-reaction.error {
+  border-color: #ff6577;
+}
+@keyframes terminalLadyIdle {
+  50% {
+    transform: translateY(-2px);
+  }
+}
+@keyframes terminalLadyHappy {
+  50% {
+    transform: translateY(-6px) rotate(3deg);
+  }
+}
+@media (max-width: 900px) {
+  .terminal-lady-reaction {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-lady img,
+  .terminal-lady-reaction img {
+    animation: none !important;
+  }
+}
+
+/* HOME v6 — restrained 8/16-bit idle animation.
+   Think classic overworld NPC, not a floating mascot. */
+.brand-lady img {
+  animation: ladyRetroIdle 2.4s steps(2, end) infinite !important;
+}
+@keyframes ladyRetroIdle {
+  0%,
+  49% {
+    transform: translate(0, 0);
+  }
+  50%,
+  100% {
+    transform: translate(0, -1px);
+  }
+}
+.brand-lady.lady-step-right img {
+  animation: ladyRetroRight 0.48s steps(2, end) !important;
+}
+.brand-lady.lady-step-left img {
+  animation: ladyRetroLeft 0.48s steps(2, end) !important;
+}
+.brand-lady.lady-hop img {
+  animation: ladyRetroNod 0.42s steps(2, end) !important;
+}
+.brand-lady.lady-turn img {
+  animation: ladyRetroLook 0.52s steps(2, end) !important;
+}
+@keyframes ladyRetroRight {
+  0%,
+  49% {
+    transform: translate(0, 0);
+  }
+  50%,
+  100% {
+    transform: translate(2px, -1px);
+  }
+}
+@keyframes ladyRetroLeft {
+  0%,
+  49% {
+    transform: translate(0, 0);
+  }
+  50%,
+  100% {
+    transform: translate(-2px, -1px);
+  }
+}
+@keyframes ladyRetroNod {
+  0%,
+  49% {
+    transform: translate(0, 0);
+  }
+  50%,
+  100% {
+    transform: translate(0, -2px);
+  }
+}
+@keyframes ladyRetroLook {
+  0%,
+  49% {
+    transform: translate(0, 0);
+  }
+  50%,
+  100% {
+    transform: translate(1px, 0);
+  }
+}
+/* Expression changes should feel like animation frames, never cross-fade. */
+.brand-lady img {
+  transition: none !important;
+}

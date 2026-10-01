@@ -1,0 +1,302 @@
+/* === v8 polish: typography, focusable CLI, Lady spacing, arcade project modal === */
+#contact .contact-head h2 {
+  font-family: var(--arcade-font) !important;
+  font-size: clamp(2.35rem, 5.2vw, 5.1rem) !important;
+  letter-spacing: -0.02em;
+  line-height: 1.04 !important;
+}
+.hero-copy .lede,
+.project-rail-info > p,
+.arcade-modal-body > p {
+  font-family: var(--pixel-font) !important;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  line-height: 1.45;
+  letter-spacing: 0.015em;
+}
+#contact .contact-layout {
+  grid-template-columns: minmax(0, 1.32fr) 0.48fr !important;
+  gap: clamp(70px, 7vw, 130px) !important;
+}
+#contact .contact-lady {
+  transform: translate3d(
+    calc(var(--mx, 0px) * -0.09 + 20px),
+    calc(var(--my, 0px) * -0.07 + var(--sy, 0px) * -0.04),
+    0
+  ) !important;
+}
+.contact-lady span {
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
+}
+.contact-lady:hover span {
+  background: #050b10;
+  color: #f5c518;
+  transform: translate(-3px, -2px);
+}
+.cli-screen {
+  cursor: text;
+}
+.arcade-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(0, 5, 9, 0.84);
+  backdrop-filter: blur(7px);
+  animation: modalBackdrop 0.16s steps(3, end);
+}
+.arcade-modal {
+  width: min(880px, 94vw);
+  max-height: 88dvh;
+  overflow: auto;
+  background: #07131b;
+  border: 3px solid #f5c518;
+  box-shadow:
+    10px 10px 0 #000,
+    0 0 0 2px #162a34;
+  color: #edf4ef;
+  animation: modalIn 0.2s steps(4, end);
+}
+.arcade-modal-bar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f5c518;
+  color: #06131b;
+  padding: 8px 12px;
+  font-family: var(--arcade-font);
+  font-size: 9px;
+}
+.arcade-modal-bar button {
+  border: 0;
+  background: #06131b;
+  color: #f5c518;
+  width: 28px;
+  height: 28px;
+  font: 20px/1 monospace;
+  cursor: pointer;
+}
+.arcade-modal-art {
+  position: relative;
+  aspect-ratio: 16/7;
+  border-bottom: 2px solid #f5c518;
+  overflow: hidden;
+}
+.arcade-modal-art img {
+  filter: saturate(0.95);
+  transition: transform 0.35s ease;
+}
+.arcade-modal:hover .arcade-modal-art img {
+  transform: scale(1.018);
+}
+.arcade-modal-body {
+  padding: 24px;
+}
+.arcade-modal-body h3 {
+  margin: 12px 0 8px;
+  font-family: var(--arcade-font);
+  font-size: clamp(1.55rem, 3vw, 2.8rem);
+  color: #fff;
+}
+.arcade-modal-body > p {
+  max-width: 70ch;
+  color: #c8d5ce;
+}
+.arcade-modal-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.disabled-action {
+  opacity: 0.55;
+  pointer-events: none;
+}
+.project-open {
+  font-family: var(--arcade-font);
+  cursor: pointer;
+}
+@keyframes modalBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (max-width: 760px) {
+  #contact .contact-layout {
+    gap: 22px !important;
+  }
+  #contact .contact-lady {
+    transform: none !important;
+    margin-left: auto;
+    margin-right: 8px;
+  }
+  .arcade-modal-backdrop {
+    padding: 10px;
+  }
+  .arcade-modal {
+    width: 100%;
+    max-height: 92dvh;
+  }
+  .arcade-modal-body {
+    padding: 17px;
+  }
+  .arcade-modal-art {
+    aspect-ratio: 16/9;
+  }
+}
+
+/* === v9 CONTACT UX === */
+/* Native caret follows typed text; no detached block at the far edge. */
+.cli-live-prompt input {
+  caret-color: #f5c518 !important;
+}
+.cli-caret {
+  display: none !important;
+}
+
+/* Give Lady her own breathing room instead of visually attaching her to terminal. */
+#contact .contact-layout {
+  grid-template-columns: minmax(0, 1.28fr) minmax(270px, 0.42fr) !important;
+  column-gap: clamp(110px, 9vw, 180px) !important;
+}
+#contact .contact-lady {
+  justify-self: end !important;
+  margin-right: clamp(24px, 3vw, 58px) !important;
+  transform: translate3d(
+    calc(var(--mx, 0px) * -0.09 + 48px),
+    calc(var(--my, 0px) * -0.07 + var(--sy, 0px) * -0.04),
+    0
+  ) !important;
+}
+#contact .contact-lady img {
+  max-width: 170px !important;
+}
+@media (max-width: 1000px) and (min-width: 761px) {
+  #contact .contact-layout {
+    column-gap: 70px !important;
+    grid-template-columns: minmax(0, 1fr) 220px !important;
+  }
+  #contact .contact-lady {
+    margin-right: 8px !important;
+    transform: translate3d(
+      calc(var(--mx, 0px) * -0.06 + 22px),
+      calc(var(--my, 0px) * -0.05),
+      0
+    ) !important;
+  }
+}
+@media (max-width: 760px) {
+  #contact .contact-layout {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+  #contact .contact-lady {
+    justify-self: center !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+}
+
+/* Friendlier prompts remain arcade/terminal without looking like developer-only debug output. */
+.cli-warning {
+  color: #f5c518 !important;
+}
+.cli-muted {
+  color: #91aa9d !important;
+}
+
+/* === v10 font plumbing + terminal category selector ===
+   The legacy stylesheet referenced literal Google font family names.
+   next/font exposes hashed fonts through CSS variables, so wire the old
+   tokens to those variables instead of allowing browser fallbacks. */
+:root {
+  --display: var(--font-pixelify), monospace !important;
+  --hud: var(--font-press), monospace !important;
+  --terminal: var(--font-terminal), monospace !important;
+  --pixel-font: var(--font-pixelify), monospace !important;
+  --arcade-font: var(--font-press), monospace !important;
+  --terminal-font: var(--font-terminal), monospace !important;
+}
+#contact .contact-head h2 {
+  font-family: var(--display) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 0.88 !important;
+}
+.hero-copy .lede,
+.project-rail-info > p,
+.arcade-modal-body > p {
+  font-family: var(--display) !important;
+}
+.cli-category-select {
+  margin: 8px 0 4px;
+  font-family: var(--terminal-font);
+}
+.cli-category-help {
+  margin-bottom: 7px;
+  color: #91aa9d;
+  font-size: 17px;
+}
+.cli-category-select button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 18px minmax(170px, 0.7fr) 1fr;
+  gap: 8px;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  color: #a9cbb9;
+  padding: 4px 6px;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.cli-category-select button b {
+  color: #f5c518;
+  font-weight: 400;
+}
+.cli-category-select button span {
+  color: #f5c518;
+}
+.cli-category-select button small {
+  font: inherit;
+  font-size: 17px;
+  color: #789486;
+}
+.cli-category-select button.selected,
+.cli-category-select button:hover {
+  background: rgba(245, 197, 24, 0.08);
+}
+.cli-category-select button.selected span,
+.cli-category-select button:hover span {
+  color: #ffe05a;
+}
+@media (max-width: 760px) {
+  .cli-category-select button {
+    grid-template-columns: 16px 1fr;
+  }
+  .cli-category-select button small {
+    grid-column: 2;
+    font-size: 15px;
+  }
+}

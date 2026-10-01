@@ -1,0 +1,493 @@
+/* === Next migration v3: fonts / interactions / contact === */
+:root {
+  --pixel-font: var(--font-pixelify), monospace;
+  --arcade-font: var(--font-press), monospace;
+  --terminal-font: var(--font-terminal), monospace;
+}
+body {
+  font-family: var(--pixel-font);
+}
+.hud,
+.btn,
+.section-kicker,
+.home-game-status,
+.project-meta,
+.project-tech,
+.project-actions,
+.about-card-label,
+.about-area,
+.about-location,
+.about-log-title,
+.about-stat b,
+.about-inventory,
+.tech-area,
+.tech-inspector-kicker,
+.tech-signal,
+.contact-area,
+.contact-categories,
+.contact-command {
+  font-family: var(--arcade-font) !important;
+}
+.terminal,
+.terminal pre,
+.contact-terminal,
+.contact-terminal input,
+.contact-terminal textarea {
+  font-family: var(--terminal-font) !important;
+}
+.btn,
+.project-open,
+.all-projects-trigger,
+.grid-project,
+.tech-slot,
+.nav a {
+  transition:
+    transform 0.14s ease,
+    box-shadow 0.14s ease,
+    filter 0.14s ease,
+    border-color 0.14s ease,
+    color 0.14s ease;
+}
+.btn:hover,
+.project-open:hover,
+.all-projects-trigger:hover {
+  transform: translate(-2px, -2px);
+  filter: brightness(1.08);
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.45);
+}
+.btn:active,
+.project-open:active,
+.all-projects-trigger:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+}
+.tech-slot:hover {
+  transform: translateY(-4px) scale(1.04);
+  filter: drop-shadow(0 0 9px rgba(255, 205, 33, 0.35));
+}
+.project-rail-card {
+  transition:
+    transform 0.22s ease,
+    border-color 0.22s ease,
+    box-shadow 0.22s ease;
+}
+.project-rail-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 205, 33, 0.72);
+  box-shadow: 9px 11px 0 rgba(0, 0, 0, 0.32);
+}
+.projects-lady-button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.projects-lady-button img {
+  transition:
+    transform 0.16s ease,
+    filter 0.16s ease;
+}
+.projects-lady-button:hover img {
+  transform: translateY(-3px) scale(1.04);
+  filter: drop-shadow(0 0 9px rgba(255, 184, 56, 0.45));
+}
+
+.contact-game {
+  position: relative;
+  min-height: 100dvh;
+  background: url("/assets/backgrounds/contact.webp") center/cover no-repeat;
+  overflow: hidden;
+  padding: 96px 5vw 48px;
+}
+.contact-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(3, 13, 20, 0.9),
+    rgba(3, 13, 20, 0.48)
+  );
+}
+.contact-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0 3px,
+    rgba(0, 0, 0, 0.09) 3px 4px
+  );
+}
+.contact-shell {
+  position: relative;
+  z-index: 2;
+  max-width: 1450px;
+  margin: auto;
+}
+.contact-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.contact-head h2 {
+  font-family: var(--pixel-font);
+  font-size: clamp(3rem, 6vw, 6rem);
+  line-height: 0.85;
+  margin: 12px 0 0;
+  color: #fff;
+}
+.contact-head h2 em {
+  font-style: normal;
+  color: #f5c518;
+}
+.contact-area {
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  background: rgba(6, 19, 29, 0.75);
+  padding: 10px;
+  color: #f5c518;
+  font-size: 7px;
+}
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) 0.55fr;
+  gap: 28px;
+  align-items: center;
+}
+.contact-terminal {
+  border: 1px solid rgba(245, 197, 24, 0.42);
+  background: rgba(2, 9, 14, 0.92);
+  box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.38);
+  color: #bfe4cf;
+}
+.contact-terminal-body {
+  padding: 22px;
+  font-size: 21px;
+}
+.contact-terminal-body > p {
+  margin: 0 0 18px;
+}
+.contact-terminal-body > p b {
+  color: #f5c518;
+}
+.contact-terminal label {
+  display: grid;
+  gap: 5px;
+  margin: 14px 0;
+}
+.contact-terminal label > span,
+.contact-categories > span {
+  color: #f5c518;
+  font-size: 17px;
+}
+.contact-terminal input,
+.contact-terminal textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  outline: 0;
+  background: #041017;
+  color: #e8fff1;
+  padding: 10px 12px;
+  font-size: 20px;
+  resize: vertical;
+}
+.contact-terminal input:focus,
+.contact-terminal textarea:focus {
+  border-color: #f5c518;
+  box-shadow: 0 0 0 2px rgba(245, 197, 24, 0.12);
+}
+.contact-categories {
+  margin: 14px 0;
+}
+.contact-categories div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 7px;
+}
+.contact-categories button {
+  border: 0;
+  background: transparent;
+  color: #92aa9e;
+  font: inherit;
+  cursor: pointer;
+}
+.contact-categories button.active,
+.contact-categories button:hover {
+  color: #f5c518;
+}
+.contact-command {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.contact-command > span {
+  font-family: var(--terminal-font);
+  font-size: 18px;
+  color: #74df9a;
+}
+.contact-lady {
+  position: relative;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  justify-self: center;
+}
+.contact-lady img {
+  max-width: 260px;
+  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.35));
+  transition: transform 0.18s ease;
+}
+.contact-lady:hover img {
+  transform: translateY(-5px) scale(1.03);
+}
+.contact-lady span {
+  position: absolute;
+  right: 70%;
+  top: 5%;
+  width: max-content;
+  border: 3px solid #101820;
+  background: #fff;
+  color: #101820;
+  padding: 12px 15px;
+  font-family: var(--arcade-font);
+  font-size: 8px;
+  box-shadow: 5px 5px 0 #02070c;
+}
+@media (max-width: 760px) {
+  .contact-game {
+    padding: 84px 18px 35px;
+  }
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+  .contact-area {
+    display: none;
+  }
+  .contact-terminal-body {
+    font-size: 18px;
+    padding: 16px;
+  }
+  .contact-lady {
+    margin-top: 10px;
+  }
+  .contact-lady img {
+    max-width: 145px;
+  }
+  .contact-lady span {
+    right: 60%;
+    font-size: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .project-open,
+  .all-projects-trigger,
+  .project-rail-card,
+  .tech-slot,
+  .projects-lady-button img,
+  .contact-lady img {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* === v4 interactive motion system === */
+.interactive-scene {
+  --scene-x: 0px;
+  --scene-y: 0px;
+  --scene-scroll: 0px;
+}
+.interactive-scene.scene,
+.projects-game.interactive-scene {
+  background-position: calc(50% + var(--scene-x) * -0.35)
+    calc(50% + var(--scene-y) * -0.25 + var(--scene-scroll) * -0.16);
+}
+.interactive-scene .scene-world {
+  transform: translate3d(
+      calc(var(--scene-x) * -0.5),
+      calc(var(--scene-y) * -0.35 + var(--scene-scroll) * -0.2),
+      0
+    )
+    scale(1.025);
+  will-change: transform;
+}
+.interactive-scene .scene-content {
+  transform: translate3d(
+    calc(var(--scene-x) * 0.075),
+    calc(var(--scene-y) * 0.055 + var(--scene-scroll) * 0.025),
+    0
+  );
+  will-change: transform;
+  transition: transform 0.12s linear;
+}
+.about-profile,
+.about-log,
+.tech-inspector,
+.contact-terminal {
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+.about-profile:hover,
+.about-log:hover,
+.tech-inspector:hover,
+.contact-terminal:focus-within {
+  transform: translateY(-5px);
+  border-color: rgba(245, 197, 24, 0.7);
+  box-shadow:
+    9px 11px 0 rgba(0, 0, 0, 0.34),
+    0 0 24px rgba(245, 197, 24, 0.08);
+}
+.btn,
+.project-open,
+.all-projects-trigger,
+.contact-categories button,
+.grid-project {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn::before,
+.project-open::before,
+.all-projects-trigger::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #fff;
+  transform: translateX(-105%);
+  transition: transform 0.18s steps(4, end);
+}
+.btn:hover,
+.project-open:hover,
+.all-projects-trigger:hover {
+  color: #07131b !important;
+  background: #f5c518 !important;
+  border-color: #fff !important;
+  transform: translate(-3px, -3px) scale(1.015) !important;
+  box-shadow:
+    3px 3px 0 #f5c518,
+    7px 7px 0 #02070c !important;
+}
+.btn:hover::before,
+.project-open:hover::before,
+.all-projects-trigger:hover::before {
+  transform: translateX(0);
+}
+.btn:active,
+.project-open:active,
+.all-projects-trigger:active {
+  transform: translate(2px, 2px) scale(0.985) !important;
+  box-shadow: 1px 1px 0 #02070c !important;
+}
+.nav a:hover {
+  color: #f5c518 !important;
+  text-shadow:
+    2px 0 #8f3fff,
+    -2px 0 #19d8ff;
+  transform: translateY(-2px);
+}
+.tech-slot {
+  overflow: hidden;
+}
+.tech-slot::after {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    115deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 58%
+  );
+  transform: translateX(-90%) rotate(8deg);
+  transition: transform 0.35s ease;
+  pointer-events: none;
+}
+.tech-slot:hover::after {
+  transform: translateX(90%) rotate(8deg);
+}
+.tech-slot:hover {
+  border-color: #f5c518 !important;
+  background: rgba(245, 197, 24, 0.11) !important;
+  box-shadow:
+    4px 5px 0 #02070c,
+    0 0 20px rgba(245, 197, 24, 0.18) !important;
+}
+.project-rail-art img {
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+.project-rail-card:hover .project-rail-art img {
+  transform: scale(1.035);
+  filter: saturate(1.08) contrast(1.03);
+}
+.project-tech span,
+.about-inventory span {
+  transition:
+    transform 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease,
+    background 0.14s ease;
+}
+.project-tech span:hover,
+.about-inventory span:hover {
+  transform: translateY(-2px);
+  color: #06131d !important;
+  background: #f5c518;
+  border-color: #fff !important;
+}
+.terminal {
+  overflow: hidden !important;
+}
+.terminal-viewport {
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 197, 24, 0.72) rgba(0, 0, 0, 0.28);
+}
+.terminal-viewport pre {
+  margin: 0;
+  min-height: 100%;
+  white-space: pre-wrap;
+}
+.terminal-viewport::-webkit-scrollbar {
+  width: 7px;
+}
+.terminal-viewport::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.28);
+}
+.terminal-viewport::-webkit-scrollbar-thumb {
+  background: #b99518;
+  border: 1px solid #f5c518;
+}
+@media (max-width: 760px), (pointer: coarse) {
+  .interactive-scene.scene,
+  .projects-game.interactive-scene {
+    background-position: center !important;
+  }
+  .interactive-scene .scene-world,
+  .interactive-scene .scene-content {
+    transform: none !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .interactive-scene.scene,
+  .projects-game.interactive-scene {
+    background-position: center !important;
+  }
+  .interactive-scene .scene-world,
+  .interactive-scene .scene-content {
+    transform: none !important;
+    transition: none !important;
+  }
+}

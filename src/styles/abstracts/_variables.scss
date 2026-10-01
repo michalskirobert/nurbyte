@@ -1,0 +1,26 @@
+// NurByte design tokens — single source of truth for repeated static values.
+$page-background: #020b12;
+$bp-mobile: 760px;
+$bp-tablet: 1050px;
+$bp-wide: 1280px;
+$radius-sm: 7px;
+$radius-md: 10px;
+$radius-lg: 12px;
+$radius-pill: 999px;
+$duration-fast: 0.18s;
+$duration-normal: 0.28s;
+
+:root {
+  --ink: #f6f4ea;
+  --muted: #c6d2d9;
+  --yellow: #ffd21c;
+  --yellow2: #ffb800;
+  --navy: #06131d;
+  --panel: rgba(3, 18, 29, 0.91);
+  --line: #17455e;
+  --green: #20ef9c;
+  --red: #ff3e55;
+  --display: "Pixelify Sans", monospace;
+  --hud: "Press Start 2P", monospace;
+  --terminal: "VT323", monospace;
+}

@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Pixelify_Sans, Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
 import "../styles/master.scss";
-import AppPreloader from "./AppPreloader";
 
 const pixelify = Pixelify_Sans({
   subsets: ["latin"],
@@ -220,7 +219,6 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${pixelify.variable} ${press.variable} ${terminal.variable}`}
       >
-        <AppPreloader />
         {children}
         <script
           type="application/ld+json"

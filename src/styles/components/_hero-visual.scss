@@ -1,0 +1,44 @@
+.hero-characters {
+  position: absolute;
+  z-index: 3;
+  right: 7vw;
+  bottom: -1px;
+  width: min(60vw, 1050px);
+  height: auto;
+  filter: drop-shadow(0 18px 22px #0008);
+  pointer-events: none;
+}
+.lady-bubble {
+  position: absolute;
+  z-index: 6;
+  right: 5vw;
+  bottom: 24vh;
+  max-width: 230px;
+  padding: 12px 14px;
+  border: 2px solid var(--yellow);
+  background: #071724ee;
+  border-radius: 8px;
+  font: 16px var(--display);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.25s;
+}
+.lady-bubble.show {
+  opacity: 1;
+  transform: none;
+}
+.scroll-hint {
+  position: absolute;
+  z-index: 5;
+  left: 4vw;
+  bottom: 22px;
+  color: #fff;
+  text-decoration: none;
+  font: 8px var(--hud);
+  opacity: 0.8;
+}
+.scroll-hint span {
+  color: var(--yellow);
+  font-size: 20px;
+  margin-left: 8px;
+}

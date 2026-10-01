@@ -1,0 +1,261 @@
+#projects .projects-lady-hearts i {
+  position: absolute !important;
+  color: #ffd31a !important;
+  font-style: normal !important;
+  font-size: 18px !important;
+  text-shadow: 2px 2px 0 #07131e !important;
+  animation: projectsLadyHeart 0.82s ease-out forwards !important;
+}
+#projects .projects-lady-hearts i:nth-child(1) {
+  left: 4px;
+  top: 28px;
+}
+#projects .projects-lady-hearts i:nth-child(2) {
+  left: 38px;
+  top: 4px;
+  animation-delay: 0.08s !important;
+}
+#projects .projects-lady-hearts i:nth-child(3) {
+  left: 68px;
+  top: 30px;
+  animation-delay: 0.16s !important;
+}
+@keyframes projectsLadyHeart {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.55);
+  }
+  35% {
+    opacity: 1;
+    transform: translateY(0) scale(1.12);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+}
+#projects .projects-lady-woof .projects-lady-sprite {
+  animation: projectsLadyWoof 0.42s steps(2, end) 2 !important;
+}
+@keyframes projectsLadyWoof {
+  50% {
+    transform: translateY(-6px) rotate(-2deg);
+  }
+}
+
+@media (max-width: 900px) {
+  #projects .projects-lady.projects-lady-button {
+    right: 22px !important;
+    bottom: 34px !important;
+    width: 128px !important;
+    height: 128px !important;
+  }
+  #projects .projects-lady-sprite {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  #projects .projects-lady-sprite img {
+    width: 116px !important;
+    height: 116px !important;
+  }
+  #projects .projects-lady-bubble {
+    right: 94px !important;
+    top: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #projects .projects-lady.projects-lady-button {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 118px !important;
+    height: 118px !important;
+    margin: 18px auto 4px !important;
+    place-self: center !important;
+  }
+  #projects .projects-lady-sprite {
+    width: 112px !important;
+    height: 112px !important;
+  }
+  #projects .projects-lady-sprite img {
+    width: 108px !important;
+    height: 108px !important;
+  }
+  #projects .projects-lady-bubble {
+    right: 88px !important;
+    top: 1px !important;
+    min-width: 62px !important;
+    font-size: 5px !important;
+    padding: 6px 7px !important;
+  }
+  #projects .projects-lady-hearts {
+    left: 42% !important;
+    top: -10px !important;
+  }
+}
+
+/* === v11 Projects Lady: transparent game-world placement ==================== */
+#projects > .projects-lady.projects-lady-button {
+  position: absolute !important;
+  z-index: 12 !important;
+  right: clamp(30px, 4vw, 72px) !important;
+  bottom: clamp(92px, 11vh, 132px) !important;
+  width: 150px !important;
+  height: 150px !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  filter: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+/* Old `.projects-lady span` rules styled every span like a white speech card.
+   Reset the sprite wrapper explicitly; only the bubble may have a panel. */
+#projects > .projects-lady > .projects-lady-sprite {
+  position: absolute !important;
+  inset: auto 0 0 auto !important;
+  display: block !important;
+  width: 146px !important;
+  height: 146px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+  filter: drop-shadow(5px 7px 0 rgba(0, 0, 0, 0.42)) !important;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease !important;
+}
+#projects > .projects-lady > .projects-lady-sprite::before,
+#projects > .projects-lady > .projects-lady-sprite::after {
+  content: none !important;
+  display: none !important;
+}
+#projects > .projects-lady > .projects-lady-sprite > img {
+  position: absolute !important;
+  inset: auto 0 0 auto !important;
+  display: block !important;
+  width: 142px !important;
+  height: 142px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  background: transparent !important;
+  image-rendering: pixelated !important;
+  animation: ladyProjectsIdle 2.4s ease-in-out infinite !important;
+}
+#projects > .projects-lady:hover > .projects-lady-sprite {
+  transform: translateY(-5px) scale(1.035) !important;
+  filter: drop-shadow(0 0 10px rgba(255, 211, 26, 0.62))
+    drop-shadow(5px 7px 0 rgba(0, 0, 0, 0.42)) !important;
+}
+
+#projects > .projects-lady > .projects-lady-bubble {
+  position: absolute !important;
+  z-index: 5 !important;
+  right: 112px !important;
+  top: 2px !important;
+  min-width: 72px !important;
+  width: max-content !important;
+  height: auto !important;
+  padding: 7px 9px !important;
+  margin: 0 !important;
+  background: #fff !important;
+  color: #07131e !important;
+  border: 2px solid #07131e !important;
+  border-radius: 0 !important;
+  box-shadow: 3px 3px 0 #07131e !important;
+  font:
+    6px "Press Start 2P",
+    monospace !important;
+  line-height: 1.25 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+}
+#projects > .projects-lady > .projects-lady-bubble::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  right: -7px !important;
+  bottom: 8px !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: #fff !important;
+  border: 0 !important;
+  border-right: 2px solid #07131e !important;
+  border-bottom: 2px solid #07131e !important;
+  box-shadow: none !important;
+  transform: rotate(-45deg) !important;
+}
+
+#projects > .projects-lady > .projects-lady-hearts {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+#projects > .projects-lady > .projects-lady-hearts::before,
+#projects > .projects-lady > .projects-lady-hearts::after {
+  content: none !important;
+}
+
+@media (max-width: 900px) {
+  #projects > .projects-lady.projects-lady-button {
+    right: 20px !important;
+    bottom: 76px !important;
+    width: 124px !important;
+    height: 124px !important;
+  }
+  #projects > .projects-lady > .projects-lady-sprite {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  #projects > .projects-lady > .projects-lady-sprite > img {
+    width: 116px !important;
+    height: 116px !important;
+  }
+  #projects > .projects-lady > .projects-lady-bubble {
+    right: 92px !important;
+    top: 0 !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #projects > .projects-lady.projects-lady-button {
+    position: relative !important;
+    inset: auto !important;
+    display: block !important;
+    width: 116px !important;
+    height: 124px !important;
+    margin: 22px auto 10px !important;
+  }
+  #projects > .projects-lady > .projects-lady-sprite {
+    width: 112px !important;
+    height: 112px !important;
+  }
+  #projects > .projects-lady > .projects-lady-sprite > img {
+    width: 108px !important;
+    height: 108px !important;
+  }
+  #projects > .projects-lady > .projects-lady-bubble {
+    right: 86px !important;
+    top: 4px !important;
+    min-width: 60px !important;
+    padding: 6px 7px !important;
+    font-size: 5px !important;
+  }
+}

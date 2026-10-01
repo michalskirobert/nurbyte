@@ -1,0 +1,126 @@
+/* === v5: explicit layered parallax for ABOUT / TECH / CONTACT === */
+#about.about-game,
+#tech.tech-game,
+#contact.contact-game {
+  background-image: none !important;
+  isolation: isolate;
+}
+.section-parallax-bg {
+  position: absolute;
+  inset: -5%;
+  z-index: -3;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: translate3d(
+      calc(var(--mx, 0px) * -0.55),
+      calc(var(--my, 0px) * -0.42 + var(--sy, 0px) * -0.32),
+      0
+    )
+    scale(1.09);
+  will-change: transform;
+}
+.about-parallax-bg {
+  background-image: url("/assets/backgrounds/about.webp");
+}
+.tech-parallax-bg {
+  background-image: url("/assets/backgrounds/tech.webp");
+}
+.contact-parallax-bg {
+  background-image: url("/assets/backgrounds/contact.webp");
+}
+#about .about-shade,
+#about .about-scanlines,
+#tech .tech-shade,
+#tech .tech-scanlines,
+#contact .contact-shade,
+#contact .contact-scanlines {
+  z-index: -2;
+}
+#about .scene-content,
+#tech .scene-content,
+#contact .scene-content {
+  transform: translate3d(
+    calc(var(--mx, 0px) * 0.12),
+    calc(var(--my, 0px) * 0.09 + var(--sy, 0px) * 0.045),
+    0
+  );
+  will-change: transform;
+}
+#about .about-head,
+#tech .tech-head,
+#contact .contact-head {
+  transform: translate3d(
+    calc(var(--mx, 0px) * 0.06),
+    calc(var(--my, 0px) * 0.04),
+    0
+  );
+  transition: transform 0.1s linear;
+}
+#about .about-profile {
+  transform: translate3d(
+    calc(var(--mx, 0px) * 0.025),
+    calc(var(--my, 0px) * 0.02),
+    0
+  );
+}
+#about .about-log {
+  transform: translate3d(
+    calc(var(--mx, 0px) * -0.035),
+    calc(var(--my, 0px) * -0.025),
+    0
+  );
+}
+#tech .tech-inventory {
+  transform: translate3d(
+    calc(var(--mx, 0px) * 0.025),
+    calc(var(--my, 0px) * 0.02),
+    0
+  );
+}
+#tech .tech-inspector {
+  transform: translate3d(
+    calc(var(--mx, 0px) * -0.04),
+    calc(var(--my, 0px) * -0.03),
+    0
+  );
+}
+#contact .contact-terminal {
+  transform: translate3d(
+    calc(var(--mx, 0px) * 0.025),
+    calc(var(--my, 0px) * 0.02),
+    0
+  );
+}
+#contact .contact-lady {
+  transform: translate3d(
+    calc(var(--mx, 0px) * -0.09),
+    calc(var(--my, 0px) * -0.07 + var(--sy, 0px) * -0.04),
+    0
+  );
+}
+/* Terminal-like contact form */
+.contact-terminal-body {
+  background:
+    radial-gradient(circle at 30% 10%, rgba(26, 91, 64, 0.1), transparent 42%),
+    rgba(1, 8, 12, 0.9);
+}
+.cli-line,
+.cli-output,
+.cli-prompt {
+  font-family: var(--terminal-font);
+  font-size: 20px;
+  line-height: 1.25;
+}
+.cli-line b,
+.cli-prompt b {
+  color: #f5c518;
+}
+.cli-output {
+  color: #759d88;
+  margin: 3px 0 17px;
+}
+.cli-output em {
+  font-style: normal;
+  color: #69df91;
+}

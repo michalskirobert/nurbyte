@@ -1,0 +1,236 @@
+/* === v16.1 layout rollback ===
+   Preserve the accepted pre-v16 geometry. Only ensure CONTACT uses the
+   existing arcade display token; no global font-size/line-height overrides. */
+#contact .contact-head h2 {
+  font-family: var(--arcade-font) !important;
+}
+
+/* Safari/iOS parallax: use JS-computed px values, but do not touch HOME
+   typography, section geometry, font sizes or layout. */
+#about .section-parallax-bg,
+#tech .section-parallax-bg,
+#contact .section-parallax-bg {
+  -webkit-transform: translate3d(var(--p-bg-x, 0px), var(--p-bg-y, 0px), 0)
+    scale(1.08) !important;
+  transform: translate3d(var(--p-bg-x, 0px), var(--p-bg-y, 0px), 0) scale(1.08) !important;
+  will-change: transform;
+}
+@media (pointer: coarse), (max-width: 760px) {
+  #about .section-parallax-bg,
+  #tech .section-parallax-bg,
+  #contact .section-parallax-bg {
+    -webkit-transform: translate3d(0, var(--p-bg-y, 0px), 0) scale(1.08) !important;
+    transform: translate3d(0, var(--p-bg-y, 0px), 0) scale(1.08) !important;
+  }
+}
+
+/* Stable Lucide navigation icons — no platform emoji glyphs. */
+.nav a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.nav-icon {
+  width: 12px;
+  height: 12px;
+  stroke-width: 1.8;
+  flex: 0 0 auto;
+}
+.menu-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Real two-state display control. */
+.display-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgba(110, 192, 221, 0.28);
+  border-radius: 999px;
+  background: rgba(2, 10, 17, 0.66);
+  overflow: hidden;
+}
+.display-toggle button {
+  position: relative;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  color: #76909a;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+.display-toggle button svg {
+  width: 14px;
+  height: 14px;
+  transition:
+    transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.24s ease;
+}
+.display-toggle button.active {
+  color: #ffd21a;
+}
+.display-toggle button.active svg {
+  transform: scale(1.28);
+  filter: drop-shadow(0 0 5px rgba(255, 210, 26, 0.55));
+}
+.display-toggle-indicator {
+  position: absolute;
+  z-index: 1;
+  top: 3px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 210, 26, 0.48);
+  border-radius: 50%;
+  background: rgba(255, 210, 26, 0.08);
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.display-toggle-indicator.light {
+  transform: translateX(0);
+}
+.display-toggle-indicator.contrast {
+  transform: translateX(34px);
+}
+
+/* The contrast option now has a visible function instead of being decorative. */
+html[data-display-mode="contrast"] body {
+  background: #000;
+}
+html[data-display-mode="contrast"] main {
+  --contrast-text: #fff;
+}
+html[data-display-mode="contrast"] .interactive-scene {
+  filter: none;
+}
+html[data-display-mode="contrast"] .hud,
+html[data-display-mode="contrast"] .terminal,
+html[data-display-mode="contrast"] .contact-terminal,
+html[data-display-mode="contrast"] .project-rail-card {
+  border-color: rgba(255, 220, 45, 0.72) !important;
+}
+html[data-display-mode="contrast"] .hud {
+  background: rgba(0, 5, 10, 0.94) !important;
+}
+html[data-display-mode="contrast"] p,
+html[data-display-mode="contrast"] .lede {
+  color: #fff !important;
+}
+html[data-display-mode="contrast"] a:focus-visible,
+html[data-display-mode="contrast"] button:focus-visible {
+  outline: 3px solid #ffd21a !important;
+  outline-offset: 3px;
+}
+
+/* === v16.6 typography restoration ===
+   Font aliases only. Original master.css remains the source of truth for
+   sizes, line-height, letter-spacing and which UI uses which face. */
+:root {
+  --display: var(--font-pixelify), system-ui, sans-serif;
+  --hud: var(--font-press), ui-monospace, monospace;
+  --terminal:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --pixel-font: var(--font-pixelify), system-ui, sans-serif;
+  --arcade-font: var(--font-press), ui-monospace, monospace;
+  --terminal-font:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+/* The hero must keep the compact display face from the accepted composition. */
+.hero h1,
+.hero-copy h1 {
+  font-family: var(--display) !important;
+  font-weight: 700 !important;
+}
+
+/* Terminal is deliberately independent from the arcade font. */
+.terminal,
+.terminal *,
+.hero-terminal,
+.hero-terminal *,
+.contact-terminal,
+.contact-terminal *,
+.contact-cli,
+.contact-cli * {
+  font-family: var(--terminal-font) !important;
+}
+
+/* CONTACT title is the one explicit arcade heading requested. */
+#contact .contact-head h2 {
+  font-family: var(--arcade-font) !important;
+}
+
+/* === v16.7 final font roles ===
+   Arcade is a UI/display accent, never the large HOME hero. */
+.projects-head h2,
+.about-head h2,
+.tech-head h2,
+#contact .contact-head h2,
+.section-kicker,
+.eyebrow,
+.nav a,
+.btn,
+.project-open,
+.online {
+  font-family: var(--arcade-font) !important;
+  font-weight: 400 !important;
+}
+
+/* HOME keeps the compact pixel display face so Press Start 2P cannot blow up geometry. */
+.hero h1,
+.hero-copy h1 {
+  font-family: var(--pixel-font) !important;
+  font-weight: 700 !important;
+}
+
+/* Realistic macOS/zsh-like terminal typography.
+   Do not use VT323 here: it reads as a retro-game terminal. */
+.terminal,
+.terminal pre,
+.terminal code,
+.terminal .term-bar,
+.hero-terminal,
+.hero-terminal *,
+.contact-terminal,
+.contact-terminal *,
+.contact-cli,
+.contact-cli *,
+.cli-live-prompt,
+.cli-hint,
+.cli-editor-bar,
+.cli-review,
+.cli-message-compose,
+.cli-progress {
+  font-family:
+    Menlo, Monaco, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono",
+    monospace !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+}
+.terminal .term-bar span,
+.hero-terminal .term-bar span {
+  font-size: 12px !important;
+}
+.contact-cli textarea,
+.contact-cli input,
+.contact-cli button,
+.contact-cli .cli-message-prompt textarea,
+.contact-cli .cli-editor textarea {
+  font-family:
+    Menlo, Monaco, "SFMono-Regular", "SF Mono", Consolas, "Liberation Mono",
+    monospace !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important;
+}

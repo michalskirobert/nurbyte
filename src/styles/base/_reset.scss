@@ -1,0 +1,16 @@
+@use "../abstracts/variables" as v;
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  background: v.$page-background;
+}
+body {
+  margin: 0;
+  color: var(--ink);
+  background: v.$page-background;
+  font-family: var(--display);
+  overflow-x: hidden;
+}

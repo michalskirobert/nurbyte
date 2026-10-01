@@ -270,6 +270,13 @@ export default function ContactForm() {
               value={value}
               onChange={(e) => setValue(e.target.value)}
               onKeyDown={key}
+              aria-label={
+                step === "name"
+                  ? "Your name"
+                  : step === "email"
+                    ? "Your email address"
+                    : "Project category"
+              }
               autoComplete="off"
               spellCheck={false}
             />

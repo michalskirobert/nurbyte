@@ -1,0 +1,435 @@
+/* === v32 404 Lady: sniff -> hover ? -> click hearts -> ball -> sniff === */
+.not-found-lady .not-found-lady-bubble {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.not-found-lady.is-search:hover .not-found-lady-bubble {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady.is-love .not-found-lady-bubble,
+.not-found-lady.is-toy .not-found-lady-bubble {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.not-found-lady .not-found-lady-search {
+  max-width: 420px !important;
+  max-height: 330px !important;
+}
+@media (max-width: 760px) {
+  .not-found-lady .not-found-lady-search {
+    max-width: 238px !important;
+    max-height: 205px !important;
+  }
+}
+
+/* === v33 404 interaction correction =======================================
+   Idle keeps the large sniffing Lady. Hover never swaps the character, it
+   only reveals the question bubble. Click: hearts + WOOF, then ball play. */
+.not-found-lady:not(.is-love):not(.is-toy):hover .not-found-lady-search {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady .not-found-lady-hover {
+  display: none !important;
+}
+.not-found-lady .not-found-lady-question,
+.not-found-lady .not-found-lady-click-bubble {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.not-found-lady.is-search:hover .not-found-lady-question {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady.is-love .not-found-lady-question,
+.not-found-lady.is-toy .not-found-lady-question {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+.not-found-lady.is-love .not-found-lady-click-bubble {
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-width: max-content !important;
+  padding-inline: 14px !important;
+  color: #071018 !important;
+  background: #ff668c !important;
+  border-color: #071018 !important;
+}
+.not-found-lady.is-love .not-found-lady-click-bubble::after {
+  background: #ff668c !important;
+  border-color: #071018 !important;
+}
+.not-found-lady .not-found-lady-love {
+  width: 330px !important;
+  height: 330px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
+.not-found-lady .not-found-lady-toy {
+  width: 420px !important;
+  height: 330px !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: contain !important;
+}
+.not-found-lady-hearts {
+  position: absolute !important;
+  z-index: 7 !important;
+  left: 50% !important;
+  bottom: 215px !important;
+  width: 210px !important;
+  transform: translateX(-50%) !important;
+  pointer-events: none !important;
+}
+.not-found-lady-hearts i {
+  position: absolute;
+  color: #ff668c;
+  font-style: normal;
+  font-size: 28px;
+  text-shadow: 3px 3px 0 #071018;
+  animation: nf-heart-pop 850ms ease-out both;
+}
+.not-found-lady-hearts i:nth-child(1) {
+  left: 18px;
+  top: 16px;
+}
+.not-found-lady-hearts i:nth-child(2) {
+  left: 90px;
+  top: -10px;
+  animation-delay: 80ms;
+}
+.not-found-lady-hearts i:nth-child(3) {
+  right: 12px;
+  top: 20px;
+  animation-delay: 150ms;
+}
+@keyframes nf-heart-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.6);
+  }
+  35% {
+    opacity: 1;
+    transform: translateY(0) scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.9);
+  }
+}
+@media (max-width: 760px) {
+  .not-found-lady .not-found-lady-love {
+    width: 200px !important;
+    height: 205px !important;
+  }
+  .not-found-lady .not-found-lady-toy {
+    width: 238px !important;
+    height: 205px !important;
+  }
+  .not-found-lady-hearts {
+    bottom: 132px !important;
+    width: 145px !important;
+  }
+  .not-found-lady-hearts i {
+    font-size: 20px;
+  }
+}
+
+/* === v34 404 Lady: stable stage and state-specific dialogue === */
+.not-found-lady {
+  width: 430px !important;
+  height: 365px !important;
+}
+
+.not-found-lady-stage > img {
+  left: 50% !important;
+  bottom: 0 !important;
+  transform: translateX(-50%) !important;
+  object-fit: contain !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.not-found-lady .not-found-lady-search {
+  width: 414px !important;
+  height: 330px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady .not-found-lady-hover {
+  display: block !important;
+  width: 195px !important;
+  height: 330px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.not-found-lady .not-found-lady-love {
+  width: 256px !important;
+  height: 330px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.not-found-lady .not-found-lady-toy {
+  width: 370px !important;
+  height: 280px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.not-found-lady.is-search:hover .not-found-lady-search {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.not-found-lady.is-search:hover .not-found-lady-hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady.is-love .not-found-lady-search,
+.not-found-lady.is-love .not-found-lady-hover,
+.not-found-lady.is-toy .not-found-lady-search,
+.not-found-lady.is-toy .not-found-lady-hover {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.not-found-lady.is-love .not-found-lady-love {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady.is-toy .not-found-lady-toy {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady .not-found-lady-bubble {
+  left: 78% !important;
+  top: 10% !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.not-found-lady.is-search:not(:hover) .not-found-lady-idle-bubble {
+  opacity: 1 !important;
+  visibility: visible !important;
+  min-width: max-content !important;
+}
+
+.not-found-lady.is-search:hover .not-found-lady-question {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady.is-love .not-found-lady-click-bubble {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady.is-toy .not-found-lady-bubble {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+@media (max-width: 760px) {
+  .not-found-lady {
+    width: 245px !important;
+    height: 220px !important;
+  }
+
+  .not-found-lady .not-found-lady-search {
+    width: 236px !important;
+    height: 188px !important;
+  }
+
+  .not-found-lady .not-found-lady-hover {
+    width: 111px !important;
+    height: 188px !important;
+  }
+
+  .not-found-lady .not-found-lady-love {
+    width: 146px !important;
+    height: 188px !important;
+  }
+
+  .not-found-lady .not-found-lady-toy {
+    width: 222px !important;
+    height: 168px !important;
+  }
+
+  .not-found-lady .not-found-lady-bubble {
+    left: 73% !important;
+    top: 3% !important;
+  }
+}
+
+/* === v35 404 Lady: deterministic states, attached beside 404 ============= */
+.not-found-lady {
+  left: clamp(585px, 46vw, 720px) !important;
+  right: auto !important;
+  top: clamp(190px, 23vh, 245px) !important;
+  bottom: auto !important;
+  width: 330px !important;
+  height: 300px !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+.not-found-lady-stage {
+  position: absolute !important;
+  inset: 0 !important;
+  overflow: visible !important;
+}
+
+.not-found-lady-stage > img {
+  position: absolute !important;
+  left: 50% !important;
+  bottom: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: block !important;
+  transform: translateX(-50%) !important;
+  object-fit: contain !important;
+  pointer-events: none !important;
+}
+
+.not-found-lady.is-search .not-found-lady-search {
+  width: 325px !important;
+  height: 258px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady.is-question .not-found-lady-hover {
+  width: 154px !important;
+  height: 258px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady.is-love .not-found-lady-love {
+  width: 200px !important;
+  height: 258px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady.is-toy .not-found-lady-toy {
+  width: 315px !important;
+  height: 238px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.not-found-lady .not-found-lady-bubble {
+  left: 73% !important;
+  top: 4px !important;
+  z-index: 9 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  min-width: max-content !important;
+}
+.not-found-lady.is-search .not-found-lady-idle-bubble,
+.not-found-lady.is-question .not-found-lady-question,
+.not-found-lady.is-love .not-found-lady-click-bubble,
+.not-found-lady.is-toy .not-found-lady-play-bubble {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.not-found-lady.is-question .not-found-lady-question {
+  left: 66% !important;
+}
+.not-found-lady.is-love .not-found-lady-click-bubble {
+  left: 70% !important;
+  background: #ff668c !important;
+  border-color: #071018 !important;
+  color: #071018 !important;
+}
+.not-found-lady.is-love .not-found-lady-click-bubble::after {
+  background: #ff668c !important;
+  border-color: #071018 !important;
+}
+.not-found-lady.is-toy .not-found-lady-play-bubble {
+  left: 76% !important;
+}
+.not-found-lady-hearts {
+  bottom: 170px !important;
+}
+
+@media (max-width: 1100px) and (min-width: 761px) {
+  .not-found-lady {
+    left: auto !important;
+    right: 2.5vw !important;
+    top: 27% !important;
+    width: 285px !important;
+    height: 265px !important;
+  }
+  .not-found-lady.is-search .not-found-lady-search {
+    width: 280px !important;
+    height: 225px !important;
+  }
+  .not-found-lady.is-question .not-found-lady-hover {
+    width: 134px !important;
+    height: 225px !important;
+  }
+  .not-found-lady.is-love .not-found-lady-love {
+    width: 175px !important;
+    height: 225px !important;
+  }
+  .not-found-lady.is-toy .not-found-lady-toy {
+    width: 275px !important;
+    height: 210px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .not-found-scene {
+    overflow-y: auto !important;
+  }
+  .not-found-panel {
+    padding-top: 0 !important;
+  }
+  .not-found-lady {
+    left: auto !important;
+    right: 8px !important;
+    top: 195px !important;
+    width: 150px !important;
+    height: 155px !important;
+    z-index: 4 !important;
+  }
+  .not-found-lady.is-search .not-found-lady-search {
+    width: 148px !important;
+    height: 124px !important;
+  }
+  .not-found-lady.is-question .not-found-lady-hover {
+    width: 74px !important;
+    height: 124px !important;
+  }
+  .not-found-lady.is-love .not-found-lady-love {
+    width: 96px !important;
+    height: 124px !important;
+  }
+  .not-found-lady.is-toy .not-found-lady-toy {
+    width: 146px !important;
+    height: 114px !important;
+  }
+  .not-found-lady .not-found-lady-bubble {
+    top: -4px !important;
+    left: 60% !important;
+    padding: 6px 7px !important;
+    font-size: 7px !important;
+  }
+  .not-found-lady.is-toy .not-found-lady-play-bubble {
+    left: 58% !important;
+  }
+  .not-found-lady-hearts {
+    bottom: 78px !important;
+    width: 105px !important;
+  }
+}

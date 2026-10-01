@@ -1,0 +1,275 @@
+/* === v16.8 section arcade typography ===
+   Bind directly to next/font variable so this cannot be defeated by stale aliases.
+   Only section display/UI text — never body copy or HOME hero. */
+#projects .projects-head h2,
+#projects .projects-head .eyebrow,
+#projects .projects-head .section-kicker,
+#about .about-head h2,
+#about .about-head .eyebrow,
+#about .about-head .section-kicker,
+#tech .tech-head h2,
+#tech .tech-head .eyebrow,
+#tech .tech-head .section-kicker,
+#contact .contact-head h2,
+#contact .contact-head .eyebrow,
+#contact .contact-head .section-kicker {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+}
+
+/* === v16.9 arcade typography + motion language ===
+   Large headings stay readable Pixelify; arcade is a deliberate accent. */
+#projects .section-kicker,
+#about .section-kicker,
+#tech .section-kicker,
+#contact .section-kicker,
+#about .about-area,
+#tech .tech-area,
+#contact .contact-area,
+#projects .project-open,
+#projects .project-meta,
+#about .about-profile-kicker,
+#about .about-log-kicker,
+#tech .tech-inspector-kicker,
+#tech .tech-slot span,
+#contact .cli-live-prompt,
+#contact .cli-hint {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+}
+#projects .projects-head h2,
+#about .about-head h2,
+#tech .tech-head h2 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+}
+/* Yellow keyword is the arcade punch; this avoids wrecking headline geometry. */
+#projects .projects-head h2 em,
+#about .about-head h2 em,
+#tech .tech-head h2 em,
+#contact .contact-head h2 em {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.62em;
+  letter-spacing: -0.04em;
+  vertical-align: 0.08em;
+}
+
+/* SCROLL TO EXPLORE becomes an affordance, not another heavy HUD label. */
+#home .scroll-hint {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 9px;
+  left: 58px !important;
+  bottom: 18px !important;
+  padding: 7px 10px 7px 12px;
+  border: 1px solid rgba(255, 210, 26, 0.28);
+  border-radius: 999px;
+  background: rgba(2, 13, 21, 0.48);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 0.82 !important;
+  font-family: var(--font-press), monospace !important;
+  font-size: 6px !important;
+  letter-spacing: 0.03em;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+#home .scroll-hint span {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin: 0 !important;
+  color: #ffd21a;
+  font-size: 15px !important;
+  line-height: 1;
+  animation: scrollHintDrop 1.35s steps(4, end) infinite;
+}
+#home .scroll-hint:hover,
+#home .scroll-hint:focus-visible {
+  opacity: 1 !important;
+  border-color: rgba(255, 210, 26, 0.75);
+  background: rgba(5, 22, 31, 0.78);
+  transform: translateY(-2px);
+}
+@keyframes scrollHintDrop {
+  0%,
+  100% {
+    transform: translateY(-2px);
+    opacity: 0.45;
+  }
+  55% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+}
+
+/* Section entrance: short arcade-like stepped reveal, one observer for all sections. */
+#projects .projects-head,
+#projects .projects-track,
+#about .about-head,
+#about .about-profile,
+#about .about-log,
+#tech .tech-head,
+#tech .tech-inventory,
+#tech .tech-inspector,
+#contact .contact-head,
+#contact .contact-terminal,
+#contact .contact-lady {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+}
+.section-entered .projects-head,
+.section-entered .about-head,
+.section-entered .tech-head,
+.section-entered .contact-head {
+  animation: arcadeEnter 0.48s steps(7, end) both;
+}
+.section-entered .projects-track,
+.section-entered .about-profile,
+.section-entered .tech-inventory,
+.section-entered .contact-terminal {
+  animation: arcadeEnter 0.56s 0.09s steps(8, end) both;
+}
+.section-entered .about-log,
+.section-entered .tech-inspector,
+.section-entered .contact-lady {
+  animation: arcadeEnter 0.56s 0.17s steps(8, end) both;
+}
+@keyframes arcadeEnter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    filter: brightness(0.7);
+  }
+  38% {
+    opacity: 0.55;
+    transform: translate3d(0, 8px, 0);
+    filter: brightness(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #home .scroll-hint span {
+    animation: none;
+  }
+  #projects .projects-head,
+  #projects .projects-track,
+  #about .about-head,
+  #about .about-profile,
+  #about .about-log,
+  #tech .tech-head,
+  #tech .tech-inventory,
+  #tech .tech-inspector,
+  #contact .contact-head,
+  #contact .contact-terminal,
+  #contact .contact-lady {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    filter: none !important;
+  }
+}
+
+/* === v17 typography hierarchy ===
+   Use BOTH faces inside the same compositions instead of assigning one face
+   to an entire section. Press Start 2P is the accent; Pixelify is the large
+   readable display face. */
+
+/* HERO: arcade eyebrow + yellow half of the statement, readable display for the rest. */
+#home .hero-copy .eyebrow,
+#home .hero-copy .kicker {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+#home .hero-copy h1 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+}
+#home .hero-copy h1 em,
+#home .hero-copy h1 strong,
+#home .hero-copy h1 .accent {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.68em !important;
+  line-height: 1.32 !important;
+  letter-spacing: -0.045em !important;
+}
+
+/* Section headings: display base + arcade accent if markup contains em/strong/accent. */
+#projects .projects-head h2,
+#about .about-head h2,
+#tech .tech-head h2 {
+  font-family: var(--font-pixelify), sans-serif !important;
+  font-weight: 700 !important;
+}
+#projects .projects-head h2 em,
+#projects .projects-head h2 strong,
+#projects .projects-head h2 .accent,
+#about .about-head h2 em,
+#about .about-head h2 strong,
+#about .about-head h2 .accent,
+#tech .tech-head h2 em,
+#tech .tech-head h2 strong,
+#tech .tech-head h2 .accent {
+  font-family: var(--font-press), monospace !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 0.66em !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.04em !important;
+}
+
+/* Small UI is where the arcade face works best. */
+#projects .section-kicker,
+#about .section-kicker,
+#tech .section-kicker,
+#contact .section-kicker,
+#projects .project-meta,
+#projects .project-open,
+#about .about-profile-kicker,
+#about .about-log-kicker,
+#about .about-meta,
+#tech .tech-inspector-kicker,
+#tech .tech-slot span,
+#tech .tech-area,
+#contact .contact-head h2,
+#contact .contact-area,
+.nav a,
+.online,
+.btn {
+  font-family: var(--font-press), monospace !important;
+  font-weight: 400 !important;
+}
+
+/* SCROLL TO EXPLORE: centered, isolated from hero copy/CTA. */
+#home .scroll-hint {
+  left: 50% !important;
+  right: auto !important;
+  bottom: 17px !important;
+  transform: translateX(-50%) !important;
+  z-index: 8 !important;
+  opacity: 0.9 !important;
+}
+#home .scroll-hint:hover,
+#home .scroll-hint:focus-visible {
+  transform: translateX(-50%) translateY(-2px) !important;
+}
+@media (max-width: 760px) {
+  #home .scroll-hint {
+    left: 50% !important;
+    bottom: 10px !important;
+  }
+}
