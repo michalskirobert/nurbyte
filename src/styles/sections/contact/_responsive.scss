@@ -100,35 +100,6 @@
   transform: translateX(34px);
 }
 
-/* The contrast option now has a visible function instead of being decorative. */
-html[data-display-mode="contrast"] body {
-  background: #000;
-}
-html[data-display-mode="contrast"] main {
-  --contrast-text: #fff;
-}
-html[data-display-mode="contrast"] .interactive-scene {
-  filter: none;
-}
-html[data-display-mode="contrast"] .hud,
-html[data-display-mode="contrast"] .terminal,
-html[data-display-mode="contrast"] .contact-terminal,
-html[data-display-mode="contrast"] .project-rail-card {
-  border-color: rgba(255, 220, 45, 0.72) !important;
-}
-html[data-display-mode="contrast"] .hud {
-  background: rgba(0, 5, 10, 0.94) !important;
-}
-html[data-display-mode="contrast"] p,
-html[data-display-mode="contrast"] .lede {
-  color: #fff !important;
-}
-html[data-display-mode="contrast"] a:focus-visible,
-html[data-display-mode="contrast"] button:focus-visible {
-  outline: 3px solid #ffd21a !important;
-  outline-offset: 3px;
-}
-
 /* === v16.6 typography restoration ===
    Font aliases only. Original master.css remains the source of truth for
    sizes, line-height, letter-spacing and which UI uses which face. */

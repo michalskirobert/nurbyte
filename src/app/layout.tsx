@@ -24,6 +24,15 @@ const terminal = VT323({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nurbyte.dev";
 
+const DISPLAY_MODE_INIT = `
+  try {
+    var mode = localStorage.getItem("nurbyte-display-mode");
+    document.documentElement.dataset.displayMode = mode === "contrast" ? "contrast" : "light";
+  } catch (_) {
+    document.documentElement.dataset.displayMode = "light";
+  }
+`;
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -214,7 +223,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: DISPLAY_MODE_INIT }} />
+      </head>
       <body
         suppressHydrationWarning
         className={`${pixelify.variable} ${press.variable} ${terminal.variable}`}

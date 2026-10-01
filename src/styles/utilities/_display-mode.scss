@@ -1,0 +1,91 @@
+/* Global display-mode contract.
+   "light" is the normal artwork mode; "contrast" is an accessibility mode.
+   Keep the mode global so every section reacts consistently. */
+
+html[data-display-mode="contrast"] {
+  color-scheme: dark;
+  --ink: #ffffff;
+  --muted: #ffffff;
+  --navy: #000000;
+  --panel: rgba(0, 0, 0, 0.96);
+  --line: #ffd21c;
+}
+
+html[data-display-mode="contrast"],
+html[data-display-mode="contrast"] body {
+  background: #000;
+}
+
+html[data-display-mode="contrast"] body,
+html[data-display-mode="contrast"] main,
+html[data-display-mode="contrast"] .scene,
+html[data-display-mode="contrast"] .section,
+html[data-display-mode="contrast"] .interactive-scene {
+  color: var(--ink);
+}
+
+/* Text that historically used section-specific muted hard-coded colours. */
+html[data-display-mode="contrast"]
+  :is(
+    p,
+    .lede,
+    .project-description,
+    .about-copy,
+    .about-log,
+    .tech-copy,
+    .contact-copy,
+    .terminal-output,
+    .terminal-line,
+    .project-meta
+  ) {
+  color: #fff !important;
+}
+
+/* UI surfaces use one high-contrast visual language across all sections. */
+html[data-display-mode="contrast"]
+  :is(
+    .hud,
+    .terminal,
+    .contact-terminal,
+    .project-rail-card,
+    .project-grid-panel,
+    .about-card,
+    .about-log,
+    .tech-card,
+    .modal-content,
+    .contact-modal
+  ) {
+  border-color: rgba(255, 210, 28, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.94) !important;
+}
+
+html[data-display-mode="contrast"] .hud {
+  background: rgba(0, 0, 0, 0.96) !important;
+}
+
+html[data-display-mode="contrast"] :is(input, textarea, select) {
+  color: #fff !important;
+  background: #000 !important;
+  border-color: #ffd21c !important;
+}
+
+html[data-display-mode="contrast"] :is(input, textarea)::placeholder {
+  color: #fff !important;
+  opacity: 0.82;
+}
+
+html[data-display-mode="contrast"] :is(a, button):focus-visible {
+  outline: 3px solid #ffd21c !important;
+  outline-offset: 3px;
+}
+
+html[data-display-mode="contrast"] .shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.94),
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.78)
+    ),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.82), transparent 42%);
+}

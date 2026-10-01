@@ -10,18 +10,22 @@ type DisplayMode = "light" | "contrast";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
-  const [displayMode, setDisplayMode] = useState<DisplayMode>(() => {
-    if (typeof window === "undefined") return "light";
-    return localStorage.getItem("nurbyte-display-mode") === "contrast"
-      ? "contrast"
-      : "light";
-  });
+  const [displayMode, setDisplayMode] = useState<DisplayMode>("light");
   const [brandHovered, setBrandHovered] = useState(false);
 
   useEffect(() => {
-    document.documentElement.dataset.displayMode = displayMode;
-    localStorage.setItem("nurbyte-display-mode", displayMode);
-  }, [displayMode]);
+    const initialMode: DisplayMode =
+      document.documentElement.dataset.displayMode === "contrast"
+        ? "contrast"
+        : "light";
+    setDisplayMode(initialMode);
+  }, []);
+
+  const changeDisplayMode = (mode: DisplayMode) => {
+    setDisplayMode(mode);
+    document.documentElement.dataset.displayMode = mode;
+    localStorage.setItem("nurbyte-display-mode", mode);
+  };
 
   useEffect(() => {
     const sections = [
@@ -78,7 +82,7 @@ export default function Header() {
               aria-pressed={displayMode === "light"}
               aria-label="Normal display"
               title="Normal display"
-              onClick={() => setDisplayMode("light")}
+              onClick={() => changeDisplayMode("light")}
             >
               <Sun />
             </button>
@@ -87,7 +91,7 @@ export default function Header() {
               aria-pressed={displayMode === "contrast"}
               aria-label="High contrast"
               title="High contrast"
-              onClick={() => setDisplayMode("contrast")}
+              onClick={() => changeDisplayMode("contrast")}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -121,7 +125,7 @@ export default function Header() {
         open={open}
         onClose={() => setOpen(false)}
         displayMode={displayMode}
-        onDisplayModeChange={setDisplayMode}
+        onDisplayModeChange={changeDisplayMode}
       />
     </>
   );
