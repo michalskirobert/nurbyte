@@ -25,36 +25,34 @@ html[data-display-mode="contrast"] .interactive-scene {
 }
 
 /* Text that historically used section-specific muted hard-coded colours. */
-html[data-display-mode="contrast"]
-  :is(
-    p,
-    .lede,
-    .project-description,
-    .about-copy,
-    .about-log,
-    .tech-copy,
-    .contact-copy,
-    .terminal-output,
-    .terminal-line,
-    .project-meta
-  ) {
+html[data-display-mode="contrast"] :is(
+  p,
+  .lede,
+  .project-description,
+  .about-copy,
+  .about-log,
+  .tech-copy,
+  .contact-copy,
+  .terminal-output,
+  .terminal-line,
+  .project-meta
+) {
   color: #fff !important;
 }
 
 /* UI surfaces use one high-contrast visual language across all sections. */
-html[data-display-mode="contrast"]
-  :is(
-    .hud,
-    .terminal,
-    .contact-terminal,
-    .project-rail-card,
-    .project-grid-panel,
-    .about-card,
-    .about-log,
-    .tech-card,
-    .modal-content,
-    .contact-modal
-  ) {
+html[data-display-mode="contrast"] :is(
+  .hud,
+  .terminal,
+  .contact-terminal,
+  .project-rail-card,
+  .project-grid-panel,
+  .about-card,
+  .about-log,
+  .tech-card,
+  .modal-content,
+  .contact-modal
+) {
   border-color: rgba(255, 210, 28, 0.9) !important;
   background-color: rgba(0, 0, 0, 0.94) !important;
 }
@@ -81,11 +79,6 @@ html[data-display-mode="contrast"] :is(a, button):focus-visible {
 
 html[data-display-mode="contrast"] .shade {
   background:
-    linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.94),
-      rgba(0, 0, 0, 0.5) 60%,
-      rgba(0, 0, 0, 0.78)
-    ),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.78)),
     linear-gradient(0deg, rgba(0, 0, 0, 0.82), transparent 42%);
 }

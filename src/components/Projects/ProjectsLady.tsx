@@ -1,15 +1,12 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import {
-  LADY_ASSETS,
-  LADY_LABELS,
-  LADY_TIMINGS,
-  type LadyMood,
-} from "@/constants/lady";
+import { LADY_ASSETS, LADY_LABELS, LADY_TIMINGS, type LadyMood } from "@/constants/lady";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+
+import styles from "./ProjectsLady.module.scss";
 
 const frames = LADY_ASSETS.projects;
 
@@ -81,7 +78,7 @@ export default function ProjectsLady() {
       {mood === "love" && (
         <span
           key={heartsKey}
-          className="projects-lady-hearts"
+          className={`${styles.hearts} projects-lady-hearts`}
           aria-hidden="true"
         >
           <i>

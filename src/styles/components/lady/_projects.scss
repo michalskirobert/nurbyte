@@ -1,39 +1,3 @@
-#projects .projects-lady-hearts i {
-  position: absolute !important;
-  color: #ffd31a !important;
-  font-style: normal !important;
-  font-size: 18px !important;
-  text-shadow: 2px 2px 0 #07131e !important;
-  animation: projectsLadyHeart 0.82s ease-out forwards !important;
-}
-#projects .projects-lady-hearts i:nth-child(1) {
-  left: 4px;
-  top: 28px;
-}
-#projects .projects-lady-hearts i:nth-child(2) {
-  left: 38px;
-  top: 4px;
-  animation-delay: 0.08s !important;
-}
-#projects .projects-lady-hearts i:nth-child(3) {
-  left: 68px;
-  top: 30px;
-  animation-delay: 0.16s !important;
-}
-@keyframes projectsLadyHeart {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0.55);
-  }
-  35% {
-    opacity: 1;
-    transform: translateY(0) scale(1.12);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.9);
-  }
-}
 #projects .projects-lady-woof .projects-lady-sprite {
   animation: projectsLadyWoof 0.42s steps(2, end) 2 !important;
 }
@@ -88,10 +52,6 @@
     min-width: 62px !important;
     font-size: 5px !important;
     padding: 6px 7px !important;
-  }
-  #projects .projects-lady-hearts {
-    left: 42% !important;
-    top: -10px !important;
   }
 }
 
@@ -203,23 +163,6 @@
   transform: rotate(-45deg) !important;
 }
 
-#projects > .projects-lady > .projects-lady-hearts {
-  position: absolute !important;
-  z-index: 6 !important;
-  left: 42% !important;
-  top: -52px !important;
-  width: 100px !important;
-  height: 70px !important;
-  pointer-events: none !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-#projects > .projects-lady > .projects-lady-hearts::before,
-#projects > .projects-lady > .projects-lady-hearts::after {
-  content: none !important;
-}
-
 @media (max-width: 900px) {
   #projects > .projects-lady.projects-lady-button {
     right: 20px !important;
@@ -264,13 +207,5 @@
     min-width: 60px !important;
     padding: 6px 7px !important;
     font-size: 5px !important;
-  }
-}
-
-/* Keep the Projects Lady love burst above her ears instead of over her face. */
-@media (max-width: 600px) {
-  #projects > .projects-lady > .projects-lady-hearts {
-    left: 38% !important;
-    top: -46px !important;
   }
 }
