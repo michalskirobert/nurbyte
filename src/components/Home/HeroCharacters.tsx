@@ -12,13 +12,14 @@ export default function HeroCharacters() {
     <>
       <Image
         className="hero-characters characters"
-        src="/assets/characters/home-characters-primary.png"
+        src="/assets/characters/home-characters-primary.webp"
         alt="NurByte creators with Lady"
         width={1671}
         height={941}
         sizes="(max-width: 760px) 112vw, (max-width: 1050px) 64vw, min(60vw, 1050px)"
         priority
         fetchPriority="high"
+        quality={65}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
         onClick={() => setShow((value) => !value)}

@@ -1,30 +1,23 @@
 "use client";
 
 import { Heart } from "lucide-react";
+import {
+  LADY_ASSETS,
+  LADY_LABELS,
+  LADY_TIMINGS,
+  type LadyMood,
+} from "@/constants/lady";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-type Mood = "idle" | "question" | "love" | "woof";
-
-const frames: Record<Mood, string> = {
-  idle: "toy.png",
-  question: "question.png",
-  love: "idle.png",
-  woof: "howl.png",
-};
-
-const labels: Record<Mood, string> = {
-  idle: "NEED A DEVELOPER?",
-  question: "?",
-  love: "",
-  woof: "WOOF!",
-};
+const frames = LADY_ASSETS.contact;
+const labels = LADY_LABELS.contact;
 
 const uniqueFrames = [...new Set(Object.values(frames))];
 
 export default function ContactLady() {
-  const [mood, setMood] = useState<Mood>("idle");
+  const [mood, setMood] = useState<LadyMood>("idle");
   const [sequence, setSequence] = useState(false);
   const [heartsKey, setHeartsKey] = useState(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -43,11 +36,11 @@ export default function ContactLady() {
     setHeartsKey((key) => key + 1);
 
     timers.current.push(
-      setTimeout(() => setMood("woof"), 850),
+      setTimeout(() => setMood("woof"), LADY_TIMINGS.loveToWoof),
       setTimeout(() => {
         setMood("idle");
         setSequence(false);
-      }, 2100),
+      }, LADY_TIMINGS.contactReset),
     );
   };
 
@@ -81,7 +74,6 @@ export default function ContactLady() {
               height={560}
               sizes="(max-width: 760px) 170px, 260px"
               className={`contact-lady-image ${frames[mood] === frame ? "is-active" : ""}`}
-              priority
             />
           ))}
         </span>

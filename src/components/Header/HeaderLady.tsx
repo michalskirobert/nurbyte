@@ -1,18 +1,12 @@
 "use client";
 
 import { Heart } from "lucide-react";
+import { LADY_ASSETS, LADY_TIMINGS, type LadyMood } from "@/constants/lady";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-type Mood = "idle" | "question" | "love" | "woof";
-
-const frames: Record<Mood, string> = {
-  idle: "/assets/characters/lady/accepted/header-small.webp",
-  question: "/assets/characters/lady/accepted/header-small.webp",
-  love: "/assets/characters/lady/accepted/wave.png",
-  woof: "/assets/characters/lady/accepted/howl.png",
-};
+const frames = LADY_ASSETS.header;
 
 export default function HeaderLady({
   menuOpen,
@@ -21,7 +15,7 @@ export default function HeaderLady({
   menuOpen: boolean;
   brandHovered: boolean;
 }) {
-  const [mood, setMood] = useState<Mood>("idle");
+  const [mood, setMood] = useState<LadyMood>("idle");
   const [heartBurst, setHeartBurst] = useState(0);
   const [ladyHovered, setLadyHovered] = useState(false);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -37,14 +31,14 @@ export default function HeaderLady({
     setHeartBurst((value) => value + 1);
 
     timers.current.push(
-      setTimeout(() => setMood("woof"), 850),
-      setTimeout(() => setMood("idle"), 1850),
+      setTimeout(() => setMood("woof"), LADY_TIMINGS.loveToWoof),
+      setTimeout(() => setMood("idle"), LADY_TIMINGS.headerReset),
     );
   };
 
   useEffect(() => clearTimers, []);
 
-  const displayedMood: Mood =
+  const displayedMood: LadyMood =
     mood === "idle" && (menuOpen || brandHovered) ? "question" : mood;
 
   return (

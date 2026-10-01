@@ -1,22 +1,21 @@
 "use client";
 
 import { Heart } from "lucide-react";
+import {
+  LADY_ASSETS,
+  LADY_LABELS,
+  LADY_TIMINGS,
+  type LadyMood,
+} from "@/constants/lady";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-type Mood = "idle" | "question" | "love" | "woof";
-
-const frames: Record<Mood, string> = {
-  idle: "/assets/characters/lady/accepted/idle.png",
-  question: "/assets/characters/lady/accepted/question.png",
-  love: "/assets/characters/lady/accepted/wave.png",
-  woof: "/assets/characters/lady/accepted/howl.png",
-};
+const frames = LADY_ASSETS.projects;
 
 export default function ProjectsLady() {
-  const [mood, setMood] = useState<Mood>("idle");
-  const [label, setLabel] = useState("SELECT!");
+  const [mood, setMood] = useState<LadyMood>("idle");
+  const [label, setLabel] = useState<string>(LADY_LABELS.projects.idle);
   const [sequence, setSequence] = useState(false);
   const [heartsKey, setHeartsKey] = useState(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -38,13 +37,13 @@ export default function ProjectsLady() {
     timers.current.push(
       setTimeout(() => {
         setMood("woof");
-        setLabel("WOOF!");
-      }, 850),
+        setLabel(LADY_LABELS.projects.woof);
+      }, LADY_TIMINGS.loveToWoof),
       setTimeout(() => {
         setMood("idle");
-        setLabel("SELECT!");
+        setLabel(LADY_LABELS.projects.idle);
         setSequence(false);
-      }, 1750),
+      }, LADY_TIMINGS.projectsReset),
     );
   };
 
@@ -56,13 +55,13 @@ export default function ProjectsLady() {
       onMouseEnter={() => {
         if (!sequence) {
           setMood("question");
-          setLabel("?");
+          setLabel(LADY_LABELS.projects.question);
         }
       }}
       onMouseLeave={() => {
         if (!sequence) {
           setMood("idle");
-          setLabel("SELECT!");
+          setLabel(LADY_LABELS.projects.idle);
         }
       }}
       aria-label="Lady. select a project"
