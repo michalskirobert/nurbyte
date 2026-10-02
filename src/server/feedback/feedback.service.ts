@@ -4,7 +4,7 @@ import {
   feedbackConfirmationMail,
   feedbackOwnerMail,
 } from "@/server/mail/templates/feedback.template";
-import type { FeedbackPayload } from "./feedback.types";
+import type { FeedbackPayload } from "./feedback.schema";
 
 const createReportId = (): string =>
   `HE-${new Date().toISOString().slice(0, 10).replaceAll("-", "")}-${randomBytes(3).toString("hex").toUpperCase()}`;

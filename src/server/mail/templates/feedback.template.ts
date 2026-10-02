@@ -1,4 +1,4 @@
-import type { FeedbackPayload } from "@/server/feedback/feedback.types";
+import type { FeedbackPayload } from "@/server/feedback/feedback.schema";
 import { escapeHtml, mailLayout } from "./layout.template";
 
 const row = (label: string, value: string) =>
