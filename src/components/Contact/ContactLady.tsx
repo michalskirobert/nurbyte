@@ -1,7 +1,12 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import { LADY_ASSETS, LADY_LABELS, LADY_TIMINGS, type LadyMood } from "@/constants/lady";
+import {
+  LADY_ASSETS,
+  LADY_LABELS,
+  LADY_TIMINGS,
+  type LadyMood,
+} from "@/constants/lady";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -63,7 +68,7 @@ export default function ContactLady() {
           {uniqueFrames.map((frame) => (
             <Image
               key={frame}
-              src={`/assets/characters/lady/accepted/contact-normalized/${frame}`}
+              src={`/assets/characters/lady/contact/${frame}`}
               alt=""
               width={520}
               height={560}

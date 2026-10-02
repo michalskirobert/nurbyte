@@ -9,25 +9,25 @@ type LadyState = "search" | "question" | "love" | "toy";
 
 const ladyState = {
   search: {
-    src: "/assets/characters/lady/accepted/sniff.png",
+    src: "/assets/characters/lady/shared/sniff.webp",
     width: 502,
     height: 400,
     bubble: "NOT FOUND...",
   },
   question: {
-    src: "/assets/characters/lady/accepted/question.png",
+    src: "/assets/characters/lady/shared/question.webp",
     width: 119,
     height: 201,
     bubble: "?",
   },
   love: {
-    src: "/assets/characters/lady/accepted/idle.png",
+    src: "/assets/characters/lady/shared/idle.webp",
     width: 155,
     height: 200,
     bubble: "WOOF!",
   },
   toy: {
-    src: "/assets/characters/lady/accepted/toy.png",
+    src: "/assets/characters/lady/shared/toy.webp",
     width: 254,
     height: 192,
     bubble: "LET'S PLAY!",

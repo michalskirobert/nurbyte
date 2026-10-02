@@ -1,7 +1,12 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import { LADY_ASSETS, LADY_LABELS, LADY_TIMINGS, type LadyMood } from "@/constants/lady";
+import {
+  LADY_ASSETS,
+  LADY_LABELS,
+  LADY_TIMINGS,
+  type LadyMood,
+} from "@/constants/lady";
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";

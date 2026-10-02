@@ -2,22 +2,22 @@ export type LadyMood = "idle" | "question" | "love" | "woof";
 
 export const LADY_ASSETS = {
   header: {
-    idle: "/assets/characters/lady/accepted/header-small.webp",
-    question: "/assets/characters/lady/accepted/header-small.webp",
-    love: "/assets/characters/lady/accepted/wave.png",
-    woof: "/assets/characters/lady/accepted/howl.png",
+    idle: "/assets/characters/lady/header/idle.webp",
+    question: "/assets/characters/lady/header/idle.webp",
+    love: "/assets/characters/lady/shared/wave.webp",
+    woof: "/assets/characters/lady/shared/howl.webp",
   },
   projects: {
-    idle: "/assets/characters/lady/accepted/idle.png",
-    question: "/assets/characters/lady/accepted/question.png",
-    love: "/assets/characters/lady/accepted/wave.png",
-    woof: "/assets/characters/lady/accepted/howl.png",
+    idle: "/assets/characters/lady/shared/idle.webp",
+    question: "/assets/characters/lady/shared/question.webp",
+    love: "/assets/characters/lady/shared/wave.webp",
+    woof: "/assets/characters/lady/shared/howl.webp",
   },
   contact: {
-    idle: "toy.png",
-    question: "question.png",
-    love: "idle.png",
-    woof: "howl.png",
+    idle: "toy.webp",
+    question: "question.webp",
+    love: "idle.webp",
+    woof: "howl.webp",
   },
 } as const satisfies Record<string, Record<LadyMood, string>>;
 
