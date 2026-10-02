@@ -11,4 +11,7 @@ export type Project = {
   details?: string;
   actionLabel?: string;
   external?: boolean;
+  secondaryUrl?: string;
+  secondaryActionLabel?: string;
+  secondaryExternal?: boolean;
 };

@@ -167,6 +167,59 @@ function DownloadLink({
 export default async function HostsEditorPage() {
   const downloads = await getDownloads();
 
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "NurByte", item: siteUrl },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Hosts Editor",
+        item: `${siteUrl}/hosts-editor`,
+      },
+    ],
+  };
+
+  const faqData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Is Hosts Editor free?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Hosts Editor is offered as a free developer tool by NurByte.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Which operating systems are supported?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Hosts Editor targets macOS, Windows and Linux. Available installers are read from the latest GitHub release.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why does editing the hosts file require elevated permissions?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The system hosts file is protected by the operating system, so applying changes can require administrator or root authorization depending on the platform.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I keep multiple hosts configurations?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Hosts Editor uses separate tabs and configurations so development environments do not have to live in one manually managed block.",
+        },
+      },
+    ],
+  };
+
   const softwareData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -418,6 +471,14 @@ export default async function HostsEditorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
       />
     </main>
   );

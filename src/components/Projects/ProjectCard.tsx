@@ -1,4 +1,5 @@
 import { Download, ExternalLink, LockKeyhole } from "lucide-react";
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "./types";
@@ -78,13 +79,40 @@ export default function ProjectCard({
             ) : (
               <Link
                 className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
-                href={project.url}
+                href={project.url as Route}
               >
                 <ExternalLink
                   aria-hidden="true"
                   className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
                 />
                 {project.actionLabel ?? "OPEN PROJECT"}
+              </Link>
+            )
+          ) : null}
+          {project.secondaryUrl ? (
+            project.secondaryExternal ? (
+              <a
+                className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
+                href={project.secondaryUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ExternalLink
+                  aria-hidden="true"
+                  className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
+                />
+                {project.secondaryActionLabel ?? "OPEN APP"}
+              </a>
+            ) : (
+              <Link
+                className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
+                href={project.secondaryUrl as Route}
+              >
+                <ExternalLink
+                  aria-hidden="true"
+                  className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
+                />
+                {project.secondaryActionLabel ?? "OPEN"}
               </Link>
             )
           ) : null}

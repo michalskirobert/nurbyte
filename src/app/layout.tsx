@@ -199,7 +199,8 @@ const structuredData = {
       name: "DocFlow",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Web",
-      url: "https://docflow.nurbyte.dev",
+      url: `${siteUrl}/docflow`,
+      sameAs: "https://docflow.nurbyte.dev",
       description:
         "Document workflow software for reusable templates, document generation, email preparation and invoicing.",
       creator: { "@id": `${siteUrl}/#organization` },
