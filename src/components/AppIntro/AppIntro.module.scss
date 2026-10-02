@@ -1,0 +1,339 @@
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #020b12;
+  color: var(--ink);
+  opacity: 1;
+  transition:
+    opacity 320ms ease,
+    visibility 320ms ease;
+  isolation: isolate;
+}
+
+.leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.skyGlow {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(
+      circle at 50% 38%,
+      rgba(255, 210, 28, 0.14),
+      transparent 24rem
+    ),
+    radial-gradient(
+      circle at 18% 82%,
+      rgba(32, 239, 156, 0.05),
+      transparent 24rem
+    );
+  animation: breathe 2s ease-in-out infinite alternate;
+}
+
+.pixelGrid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(rgba(255, 210, 28, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 210, 28, 0.09) 1px, transparent 1px);
+  background-size: 38px 38px;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 5%,
+    #000 42%,
+    transparent 100%
+  );
+  transform: perspective(420px) rotateX(62deg) scale(1.7) translateY(26%);
+  transform-origin: center bottom;
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0.09;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    rgba(255, 255, 255, 0.08) 4px
+  );
+}
+
+.bootCard {
+  position: relative;
+  z-index: 3;
+  width: min(88vw, 610px);
+  padding: clamp(1.35rem, 4vw, 2.35rem);
+  border: 2px solid var(--yellow);
+  background: rgba(3, 18, 29, 0.93);
+  box-shadow:
+    8px 8px 0 rgba(255, 184, 0, 0.14),
+    0 0 50px rgba(255, 210, 28, 0.08);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+}
+
+.bootCard::before,
+.bootCard::after {
+  content: "";
+  position: absolute;
+  width: 44px;
+  height: 6px;
+  background: var(--yellow);
+}
+.bootCard::before {
+  top: -2px;
+  left: 34px;
+}
+.bootCard::after {
+  right: 34px;
+  bottom: -2px;
+}
+
+.logoLockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+.mark {
+  width: 52px;
+  height: 52px;
+  image-rendering: auto;
+}
+.wordmark {
+  display: grid;
+  line-height: 0.95;
+  font-family: var(--display);
+  font-size: 1.55rem;
+}
+.wordmark b {
+  color: var(--yellow);
+}
+.wordmark small {
+  margin-top: 0.34rem;
+  color: var(--muted);
+  font-family: var(--terminal);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.arcadeTitle {
+  margin: 1.45rem 0 1.2rem;
+  text-align: center;
+}
+.kicker {
+  display: block;
+  color: var(--yellow2);
+  font-family: var(--terminal);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+}
+.arcadeTitle strong {
+  display: block;
+  margin: 0.38rem 0 0.42rem;
+  color: var(--ink);
+  font-family: var(--hud);
+  font-size: clamp(1.15rem, 4vw, 1.85rem);
+  line-height: 1.45;
+  text-shadow: 3px 3px 0 rgba(255, 184, 0, 0.16);
+}
+.subtitle {
+  color: var(--muted);
+  font-family: var(--terminal);
+  font-size: 0.92rem;
+  letter-spacing: 0.09em;
+}
+
+.boot {
+  min-height: 6.7rem;
+  padding: 0.75rem 0;
+  border-top: 1px dashed rgba(255, 210, 28, 0.3);
+  font-family: var(--terminal);
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  letter-spacing: 0.07em;
+}
+.boot p {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.22rem 0;
+  opacity: 0;
+  transform: translateY(4px);
+  animation: reveal 120ms steps(2, end) forwards;
+}
+.boot span {
+  color: var(--muted);
+}
+.boot b {
+  color: var(--yellow);
+  font-weight: 400;
+}
+.line1 {
+  animation-delay: 180ms !important;
+}
+.line2 {
+  animation-delay: 520ms !important;
+}
+.line3 {
+  animation-delay: 860ms !important;
+}
+.line4 {
+  animation-delay: 1200ms !important;
+}
+
+.loader {
+  height: 12px;
+  padding: 2px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 210, 28, 0.58);
+  background: rgba(255, 210, 28, 0.035);
+}
+.loaderFill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--yellow) 0 14px,
+    var(--yellow2) 14px 18px,
+    transparent 18px 21px
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: load 1.72s cubic-bezier(0.3, 0.7, 0.2, 1) 180ms forwards;
+}
+
+.ready {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.7rem;
+  min-height: 1.2em;
+  color: var(--muted);
+  font-family: var(--terminal);
+  font-size: 0.92rem;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  animation: ready 1ms linear 1.9s forwards;
+}
+.ready b {
+  color: var(--yellow);
+  font-weight: 400;
+}
+.cursor {
+  animation: blink 520ms steps(1, end) infinite;
+}
+
+.cornerTop,
+.cornerBottom {
+  position: absolute;
+  z-index: 3;
+  font-family: var(--terminal);
+  color: rgba(255, 210, 28, 0.45);
+  letter-spacing: 0.14em;
+}
+.cornerTop {
+  top: 1.2rem;
+  right: 1.4rem;
+}
+.cornerBottom {
+  bottom: 1.2rem;
+  left: 1.4rem;
+  font-size: 0.85rem;
+}
+
+@keyframes reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes load {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes ready {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes breathe {
+  to {
+    transform: scale(1.04);
+    opacity: 0.8;
+  }
+}
+
+@media (max-width: 560px) {
+  .bootCard {
+    width: calc(100vw - 2rem);
+    padding: 1.2rem;
+  }
+  .mark {
+    width: 44px;
+    height: 44px;
+  }
+  .wordmark {
+    font-size: 1.35rem;
+  }
+  .arcadeTitle {
+    margin: 1.15rem 0 1rem;
+  }
+  .subtitle {
+    font-size: 0.78rem;
+  }
+  .boot {
+    min-height: 6.4rem;
+  }
+  .ready {
+    font-size: 0.78rem;
+  }
+  .cornerBottom {
+    font-size: 0.72rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skyGlow,
+  .cursor {
+    animation: none;
+  }
+  .boot p {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .loaderFill {
+    transform: scaleX(1);
+    animation: none;
+  }
+  .ready {
+    opacity: 1;
+    animation: none;
+  }
+  .intro {
+    transition-duration: 120ms;
+  }
+}

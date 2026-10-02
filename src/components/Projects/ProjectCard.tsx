@@ -60,6 +60,7 @@ export default function ProjectCard({
               <a
                 className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
                 href={project.url}
+                aria-label={`${project.actionLabel ?? "Open project"}: ${project.name}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -80,6 +81,7 @@ export default function ProjectCard({
               <Link
                 className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
                 href={project.url as Route}
+                aria-label={`${project.actionLabel ?? "Open project"}: ${project.name}`}
               >
                 <ExternalLink
                   aria-hidden="true"
@@ -94,6 +96,7 @@ export default function ProjectCard({
               <a
                 className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
                 href={project.secondaryUrl}
+                aria-label={`${project.secondaryActionLabel ?? "Open app"}: ${project.name}`}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -107,6 +110,7 @@ export default function ProjectCard({
               <Link
                 className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
                 href={project.secondaryUrl as Route}
+                aria-label={`${project.secondaryActionLabel ?? "Open"}: ${project.name}`}
               >
                 <ExternalLink
                   aria-hidden="true"
