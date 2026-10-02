@@ -1,5 +1,6 @@
 import { Download, ExternalLink, LockKeyhole } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import type { Project } from "./types";
 export default function ProjectCard({
   project,
@@ -54,13 +55,13 @@ export default function ProjectCard({
               LOCKED
             </span>
           ) : project.url ? (
-            <a
-              className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <>
+            project.external ? (
+              <a
+                className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+              >
                 {project.actionLabel?.includes("DOWNLOAD") ? (
                   <Download
                     aria-hidden="true"
@@ -73,8 +74,19 @@ export default function ProjectCard({
                   />
                 )}{" "}
                 {project.actionLabel ?? "OPEN PROJECT"}
-              </>
-            </a>
+              </a>
+            ) : (
+              <Link
+                className="project-open inline-flex items-center justify-center gap-2 whitespace-nowrap"
+                href={project.url}
+              >
+                <ExternalLink
+                  aria-hidden="true"
+                  className="h-[1em] w-[1em] shrink-0 self-center stroke-[2.25]"
+                />
+                {project.actionLabel ?? "OPEN PROJECT"}
+              </Link>
+            )
           ) : null}
         </div>
       </div>

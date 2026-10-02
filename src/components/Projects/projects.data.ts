@@ -26,9 +26,9 @@ export const projects: Project[] = [
       "A free cross-platform developer utility for managing hosts entries in isolated tabs, keeping manual backups and safely applying profiles to the system hosts file on macOS, Windows and Linux.",
     image: "/assets/projects/hosts-editor-settings.webp",
     tech: ["ELECTRON", "REACT", "TYPESCRIPT", "VITE"],
-    url: "https://github.com/michalskirobert/hosts-editor/releases/latest",
-    actionLabel: "DOWNLOAD LATEST",
-    external: true,
+    url: "/hosts-editor",
+    actionLabel: "LEARN MORE",
+    external: false,
   },
   {
     id: "locked",

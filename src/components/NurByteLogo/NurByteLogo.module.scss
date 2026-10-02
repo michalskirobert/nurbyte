@@ -1,0 +1,32 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-family: var(--hud);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.mark {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  flex: 0 0 54px;
+}
+
+.wordmark {
+  display: block;
+}
+
+.wordmark b {
+  color: var(--yellow);
+}
+
+.wordmark small {
+  display: block;
+  margin-top: 7px;
+  font-family: var(--display);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
