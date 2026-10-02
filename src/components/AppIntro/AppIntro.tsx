@@ -72,72 +72,86 @@ export default function AppIntro() {
       aria-live="polite"
       aria-label="NurByte is loading"
     >
-      <div className={styles.skyGlow} aria-hidden="true" />
-      <div className={styles.pixelGrid} aria-hidden="true" />
+      <div className={styles.grid} aria-hidden="true" />
       <div className={styles.scanlines} aria-hidden="true" />
+      <div className={styles.glow} aria-hidden="true" />
 
-      <div className={styles.bootCard}>
-        <div className={styles.logoLockup} aria-hidden="true">
-          <Image
-            className={styles.mark}
-            src="/assets/brand/nurbyte-mark.png"
-            alt=""
-            width={58}
-            height={58}
-            priority
-          />
-          <div className={styles.wordmark}>
+      <div className={styles.frame}>
+        <div
+          className={`${styles.batikRail} ${styles.batikLeft}`}
+          aria-hidden="true"
+        />
+        <div
+          className={`${styles.batikRail} ${styles.batikRight}`}
+          aria-hidden="true"
+        />
+        <i
+          className={`${styles.corner} ${styles.cornerTl}`}
+          aria-hidden="true"
+        />
+        <i
+          className={`${styles.corner} ${styles.cornerTr}`}
+          aria-hidden="true"
+        />
+        <i
+          className={`${styles.corner} ${styles.cornerBl}`}
+          aria-hidden="true"
+        />
+        <i
+          className={`${styles.corner} ${styles.cornerBr}`}
+          aria-hidden="true"
+        />
+
+        <div className={styles.content}>
+          <div className={styles.logoLockup} aria-hidden="true">
+            <Image
+              className={styles.mark}
+              src="/assets/brand/nurbyte-mark.png"
+              alt=""
+              width={64}
+              height={64}
+              priority
+            />
+            <div className={styles.brandText}>
+              <span>
+                <b>Nur</b>Byte
+              </span>
+              <small>Software Lab &lt;/&gt;</small>
+            </div>
+          </div>
+
+          <div className={styles.title} aria-hidden="true">
+            <span>AKHIRNYA...</span>
+            <strong>NURBYTE.DEV</strong>
+            <small>
+              POLAND <b>×</b> INDONESIA
+            </small>
+          </div>
+
+          <div className={styles.loaderBlock} aria-hidden="true">
+            <div className={styles.loaderHeader}>
+              <span>LOADING SOMETHING AWESOME...</span>
+              <b className={styles.percent}>100%</b>
+            </div>
+            <div className={styles.loader}>
+              <span className={styles.loaderFill} />
+            </div>
+          </div>
+
+          <div className={styles.ladyLine} aria-hidden="true">
+            <span className={styles.paw}>◆</span>
+            <span>LADY.EXE</span>
+            <i>...</i>
+            <b>WOOF!</b>
+          </div>
+
+          <div className={styles.ready} aria-hidden="true">
+            <strong>SIAP!</strong>
             <span>
-              <b>Nur</b>Byte
+              NURBYTE.DEV IS READY<span className={styles.cursor}>_</span>
             </span>
-            <small>Software Lab &lt;/&gt;</small>
           </div>
         </div>
-
-        <div className={styles.arcadeTitle} aria-hidden="true">
-          <span className={styles.kicker}>WELCOME TO</span>
-          <strong>NURBYTE WORLD</strong>
-          <span className={styles.subtitle}>
-            CREATING DIGITAL THINGS SINCE 2025
-          </span>
-        </div>
-
-        <div className={styles.boot} aria-hidden="true">
-          <p className={styles.line1}>
-            <span>WORLD</span>
-            <b>READY</b>
-          </p>
-          <p className={styles.line2}>
-            <span>PROJECTS</span>
-            <b>READY</b>
-          </p>
-          <p className={styles.line3}>
-            <span>CREW</span>
-            <b>READY</b>
-          </p>
-          <p className={styles.line4}>
-            <span>LADY</span>
-            <b>WOOF!</b>
-          </p>
-        </div>
-
-        <div className={styles.loader} aria-hidden="true">
-          <span className={styles.loaderFill} />
-        </div>
-
-        <div className={styles.ready} aria-hidden="true">
-          <span>LOADING ADVENTURE</span>
-          <b>
-            SYSTEM READY<span className={styles.cursor}>_</span>
-          </b>
-        </div>
-      </div>
-
-      <div className={styles.cornerTop} aria-hidden="true">
-        NURBYTE // 2026
-      </div>
-      <div className={styles.cornerBottom} aria-hidden="true">
-        PLAYER 01 · ONLINE
       </div>
     </div>
   );

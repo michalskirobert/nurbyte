@@ -30,7 +30,7 @@ export const projects: Project[] = [
     image: "/assets/projects/hosts-editor-settings.webp",
     tech: ["ELECTRON", "REACT", "TYPESCRIPT", "VITE"],
     url: "/hosts-editor",
-    actionLabel: "LEARN MORE",
+    actionLabel: "HOSTS EDITOR DETAILS",
     external: false,
   },
   {
