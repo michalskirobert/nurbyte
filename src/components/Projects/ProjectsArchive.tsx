@@ -40,7 +40,7 @@ export default function ProjectsArchive({ open, onClose, onSelect }: Props) {
               onClick={() => onSelect(index)}
             >
               <b>
-                {String(index + 1).padStart(2, "0")} // {project.name}
+                {String(index + 1).padStart(2, "0")} {"//"} {project.name}
               </b>
               <span>{project.type}</span>
             </button>

@@ -27,15 +27,16 @@ export default function HeroTerminal() {
     });
   }, [text]);
   useEffect(() => {
+    const activeTimers = timers.current;
     let cancelled = false,
       line = 0,
       char = 0;
     const schedule = (fn: () => void, d: number) => {
       const id = setTimeout(() => {
-        timers.current.delete(id);
+        activeTimers.delete(id);
         fn();
       }, d);
-      timers.current.add(id);
+      activeTimers.add(id);
     };
     const type = () => {
       if (cancelled) return;
@@ -62,8 +63,8 @@ export default function HeroTerminal() {
     schedule(type, 650);
     return () => {
       cancelled = true;
-      timers.current.forEach(clearTimeout);
-      timers.current.clear();
+      activeTimers.forEach(clearTimeout);
+      activeTimers.clear();
     };
   }, []);
   return (

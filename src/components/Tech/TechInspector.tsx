@@ -9,6 +9,7 @@ export default function TechInspector({
     <aside className="tech-inspector" aria-live="polite">
       <span className="tech-inspector-kicker">SELECTED TECHNOLOGY</span>
       <div className="tech-inspector-icon">
+        {/* eslint-disable-next-line @next/next/no-img-element -- remote SimpleIcons URL is dynamic and intentionally lazy-loaded. */}
         <img
           src={`https://cdn.simpleicons.org/${technology.icon}/${technology.color}`}
           alt=""

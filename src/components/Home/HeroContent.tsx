@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 export default function HeroContent() {
   return (
     <div className="hero-copy reveal visible">
-      <p className="eyebrow">// CODE · CREATE · EXPLORE</p>
+      <p className="eyebrow">{"// CODE · CREATE · EXPLORE"}</p>
       <h1>
         DIGITAL
         <br />

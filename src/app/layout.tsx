@@ -203,7 +203,15 @@ const structuredData = {
       url: `${siteUrl}/docflow`,
       sameAs: "https://docflow.nurbyte.dev",
       description:
-        "Document workflow software for reusable templates, document generation, email preparation and invoicing.",
+        "All-in-one web workspace for creating and managing documents, reusable templates, PDF output, email content and invoicing workflows.",
+      featureList: [
+        "Document management",
+        "Reusable document templates",
+        "Document generation",
+        "PDF generation",
+        "Email preparation",
+        "Invoicing workflows",
+      ],
       creator: { "@id": `${siteUrl}/#organization` },
     },
     {
@@ -211,8 +219,19 @@ const structuredData = {
       name: "Hosts Editor",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "macOS, Windows, Linux",
+      url: `${siteUrl}/hosts-editor`,
       description:
-        "Free cross-platform hosts file editor with profiles, backups and safe apply flows.",
+        "Completely free, ad-free, cross-platform graphical hosts file editor for macOS, Windows and Linux with a modern UI, workspaces, text and object editing, backups and safe writes.",
+      featureList: [
+        "Free and ad-free",
+        "macOS, Windows and Linux",
+        "x64 and ARM64 builds",
+        "Tabs and workspaces",
+        "Objects and Text editing modes",
+        "System hosts import",
+        "Manual and automatic local backups",
+        "Safe hosts file writes",
+      ],
       creator: { "@id": `${siteUrl}/#organization` },
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     },

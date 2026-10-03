@@ -1,31 +1,42 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { Menu, Sun } from "lucide-react";
 import HeaderLady from "./HeaderLady";
 import MobileMenu from "./MobileMenu";
 import Navigation from "./Navigation";
 
 type DisplayMode = "light" | "contrast";
+
+const DISPLAY_MODE_EVENT = "nurbyte-display-mode-change";
+
+const subscribeToDisplayMode = (callback: () => void) => {
+  window.addEventListener(DISPLAY_MODE_EVENT, callback);
+  return () => window.removeEventListener(DISPLAY_MODE_EVENT, callback);
+};
+
+const getDisplayMode = (): DisplayMode =>
+  document.documentElement.dataset.displayMode === "contrast"
+    ? "contrast"
+    : "light";
+
+const getServerDisplayMode = (): DisplayMode => "light";
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
-  const [displayMode, setDisplayMode] = useState<DisplayMode>("light");
+  const displayMode = useSyncExternalStore(
+    subscribeToDisplayMode,
+    getDisplayMode,
+    getServerDisplayMode,
+  );
   const [brandHovered, setBrandHovered] = useState(false);
 
-  useEffect(() => {
-    const initialMode: DisplayMode =
-      document.documentElement.dataset.displayMode === "contrast"
-        ? "contrast"
-        : "light";
-    setDisplayMode(initialMode);
-  }, []);
-
   const changeDisplayMode = (mode: DisplayMode) => {
-    setDisplayMode(mode);
     document.documentElement.dataset.displayMode = mode;
     localStorage.setItem("nurbyte-display-mode", mode);
+    window.dispatchEvent(new Event(DISPLAY_MODE_EVENT));
   };
 
   useEffect(() => {

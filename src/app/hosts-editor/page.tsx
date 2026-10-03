@@ -13,6 +13,8 @@ import {
   Search,
   ShieldCheck,
   TerminalSquare,
+  Undo2,
+  MessageSquareText,
 } from "lucide-react";
 import NurByteLogo from "@/components/NurByteLogo";
 import styles from "./HostsEditor.module.scss";
@@ -31,7 +33,6 @@ type ReleaseAsset = {
 type GithubRelease = {
   tag_name: string;
   html_url: string;
-  published_at: string | null;
   assets: ReleaseAsset[];
 };
 
@@ -40,52 +41,59 @@ type Downloads = {
   releaseUrl: string;
   macArm: ReleaseAsset | null;
   macIntel: ReleaseAsset | null;
-  windows: ReleaseAsset | null;
-  linux: ReleaseAsset | null;
+  windowsX64: ReleaseAsset | null;
+  windowsArm: ReleaseAsset | null;
+  linuxX64AppImage: ReleaseAsset | null;
+  linuxX64Deb: ReleaseAsset | null;
+  linuxArmAppImage: ReleaseAsset | null;
+  linuxArmDeb: ReleaseAsset | null;
 };
 
 export const metadata: Metadata = {
-  title: "Free Hosts File Editor for macOS, Windows & Linux",
+  title: "Hosts File Editor – Free GUI for Windows, macOS & Linux",
   description:
-    "Download Hosts Editor by NurByte — a free cross-platform hosts file editor for macOS, Windows and Linux with profiles, search, backups and safe apply flows.",
+    "Completely free, ad-free visual hosts file editor for Windows, macOS and Linux. Modern GUI for /etc/hosts with tabs, search, backups, import and safe writes.",
   keywords: [
     "hosts editor",
     "hosts file editor",
-    "free hosts editor",
+    "free hosts file editor",
+    "GUI hosts editor",
+    "edit hosts file",
+    "edit /etc/hosts",
+    "edit hosts without terminal",
     "macOS hosts editor",
     "Windows hosts editor",
     "Linux hosts editor",
-    "edit hosts file mac",
-    "edit hosts file windows",
-    "developer tools",
+    "hosts file manager",
+    "developer hosts tool",
   ],
   alternates: { canonical: "/hosts-editor" },
   openGraph: {
     type: "website",
     url: `${siteUrl}/hosts-editor`,
-    title: "Hosts Editor — Free for macOS, Windows & Linux",
+    title: "Hosts Editor – Free Hosts File Manager for Windows, macOS & Linux",
     description:
-      "Manage hosts entries, profiles and backups without manually editing the system hosts file.",
+      "A completely free, ad-free cross-platform hosts file editor with a modern UI, tabs, Objects/Text modes, backups, safe writes and system-hosts import.",
     images: [
       {
-        url: "/assets/projects/hosts-editor-settings.webp",
-        alt: "NurByte Hosts Editor",
+        url: "/assets/projects/hosts-editor-2.2.0.webp",
+        width: 1536,
+        height: 970,
+        alt: "Hosts Editor 2.2.0 desktop application by NurByte",
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hosts Editor – Free GUI Hosts File Editor",
+    description:
+      "Free and ad-free modern hosts file editor for Windows, macOS and Linux.",
+    images: ["/assets/projects/hosts-editor-2.2.0.webp"],
+  },
 };
 
-function findAsset(
-  assets: ReleaseAsset[],
-  platform: RegExp,
-  architecture?: RegExp,
-) {
-  const platformAssets = assets.filter((asset) => platform.test(asset.name));
-  if (!architecture) return platformAssets[0] ?? null;
-  return (
-    platformAssets.find((asset) => architecture.test(asset.name)) ??
-    (platformAssets.length === 1 ? platformAssets[0] : null)
-  );
+function findAsset(assets: ReleaseAsset[], pattern: RegExp) {
+  return assets.find((asset) => pattern.test(asset.name)) ?? null;
 }
 
 async function getDownloads(): Promise<Downloads> {
@@ -94,8 +102,12 @@ async function getDownloads(): Promise<Downloads> {
     releaseUrl: releasesUrl,
     macArm: null,
     macIntel: null,
-    windows: null,
-    linux: null,
+    windowsX64: null,
+    windowsArm: null,
+    linuxX64AppImage: null,
+    linuxX64Deb: null,
+    linuxArmAppImage: null,
+    linuxArmDeb: null,
   };
 
   try {
@@ -118,18 +130,14 @@ async function getDownloads(): Promise<Downloads> {
     return {
       version: release.tag_name || null,
       releaseUrl: release.html_url || releasesUrl,
-      macArm: findAsset(
-        assets,
-        /(?:mac|darwin|\.dmg$|\.pkg$)/i,
-        /arm64|aarch64|apple[-_. ]?silicon/i,
-      ),
-      macIntel: findAsset(
-        assets,
-        /(?:mac|darwin|\.dmg$|\.pkg$)/i,
-        /x64|x86_64|intel/i,
-      ),
-      windows: findAsset(assets, /(?:win|windows|setup|\.exe$|\.msi$)/i),
-      linux: findAsset(assets, /(?:linux|\.appimage$|\.deb$|\.rpm$)/i),
+      macArm: findAsset(assets, /mac-arm64\.dmg$/i),
+      macIntel: findAsset(assets, /mac-x64\.dmg$/i),
+      windowsX64: findAsset(assets, /win-x64\.zip$/i),
+      windowsArm: findAsset(assets, /win-arm64\.zip$/i),
+      linuxX64AppImage: findAsset(assets, /linux-x86_64\.AppImage$/i),
+      linuxX64Deb: findAsset(assets, /linux-amd64\.deb$/i),
+      linuxArmAppImage: findAsset(assets, /linux-arm64\.AppImage$/i),
+      linuxArmDeb: findAsset(assets, /linux-arm64\.deb$/i),
     };
   } catch {
     return fallback;
@@ -144,22 +152,25 @@ function DownloadLink({
   asset,
   fallback,
   children,
+  note,
 }: {
   asset: ReleaseAsset | null;
   fallback: string;
   children: ReactNode;
+  note: string;
 }) {
   return (
     <a
       className={styles.downloadButton}
       href={asset?.browser_download_url ?? fallback}
-      aria-label={
-        asset ? `${children} — ${asset.name}` : `${children} — GitHub releases`
-      }
+      aria-label={`${String(children)} – ${note}`}
     >
       <Download aria-hidden="true" />
-      <span>{children}</span>
-      {asset ? <small>{formatSize(asset.size)}</small> : <small>GitHub</small>}
+      <span>
+        {children}
+        <small>{note}</small>
+      </span>
+      <small>{asset ? formatSize(asset.size) : "GitHub"}</small>
     </a>
   );
 }
@@ -181,55 +192,52 @@ export default async function HostsEditorPage() {
     ],
   };
 
+  const faqEntries = [
+    [
+      "What is Hosts Editor?",
+      "Hosts Editor is a completely free, ad-free desktop GUI for managing the system hosts file on macOS, Windows and Linux. It gives developers a modern visual alternative to repeatedly editing /etc/hosts or the Windows hosts file by hand.",
+    ],
+    [
+      "Can I edit the hosts file without Terminal or nano?",
+      "Yes. Hosts Editor provides a graphical Objects mode and a Text mode. Applying changes to the protected system hosts file can still require administrator or root authorization.",
+    ],
+    [
+      "Which download should I choose?",
+      "Choose x64 for Intel/AMD 64-bit computers and ARM64 for Apple Silicon or ARM-based Windows/Linux devices. On Linux, uname -m returns x86_64 for x64 and aarch64 or arm64 for ARM64.",
+    ],
+    [
+      "Is Hosts Editor free?",
+      "Yes. Hosts Editor is completely free to download and use and contains no advertisements.",
+    ],
+    [
+      "Can Hosts Editor create backups?",
+      "Yes. Hosts Editor 2.2.0 supports manual backups and optional daily automatic backups. Automatic backups are cleaned up separately while manual backups are kept until you remove them.",
+    ],
+  ];
+
   const faqData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Is Hosts Editor free?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Hosts Editor is offered as a free developer tool by NurByte.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Which operating systems are supported?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Hosts Editor targets macOS, Windows and Linux. Available installers are read from the latest GitHub release.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Why does editing the hosts file require elevated permissions?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "The system hosts file is protected by the operating system, so applying changes can require administrator or root authorization depending on the platform.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I keep multiple hosts configurations?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Hosts Editor uses separate tabs and configurations so development environments do not have to live in one manually managed block.",
-        },
-      },
-    ],
+    mainEntity: faqEntries.map(([name, text]) => ({
+      "@type": "Question",
+      name,
+      acceptedAnswer: { "@type": "Answer", text },
+    })),
   };
 
   const softwareData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Hosts Editor",
+    alternateName: "NurByte Hosts Editor",
     applicationCategory: "DeveloperApplication",
+    applicationSubCategory: "Hosts file editor",
     operatingSystem: "macOS, Windows, Linux",
     url: `${siteUrl}/hosts-editor`,
-    image: `${siteUrl}/assets/projects/hosts-editor-settings.webp`,
+    image: `${siteUrl}/assets/projects/hosts-editor-2.2.0.webp`,
+    screenshot: `${siteUrl}/assets/projects/hosts-editor-2.2.0.webp`,
     description:
-      "Free cross-platform hosts file editor with profiles, search, backups and safe apply flows.",
+      "Completely free and ad-free cross-platform GUI hosts file editor with a modern interface, tabs, Objects and Text modes, search, system-hosts import, local backups, safe writes and update checks.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     downloadUrl: downloads.releaseUrl,
     ...(downloads.version ? { softwareVersion: downloads.version } : {}),
@@ -253,52 +261,55 @@ export default async function HostsEditorPage() {
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>NURBYTE DEV TOOL // FREE DOWNLOAD</p>
+          <p className={styles.eyebrow}>FREE GUI HOSTS FILE EDITOR // v2.2.0</p>
           <h1>
             HOSTS <span>EDITOR</span>
           </h1>
           <p className={styles.lede}>
-            A free hosts file editor for macOS, Windows and Linux. Manage local
-            domains, profiles and backups without fighting your system hosts
-            file by hand.
+            Edit and manage your hosts file without living in Terminal. A
+            completely free, ad-free visual hosts file editor for macOS, Windows
+            and Linux with a modern UI, tabs, search, backups, safe writes and
+            both Objects and Text editing modes.
           </p>
           <div className={styles.heroBadges}>
-            <span>FREE</span>
+            <span>100% FREE</span>
+            <span>NO ADS</span>
             <span>NO ACCOUNT</span>
-            <span>CROSS-PLATFORM</span>
+            <span>MAC / WIN / LINUX</span>
+            <span>OPEN SOURCE</span>
           </div>
           <div className={styles.heroActions}>
             <a className={styles.primaryAction} href="#download">
-              <Download aria-hidden="true" /> DOWNLOAD LATEST
+              <Download aria-hidden="true" /> DOWNLOAD HOSTS EDITOR
             </a>
             <a
               className={styles.secondaryAction}
               href={`https://github.com/${repository}`}
             >
-              <Github aria-hidden="true" /> VIEW ON GITHUB
+              <Github aria-hidden="true" /> VIEW SOURCE ON GITHUB
             </a>
           </div>
         </div>
-        <div className={styles.heroVisual}>
-          <span className={styles.windowLabel}>HOSTS_EDITOR.EXE</span>
+        <figure className={styles.heroVisual}>
+          <span className={styles.windowLabel}>HOSTS_EDITOR // 2.2.0</span>
           <Image
-            src="/assets/projects/hosts-editor-settings.webp"
-            alt="Hosts Editor application settings and hosts management interface"
-            width={1280}
-            height={720}
+            src="/assets/projects/hosts-editor-2.2.0.webp"
+            alt="Hosts Editor 2.2.0 showing settings, automatic backups, update checking, tabs and safe write status"
+            width={1536}
+            height={970}
             priority
             sizes="(max-width: 900px) 92vw, 48vw"
           />
-          <div className={styles.statusBar}>
-            <span>● SYSTEM READY</span>
-            <span>MAC / WIN / LINUX</span>
-          </div>
-        </div>
+          <figcaption className={styles.statusBar}>
+            <span>● SAFE WRITE ENABLED</span>
+            <span>MACOS / WINDOWS / LINUX</span>
+          </figcaption>
+        </figure>
       </section>
 
       <section className={styles.downloadSection} id="download">
         <div className={styles.sectionHeading}>
-          <p>SELECT PLATFORM</p>
+          <p>CHOOSE YOUR BUILD</p>
           <h2>DOWNLOAD HOSTS EDITOR</h2>
           <span>
             {downloads.version
@@ -311,19 +322,24 @@ export default async function HostsEditorPage() {
           <article className={styles.platformCard}>
             <Apple aria-hidden="true" />
             <h3>macOS</h3>
-            <p>Apple Silicon and Intel builds.</p>
-            <div className={styles.macDownloads}>
+            <p>
+              Choose Apple Silicon for M-series Macs or Intel for older Intel
+              Macs.
+            </p>
+            <div className={styles.buildList}>
               <DownloadLink
                 asset={downloads.macArm}
                 fallback={downloads.releaseUrl}
+                note="ARM64 · M1 / M2 / M3 / M4+ · DMG"
               >
                 APPLE SILICON
               </DownloadLink>
               <DownloadLink
                 asset={downloads.macIntel}
                 fallback={downloads.releaseUrl}
+                note="x64 · Intel Mac · DMG"
               >
-                INTEL
+                INTEL 64-BIT
               </DownloadLink>
             </div>
           </article>
@@ -331,69 +347,146 @@ export default async function HostsEditorPage() {
           <article className={styles.platformCard}>
             <Laptop aria-hidden="true" />
             <h3>Windows</h3>
-            <p>Installer for Windows development machines.</p>
-            <DownloadLink
-              asset={downloads.windows}
-              fallback={downloads.releaseUrl}
-            >
-              WINDOWS
-            </DownloadLink>
+            <p>
+              Most Intel and AMD PCs use x64. Choose ARM64 only for Windows on
+              ARM.
+            </p>
+            <div className={styles.buildList}>
+              <DownloadLink
+                asset={downloads.windowsX64}
+                fallback={downloads.releaseUrl}
+                note="x64 · Intel / AMD 64-bit · ZIP"
+              >
+                WINDOWS x64
+              </DownloadLink>
+              <DownloadLink
+                asset={downloads.windowsArm}
+                fallback={downloads.releaseUrl}
+                note="ARM64 · Windows on ARM · ZIP"
+              >
+                WINDOWS ARM64
+              </DownloadLink>
+            </div>
           </article>
 
           <article className={styles.platformCard}>
             <TerminalSquare aria-hidden="true" />
             <h3>Linux</h3>
-            <p>Desktop package from the latest GitHub release.</p>
-            <DownloadLink
-              asset={downloads.linux}
-              fallback={downloads.releaseUrl}
-            >
-              LINUX
-            </DownloadLink>
+            <p>
+              x86_64 means x64. aarch64/arm64 means ARM64. AppImage and Debian
+              packages are available.
+            </p>
+            <div className={styles.buildList}>
+              <DownloadLink
+                asset={downloads.linuxX64AppImage}
+                fallback={downloads.releaseUrl}
+                note="x64 / x86_64 · AppImage"
+              >
+                LINUX x64
+              </DownloadLink>
+              <DownloadLink
+                asset={downloads.linuxX64Deb}
+                fallback={downloads.releaseUrl}
+                note="x64 / amd64 · Debian / Ubuntu · DEB"
+              >
+                LINUX x64 DEB
+              </DownloadLink>
+              <DownloadLink
+                asset={downloads.linuxArmAppImage}
+                fallback={downloads.releaseUrl}
+                note="ARM64 / aarch64 · AppImage"
+              >
+                LINUX ARM64
+              </DownloadLink>
+              <DownloadLink
+                asset={downloads.linuxArmDeb}
+                fallback={downloads.releaseUrl}
+                note="ARM64 · Debian / Ubuntu · DEB"
+              >
+                LINUX ARM64 DEB
+              </DownloadLink>
+            </div>
           </article>
         </div>
+
+        <aside className={styles.archHelp}>
+          <div>
+            <b>NOT SURE: x64 OR ARM64?</b>
+            <p>
+              There is no 32-bit/x86 build. Modern Intel/AMD computers normally
+              use <strong>x64</strong>. Apple Silicon and ARM-based computers
+              use <strong>ARM64</strong>.
+            </p>
+          </div>
+          <code>
+            <span>macOS / Linux</span>uname -m
+          </code>
+          <code>
+            <span>RESULT</span>x86_64 → x64
+            <br />
+            arm64 / aarch64 → ARM64
+          </code>
+        </aside>
         <p className={styles.releaseNote}>
-          Downloads resolve directly to assets from the latest published GitHub
+          Buttons resolve to the matching asset from the latest published GitHub
           release. Release metadata is cached for one hour.
         </p>
       </section>
 
       <section className={styles.features}>
         <div className={styles.sectionHeading}>
-          <p>WHY HOSTS EDITOR?</p>
-          <h2>STOP EDITING HOSTS BY HAND</h2>
+          <p>HOSTS EDITOR 2.2.0</p>
+          <h2>A REAL UI FOR YOUR HOSTS FILE</h2>
         </div>
         <div className={styles.featureGrid}>
           <article>
             <HardDrive />
-            <h3>PROFILES & TABS</h3>
+            <h3>TABS & WORKSPACES</h3>
             <p>
-              Keep separate hosts configurations organized instead of
-              maintaining one giant file.
+              Keep separate configurations for projects and environments instead
+              of one giant manually commented hosts file.
             </p>
           </article>
           <article>
             <Search />
-            <h3>FAST SEARCH</h3>
+            <h3>OBJECTS + TEXT</h3>
             <p>
-              Find records quickly in structured record mode or work directly in
-              the text view.
+              Work with structured host records or switch to the raw Text
+              editor. Search large configurations without losing context.
             </p>
           </article>
           <article>
             <History />
-            <h3>BACKUPS</h3>
+            <h3>SMART BACKUPS</h3>
             <p>
-              Keep manual backups and restore configurations when you need to
-              roll back.
+              Create manual backups or enable daily automatic snapshots.
+              Automatic cleanup never removes your manual backups.
             </p>
           </article>
           <article>
             <ShieldCheck />
-            <h3>SAFE APPLY FLOW</h3>
+            <h3>SAFE WRITES</h3>
             <p>
-              Import the current system hosts file, review changes and apply the
-              selected profile deliberately.
+              Import the current system hosts file, track real changes and
+              deliberately apply the selected configuration to the protected
+              system file.
+            </p>
+          </article>
+          <article>
+            <Undo2 />
+            <h3>DISCARD CHANGES</h3>
+            <p>
+              Changed your mind? Restore the last saved hosts configuration
+              instead of manually undoing every edit.
+            </p>
+          </article>
+          <article>
+            <MessageSquareText />
+            <h3>HELP & FEEDBACK</h3>
+            <p>
+              Built-in bug reports and feature requests support optional
+              privacy-friendly diagnostics without sending hosts entries or
+              personal files.
             </p>
           </article>
         </div>
@@ -401,67 +494,55 @@ export default async function HostsEditorPage() {
 
       <section className={styles.hostsInfo}>
         <div>
-          <p className={styles.eyebrow}>ONE TOOL // THREE SYSTEMS</p>
-          <h2>YOUR HOSTS FILE, WITHOUT THE TERMINAL DETOUR.</h2>
+          <p className={styles.eyebrow}>
+            EDIT HOSTS WITHOUT THE TERMINAL DETOUR
+          </p>
+          <h2>WHAT IS A HOSTS FILE EDITOR?</h2>
           <p>
-            Hosts Editor is built for developers who regularly map local
-            domains, development servers or test environments and want a visual
-            workflow instead of repeatedly editing protected system files.
+            The hosts file maps hostnames to IP addresses locally before normal
+            DNS resolution. Developers use it for local domains, staging
+            servers, migrations and testing. Hosts Editor gives that system file
+            a visual interface while keeping the actual hosts file as the source
+            applied to your operating system.
+          </p>
+          <p>
+            Instead of repeatedly opening <code>sudo nano /etc/hosts</code> or
+            Notepad as Administrator, you can organize entries, search them,
+            keep backups and apply changes from one cross-platform desktop app.
           </p>
         </div>
         <div className={styles.paths}>
           <code>
-            <b>macOS / Linux</b>
+            <b>macOS / Linux hosts file</b>
             <span>/etc/hosts</span>
           </code>
           <code>
-            <b>Windows</b>
+            <b>Windows hosts file</b>
             <span>C:\Windows\System32\drivers\etc\hosts</span>
+          </code>
+          <code>
+            <b>Typical use cases</b>
+            <span>localhost · dev · staging · migrations · test domains</span>
           </code>
         </div>
       </section>
 
       <section className={styles.faq}>
         <div className={styles.sectionHeading}>
-          <p>HELP DATABASE</p>
+          <p>HOSTS FILE HELP</p>
           <h2>HOSTS EDITOR FAQ</h2>
         </div>
-        <details>
-          <summary>Is Hosts Editor free?</summary>
-          <p>
-            Yes. Hosts Editor is offered as a free developer tool by NurByte.
-          </p>
-        </details>
-        <details>
-          <summary>Which operating systems are supported?</summary>
-          <p>
-            The project targets macOS, Windows and Linux. Available installers
-            are read from the latest GitHub release.
-          </p>
-        </details>
-        <details>
-          <summary>
-            Why does editing the hosts file require elevated permissions?
-          </summary>
-          <p>
-            The system hosts file is protected by the operating system. Applying
-            changes can therefore require administrator or root authorization
-            depending on the platform.
-          </p>
-        </details>
-        <details>
-          <summary>Can I keep multiple hosts configurations?</summary>
-          <p>
-            Yes. Hosts Editor is designed around separate tabs/configurations so
-            development environments do not have to live in one manually managed
-            block.
-          </p>
-        </details>
+        {faqEntries.map(([question, answer]) => (
+          <details key={question}>
+            <summary>{question}</summary>
+            <p>{answer}</p>
+          </details>
+        ))}
       </section>
 
       <footer className={styles.footer}>
         <div>
-          <b>NurByte</b> Software Lab <span>// HOSTS EDITOR</span>
+          <b>NurByte</b> Software Lab <span>{"// HOSTS EDITOR"}</span>
         </div>
         <Link href="/">
           <ArrowLeft aria-hidden="true" /> RETURN TO NURBYTE

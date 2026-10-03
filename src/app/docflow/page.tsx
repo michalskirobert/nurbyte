@@ -19,16 +19,20 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://nurbyte.dev";
 const appUrl = "https://docflow.nurbyte.dev";
 
 export const metadata: Metadata = {
-  title: "Document Generator & Template Builder | DocFlow by NurByte",
+  title: "DocFlow — Document Management, Templates, PDF, Email & Invoicing",
   description:
-    "Create reusable document templates, generate PDF documents, prepare email content and manage invoicing workflows with DocFlow by NurByte.",
+    "DocFlow is an all-in-one document workspace for creating and managing documents, reusable templates, PDFs, email content and invoicing workflows in one web app.",
   keywords: [
+    "document management software",
     "document generator",
     "document template builder",
+    "document workflow software",
+    "all in one document workspace",
     "PDF document generator",
     "document automation",
     "reusable document templates",
     "email template software",
+    "document email workflow",
     "invoice workflow",
     "DocFlow",
   ],
@@ -36,9 +40,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: `${siteUrl}/docflow`,
-    title: "DocFlow — Document Generator & Template Builder",
+    title: "DocFlow — Documents, Templates, PDF, Email & Invoicing",
     description:
-      "Build reusable templates, generate documents, prepare email content and manage invoicing workflows in one workspace.",
+      "Create and manage documents, reusable templates, PDFs, email content and invoicing workflows from one focused web workspace.",
     images: [
       {
         url: "/assets/projects/docflow-dashboard.webp",
@@ -48,9 +52,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "DocFlow — Document Generator & Template Builder",
+    title: "DocFlow — Documents, Templates, PDF, Email & Invoicing",
     description:
-      "Reusable templates, document generation, email preparation and invoicing workflows by NurByte.",
+      "All-in-one workspace for documents, reusable templates, PDF generation, email preparation and invoicing workflows by NurByte.",
     images: ["/assets/projects/docflow-dashboard.webp"],
   },
 };
@@ -59,7 +63,7 @@ const features = [
   {
     icon: FileText,
     title: "REUSABLE TEMPLATES",
-    text: "Build and edit reusable document templates instead of recreating the same structure for every document.",
+    text: "Create, edit and manage reusable document templates instead of rebuilding the same structure for every document.",
   },
   {
     icon: Braces,
@@ -84,7 +88,7 @@ const features = [
   {
     icon: ReceiptText,
     title: "INVOICING WORKFLOWS",
-    text: "Keep document creation and invoicing-related work inside the same focused application instead of separate tools.",
+    text: "Keep document creation and invoicing-related work in the same workspace instead of splitting the workflow across unrelated tools.",
   },
 ];
 
@@ -104,6 +108,14 @@ const faq = [
   {
     q: "Does DocFlow help prepare emails?",
     a: "Yes. DocFlow can prepare email content from the document workflow, including a subject and body preview with a copy action.",
+  },
+  {
+    q: "Can I manage documents, templates and email content in one place?",
+    a: "Yes. DocFlow is designed as one workspace for document-related work: reusable templates, generated documents, PDF output, email preparation and invoicing workflows stay connected instead of being spread across separate tools.",
+  },
+  {
+    q: "Who is DocFlow for?",
+    a: "DocFlow is built for people and teams that repeatedly create structured documents and want a reusable workflow for templates, changing data, PDFs, email content and invoicing-related work.",
   },
 ];
 
@@ -132,7 +144,18 @@ export default function DocFlowPage() {
     sameAs: appUrl,
     image: `${siteUrl}/assets/projects/docflow-dashboard.webp`,
     description:
-      "Document workflow software for reusable templates, document generation, email preparation and invoicing workflows.",
+      "All-in-one web workspace for creating and managing documents, reusable templates, PDF output, email content and invoicing workflows.",
+    featureList: [
+      "Document management",
+      "Reusable document templates",
+      "Template variables",
+      "Calculated fields and formulas",
+      "Document preview and PDF generation",
+      "Email subject and body preparation",
+      "Invoicing workflows",
+    ],
+    keywords:
+      "document management, document generator, document templates, PDF generation, email preparation, invoicing workflow",
     creator: {
       "@type": "Organization",
       name: "NurByte Software Lab",
@@ -178,9 +201,9 @@ export default function DocFlowPage() {
             DOC<span>FLOW</span>
           </h1>
           <p className={styles.lede}>
-            Create documents from reusable templates. Build structured
-            templates, fill variables, generate PDFs, prepare email content and
-            keep invoicing workflows in one focused workspace.
+            One workspace for document-related work. Create and manage reusable
+            templates, generate documents and PDFs, prepare email content and
+            keep invoicing workflows together instead of jumping between tools.
           </p>
           <div className={styles.heroBadges}>
             <span>TEMPLATES</span>
@@ -216,11 +239,13 @@ export default function DocFlowPage() {
 
       <section className={styles.intro}>
         <p className={styles.eyebrow}>DOCUMENT WORKSPACE</p>
-        <h2>FROM TEMPLATE TO FINISHED DOCUMENT.</h2>
+        <h2>YOUR DOCUMENT WORK, IN ONE PLACE.</h2>
         <p>
-          DocFlow keeps the repetitive parts of document work reusable. Define a
-          template once, provide the changing data and use the same workflow for
-          the next document instead of rebuilding it from scratch.
+          DocFlow is an all-in-one document workspace for work that usually gets
+          scattered across editors, files and email drafts. Create and manage
+          reusable templates, generate documents and PDFs, prepare related email
+          content and keep invoicing workflows close to the documents they
+          belong to.
         </p>
       </section>
 
@@ -237,6 +262,44 @@ export default function DocFlowPage() {
               <p>{text}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className={styles.useCases}>
+        <div className={styles.sectionHeading}>
+          <p>ONE WORKSPACE</p>
+          <h2>LESS COPYING. LESS TOOL SWITCHING.</h2>
+        </div>
+        <div className={styles.useCaseGrid}>
+          <article>
+            <h3>DOCUMENT MANAGEMENT</h3>
+            <p>
+              Keep generated documents and the reusable templates behind them in
+              the same workflow, so recurring document work stays organized.
+            </p>
+          </article>
+          <article>
+            <h3>TEMPLATES + DATA</h3>
+            <p>
+              Separate reusable structure from changing values with variables,
+              numeric fields and calculations instead of editing copies by hand.
+            </p>
+          </article>
+          <article>
+            <h3>PDF + EMAIL</h3>
+            <p>
+              Move from a prepared document to PDF output and related email
+              content without rebuilding the same information in another tool.
+            </p>
+          </article>
+          <article>
+            <h3>INVOICING WORKFLOW</h3>
+            <p>
+              Keep invoicing-related work alongside the rest of your document
+              workflow instead of treating every document type as a separate
+              app.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -305,7 +368,7 @@ export default function DocFlowPage() {
 
       <footer className={styles.footer}>
         <div>
-          <b>NurByte</b> Software Lab <span>// DOCFLOW</span>
+          <b>NurByte</b> Software Lab <span>{"// DOCFLOW"}</span>
         </div>
         <div className={styles.footerLinks}>
           <Link href="/">

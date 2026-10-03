@@ -20,6 +20,7 @@ export default function TechInventory({ items, selected, onSelect }: Props) {
           onMouseOver={() => onSelect(index)}
           onFocus={() => onSelect(index)}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element -- remote SimpleIcons URL is dynamic and intentionally lazy-loaded. */}
           <img
             src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`}
             alt=""

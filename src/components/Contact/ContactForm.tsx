@@ -250,9 +250,11 @@ export default function ContactForm() {
         aria-live="polite"
         onClick={(e) => {
           if ((e.target as HTMLElement).closest("button")) return;
-          step === "message"
-            ? messageRef.current?.focus({ preventScroll: true })
-            : inputRef.current?.focus({ preventScroll: true });
+          if (step === "message") {
+            messageRef.current?.focus({ preventScroll: true });
+          } else {
+            inputRef.current?.focus({ preventScroll: true });
+          }
         }}
       >
         <div className="cli-history">
