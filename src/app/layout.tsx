@@ -4,6 +4,9 @@ import "./globals.css";
 import "../styles/master.scss";
 import AppIntro from "@/components/AppIntro/AppIntro";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
+
 const pixelify = Pixelify_Sans({
   subsets: ["latin"],
   weight: ["400", "700"],
@@ -254,6 +257,8 @@ export default function RootLayout({
       >
         <AppIntro />
         {children}
+        <SpeedInsights />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
